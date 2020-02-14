@@ -3,12 +3,21 @@ package Main;
 import java.util.Scanner;
 
 import Spring.ChangePasswordService;
+import Spring.MemberDAO;
+import Spring.MemberDTO;
 import Spring.MemberInfoPrinter;
 import Spring.MemberListPrinter;
+import Spring.MemberPrinter;
 import Spring.MemberRegisterService;
 import Spring.RegisterRequest;
 
 public class MainForSpring {
+	private static MemberDAO memberDAO = new MemberDAO();
+	private static MemberPrinter printer = new MemberPrinter();
+	
+	
+	
+	
 	public static void main(String[] args) {
 		while (true) {
 			System.out.println("명령어를 입력하세요.");
