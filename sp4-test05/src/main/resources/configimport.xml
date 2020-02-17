@@ -9,7 +9,7 @@
 	
 	<bean id="memberDAO" class="Spring.MemberDAO" />
 	<bean id="printer" class="Spring.MemberPrinter" />
-	<bean id="versionPrinter" class="Spring.versionPrinter" >
+	<bean id="versionPrinter" class="Spring.VersionPrinter" >
 		<property name="majorVersion" value="4" />
 		<property name="minorVersion">
 			<value>01</value>
