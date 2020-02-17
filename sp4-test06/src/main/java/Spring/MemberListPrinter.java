@@ -10,6 +10,7 @@ public class MemberListPrinter {
 //	@Resource(name="MemberDAO")
 	private MemberDAO memberDAO;
 	private MemberPrinter printer;
+	
 	@Autowired
 	public void setMemberDAO(MemberDAO memberDAO) {
 		this.memberDAO = memberDAO;
