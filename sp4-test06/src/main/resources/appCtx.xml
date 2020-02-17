@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"	
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans.xsd
+						http://www.springframework.org/schema/context
+						http://www.springframework.org/schema/context/spring-context.xsd" >
+	<!-- 의존객체를 자동주입할라고 xmlns:context를 추가한 거고. namespace를 추가하면 꼭 schemaLocation을 추가해 줘야 된다는... -->
+	<context:annotation-config />
+	<!-- 자동주입...? -->
+	
+	<!-- 자동주입.. 생성자나 setter 명시하지 않고. 객체생성만... 하겠다는.. -->	<!-- 생성자(constructor-arg)나 세터(property) 명시했던 거 다 지움... -->
+	<bean id="memberDAO" class="Spring.MemberDAO" />
+	<bean id="printer" class="Spring.MemberPrinter" />
+ 	<bean id="printer_new" class="Spring.MemberPrinter" >	<!-- 싱글톤이 아니고. 변수가 하나 이상 선언될 때.. -->
+		<qualifier value="sysout" />						<!-- qualifier 이름을 따로 지정해주고. @qualifier("")로 갖다쓰게 된다... -->
+	</bean>
+	<bean id="mrs" class="Spring.MemberRegisterService" />
+	<bean id="listPrint" class="Spring.MemberListPrinter" />
+	<bean id="changePwSvc" class="Spring.ChangePasswordService" />
+	<bean id="infoPrinter" class="Spring.MemberInfoPrinter" />
+	
+	<!-- 의존객체가 아닌거는 property 지우면 안 됨... -->
+	<bean id="versionPrinter" class="Spring.VersionPrinter" >
+		<property name="majorVersion" value="4" />
+		<property name="minorVersion">
+			<value>01</value>
+		</property>
+	</bean>
+	
+</beans>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans.xsd" >
+
+
+	<bean id="mrs" class="Spring.MemberRegisterService" >
+		<constructor-arg name="memberDAO" ref="memberDAO" />	 <!-- 생성자를 이용해서 초기화하겠다.. 이런 얘기.. 멤버필드명..  -->
+	</bean>
+	<bean id="listPrint" class="Spring.MemberListPrinter" >
+		<property name="memberDAO" ref="memberDAO" />			 <!-- setter를 이용해서 초기화하겠다.. 이런 얘기.. 멤버필드명..  -->
+		<property name="printer" ref="printer" />					<!-- 생성자와 setter를 섞어서 쓸 수도 있음... 초기화만 되면 된다고  -->
+	</bean>
+	<bean id="changePwSvc" class="Spring.ChangePasswordService" >
+		<property name="memberDAO" ref="memberDAO" />
+	</bean>
+	<bean id="infoPrinter" class="Spring.MemberInfoPrinter" >
+		<constructor-arg name="memberDAO" ref="memberDAO" />
+		<constructor-arg name="printer" ref="printer" />
+	</bean>
+
+					
+</beans>
