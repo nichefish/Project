@@ -15,7 +15,7 @@ public class MainForSpring3 {
 	private static GenericXmlApplicationContext ctx;
 	
 	public static void main(String[] args) {
-		ctx = new GenericXmlApplicationContext("classpath:appCtx.xml");
+		ctx = new GenericXmlApplicationContext("classpath:configimport.xml");
 		Scanner sc = new Scanner(System.in);
 		while (true) {
 			System.out.println("명령어를 입력하세요.");
