@@ -14,6 +14,9 @@
 	<!-- 자동주입.. 생성자나 setter 명시하지 않고. 객체생성만... 하겠다는.. -->	<!-- 생성자(constructor-arg)나 세터(property) 명시했던 거 다 지움... -->
 	<bean id="memberDAO" class="Spring.MemberDAO" />
 	<bean id="printer" class="Spring.MemberPrinter" />
+ 	<bean id="printer_new" class="Spring.MemberPrinter" >	<!-- 싱글톤이 아니고. 변수가 하나 이상 선언될 때.. -->
+		<qualifier value="sysout" />						<!-- qualifier 이름을 따로 지정해주고. @qualifier("")로 갖다쓰게 된다... -->
+	</bean>
 	<bean id="mrs" class="Spring.MemberRegisterService" />
 	<bean id="listPrint" class="Spring.MemberListPrinter" />
 	<bean id="changePwSvc" class="Spring.ChangePasswordService" />
