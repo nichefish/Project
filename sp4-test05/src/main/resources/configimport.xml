@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans.xsd" >
+
+	<import resource="classpath:appCtx2.xml" />		<!-- import해서 합쳤으니까 결과적으로는 하나인 거랑  똑같다는... -->
+	
+	<bean id="memberDAO" class="Spring.MemberDAO" />
+	<bean id="printer" class="Spring.MemberPrinter" />
+	<bean id="versionPrinter" class="Spring.versionPrinter" >
+		<property name="majorVersion" value="4" />
+		<property name="minorVersion">
+			<value>01</value>
+		</property>
+	</bean>
+</beans>
