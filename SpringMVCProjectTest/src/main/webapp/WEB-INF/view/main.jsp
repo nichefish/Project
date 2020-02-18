@@ -19,7 +19,7 @@
 	<tr>
 		<td>아이디 입력</td>
 		<td><input type="text" id="id1" name="id1" /></td>
-		<td><input type="checkbox" name="idStore" value="store" /></td>
+		<td>자동로그인<input type="checkbox" name="idStore" value="store" /></td>
 	</tr>
 	<tr>
 		<td>비밀번호 입력</td>
@@ -30,7 +30,7 @@
 		<td colspan="3">
 			<a href="#">아이디 찾기</a>
 			<a href="#">비밀번호 찾기</a>
-			<a href="memberRegist">회원가입</a>
+			<a href="register/agree">회원가입</a>
 		</td>
 	</tr>
 </table>
