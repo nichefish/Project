@@ -6,14 +6,15 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
        					   http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
        					   http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd" >
-      
-     <!-- 의존객체 자동 주입 -->
-     <context:annotation-config />
-     <mvc:annotation-driven /> <!-- @Controller 클래스명 이름위에 있어야지 이 파일이 컨트롤러라는 것을 안다 -->
-     <!-- root를 알려주는 역할 -->
-     <mvc:default-servlet-handler/>
-     <mvc:view-resolvers>
-     	<mvc:jsp prefix="/WEB-INF/view/"/> <!-- jsp파일을 어디에 두었나 말하는 역할 -->
-     	<mvc:jsp suffix=".jsp"/>
-     </mvc:view-resolvers>
+
+	<context:annotation-config />
+	<mvc:annotation-driven />
+	<mvc:default-servlet-handler/>
+	<mvc:view-resolvers>
+    	<mvc:jsp prefix="/WEB-INF/view/"/>
+<!--     	<mvc:jsp suffix=".jsp"/> -->
+	</mvc:view-resolvers>
+	<mvc:view-controller path="main" view-name="main"/>
 </beans>
+	
+	
