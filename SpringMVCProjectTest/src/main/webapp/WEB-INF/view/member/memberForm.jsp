@@ -16,6 +16,7 @@
 	 		<td width="200">사용자 ID</td>
 	 		<td width="400">
 	 			<form:input path="userId" size="12" maxlength="10" id="userId" />
+	 			<form:errors path="userId" />
 	 			<input type="button" name="userConfirm" id="userConfirm" value="중복확인">
 	 		</td>
 	 	</tr>
@@ -23,6 +24,7 @@
 	 		<td width="200">비밀번호</td>
 	 		<td width="400">
 	 			<form:password path="userPw" id="userPw" size="12" maxlength="10" />
+	 			<form:errors path="userPw" />
 				<!-- <input type="password" name="userPw" id="userPw" size="12" maxlength="10"> -->
 	 		</td>
 	 	</tr>
@@ -30,18 +32,21 @@
 	 		<td width="200">비밀번호 확인</td>
 	 		<td width="400">
 	 			<form:password path="userPwCon" id="userPwCon" size="12" maxlength="10" />
+	 			<form:errors path="userPwCon" />
 	 		</td>
 	 	</tr>
 	 	<tr>
 	 		<td width="200">사용자 이름</td>
 	 		<td width="400">
 	 			<form:input path="userName" id="userName" size="12" maxlength="10" />
+	 			<form:errors path="userName" />
 	 		</td>
 	 	</tr>
 	 	<tr>
 	 		<td width="200">생년원일</td>
 	 		<td width="400">
 	 			<form:input path="userBirth" id="userBirth" size="12" maxlength="10" />
+	 			<form:errors path="userBirth" />
 	 		</td>
 	 	</tr>
 	 	<tr>
@@ -55,18 +60,21 @@
 	 		<td width=200><b>사용자 이메일 </b></td>
 			<td width=400>
 				<form:input path="userEmail" id="userEmail" size="30" maxlength="28" />
+				<form:errors path="userEmail" />
 			</td>
 		</tr>
 		<tr>
 			<td width=200><b>사용자 주소 </b></td>
 			<td width=400>
 				<form:input path="userAddr" id="userAddr" size="30" maxlength="28" />
+				<form:errors path="userAddr" />
 			</td>
 		</tr>
 		<tr>
 			<td width = 200 ><b>* 사용자 연락처1 </b></td>
 			<td width = 400 >
 				<form:input path="userPh1" id = "userPh1" size = "30" maxlength="28" />
+				<form:errors path="userPh1" />
 			</td>
 		</tr>
 		<tr>

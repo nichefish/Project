@@ -72,4 +72,14 @@ public class MemberCommand {
 	public void setUserPh2(String userPh2) {
 		this.userPh2 = userPh2;
 	}
+	
+	public boolean isUserPwEqualToUserPwCon() {
+		if (userPw.equals(userPwCon)) {
+			return true;
+		}
+		return false;
+	}
+	
+	
+	
 }
