@@ -2,13 +2,16 @@ package Model.DAO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
+import org.springframework.jdbc.core.RowMapper;
 
 import Model.DTO.MemberDTO;
 
@@ -17,6 +20,23 @@ public class MemberDAO {
 	private JdbcTemplate jdbcTemplate;
 	final String COLUMNS = "user_id, user_pw, user_name, user_gender, user_email, user_addr, user_ph1, user_ph2, user_birth, user_regist";
 	
+	private RowMapper<MemberDTO> memRowMapper = new RowMapper<MemberDTO>() { 	// RowMapper 생성자를 오버라이딩...
+		public MemberDTO mapRow(ResultSet rs, int rowNum) throws SQLException {		// 얘가 rs.next() 해주는 애나 마찬가지고.. 한줄 한줄..
+			MemberDTO member = new MemberDTO();
+			member.setUserId(rs.getString("user_id"));
+			member.setUserName(rs.getString("user_name"));
+			member.setUserBirth(rs.getTimestamp("user_birth"));
+			member.setUserGender(rs.getString("user_gender"));
+			member.setUserEmail(rs.getString("user_email"));
+			member.setUserAddr(rs.getString("user_addr"));
+			member.setUserPh1(rs.getString("user_ph1"));
+			member.setUserPh2(rs.getString("user_ph2"));
+			member.setUserRegist(rs.getTimestamp("user_regist"));
+			member.setUserPw(rs.getString("user_pw"));
+			return member;
+		}
+	};
+
 	@Autowired
 	public MemberDAO(DataSource dataSource) {	// 생성자.. spring-jdbc.xml에서 dataSource를 갖고와서 자동주입...
 		this.jdbcTemplate = new JdbcTemplate(dataSource);	// getConnection() 등등 대신에 이거 쓰는 거..
@@ -47,5 +67,14 @@ public class MemberDAO {
 //			}
 //		});
 	}
-	
+
+	public MemberDTO selectByUserId(MemberDTO member) {
+		String sql = "select " + COLUMNS + " from member where user_id=?";
+		List<MemberDTO> results = jdbcTemplate.query(sql, memRowMapper, member.getUserId());
+		// rowMapper(ResultSetExtractor<>...) 한 줄 단위로. 리스트로. 어떤 객체..에 저장해서 뽑아오는 그런 개념인가..
+		// 물음표?들 포함해서 쿼리로 받아온 rs를. RowMapper에 매개변수로 주고. RowMapper에서 MemberDTO에 저장해서 하는거고.. memRowMapper를 위에 필드로 따로 뺐고...
+		// 이후에.. ?에 들어갈 것들을 물음표 순서대로 나열주면 된다고..
+		// select로 예전에는 한 행만 받아올 수도 있었는데. 여기(Spring)에서는 resultSet을 무조건 리스트..로 받아온다고... (while문 쓸 필요가 없고...)
+		return results.isEmpty() ? null : results.get(0); // 결과값이 어차피 하나니깐. 없으면 null. 있으면 첫번째꺼 리턴...
+	}
 }

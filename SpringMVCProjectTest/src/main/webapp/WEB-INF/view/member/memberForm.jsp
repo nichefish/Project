@@ -17,7 +17,6 @@
 	 		<td width="400">
 	 			<form:input path="userId" size="12" maxlength="10" id="userId" />
 	 			<form:errors path="userId" />
-	 			<input type="button" name="userConfirm" id="userConfirm" value="중복확인">
 	 		</td>
 	 	</tr>
 	 	<tr>

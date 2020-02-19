@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import Command.Member.MemberCommand;
 import Service.Member.MemberJoinService;
 import Validator.MemberCommandValidator;
 
@@ -18,7 +19,8 @@ public class MemberController {
 	@Autowired
 	private MemberJoinService memberJoinService;
 	// 자바에서는 setter나 생성자가 필요했었는데. 웹에서는 @Controller가 있을 경우에는 setter나 생성자가 필요없다... 암시적으로 만들어진다고...
-	
+
+	// if..else로 다 묶여있는 게 아니라. 각각의 매핑별로 따로따로... 따로따로 떼어놓을 수 있게 되는 거다.. 컨트롤러 여러개 생성가능...
 	@RequestMapping("/register/agree")	// 회원가입 :: 약관동의
 	public String agree() {
 		return "member/agree";
@@ -54,11 +56,13 @@ public class MemberController {
 			return "member/memberForm";
 		}
 	}
+//	@RequestMapping(value="/register/memberJoinAction", method=RequestMethod.GET)	// 회원가입 :: submit
+//	// 주소는 같은데 get/post 방식이 다를 때. GET방식일 때만 이걸로 받겠다.. 뭐 이런 얘기...
+//	public String memberJoinGet() {
+//		return "redirect:agree";
+//	}
 	
-	@RequestMapping(value="/register/memberJoinAction", method=RequestMethod.GET)	// 회원가입 :: submit
-	// 주소는 같은데 get/post 방식이 다를 때. GET방식일 때만 이걸로 받겠다.. 뭐 이런 얘기...
-	public String memberJoinGet() {
-		return "redirect:agree";
-	}
+	
+	
 	
 }

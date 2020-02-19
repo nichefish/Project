@@ -7,8 +7,6 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
-import Controller.Member.MemberCommand;
-
 public class MemberCommandValidator implements Validator {
 	private static final String emailRegExp = "^[_A-Za-z0-9-]+(.[_A-Za-z0-9-]+)*@(?:\\w+\\.)+\\w+$";
 	private Pattern pattern;
@@ -17,10 +15,10 @@ public class MemberCommandValidator implements Validator {
 	}
 	
 	public boolean supports(Class<?> clazz) {	// 지금 받은 타겟이 memberCommand냐- 요런 얘기고, 특별히 쓸일 없으면 그냥 return false로 놔둬도 무방하다...
-		return MemberCommand.class.isAssignableFrom(clazz);	
+		return Command.Member.MemberCommand.class.isAssignableFrom(clazz);	
 	}
 	public void validate(Object target, Errors errors) {	// 실제로 체크하는 validate 메소드-
-		MemberCommand regReq = (MemberCommand) target;
+		Command.Member.MemberCommand regReq = (Command.Member.MemberCommand) target;
 		if (regReq.getUserEmail() == null || regReq.getUserEmail().trim().isEmpty()) {
 			errors.rejectValue("userEmail", "required");	// error.properties에서 key값에 value 할당...
 		} else {

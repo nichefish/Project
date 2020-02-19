@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import Controller.Encrypt;
-import Controller.Member.MemberCommand;
 import Model.DAO.MemberDAO;
 import Model.DTO.MemberDTO;
 
@@ -20,7 +19,7 @@ public class MemberJoinService {
 	// 얘도 주입객체인데. 웹에서는 @Service가 있을 경우에 또 setter나 생성자가 필요없다... 이것도.. 암시적으로 만들어진다고...
 	
 	
-	public Integer execute(MemberCommand memberCommand) {
+	public Integer execute(Command.Member.MemberCommand memberCommand) {
 		Integer result = 0;
 		MemberDTO memberDTO = new MemberDTO();
 		memberDTO.setUserId(memberCommand.getUserId());

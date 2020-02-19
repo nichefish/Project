@@ -1,4 +1,4 @@
-package Controller.Member;
+package Command.Member;
 
 public class MemberCommand {
 	String userId;
