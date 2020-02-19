@@ -40,7 +40,7 @@
 <!-- 로그인 되었을 때 -->
 <a href="memberDetail">내 정보</a>
 <a href="logout" >로그아웃</a>
-<a href="memberList">회원리스트</a>
+<a href="member/list">회원리스트</a>
 <a href="board">공지사항 게시판</a>
 <a href="library">일반지료실</a>
 <a href="answerBoard">답변형 게시판</a>

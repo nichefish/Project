@@ -18,9 +18,5 @@ public class MemberListService {
 			model.addAttribute("members", members);
 			model.addAttribute("count", memberDAO.count());		// 코드를 이런 식으로 가자고- 필요없는 코드 자꾸 적지 말자고-
 		}
-		
-		
-		
 	}
-	
 }

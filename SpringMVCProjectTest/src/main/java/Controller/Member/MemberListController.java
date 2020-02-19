@@ -12,11 +12,9 @@ public class MemberListController {
 	@Autowired
 	private MemberListService memberListService;
 	
-	
 	@RequestMapping("/member/list")
 	public String list(Model model) {
 		memberListService.memberList(model);
 		return "member/memberList";
-		
 	}
 }
