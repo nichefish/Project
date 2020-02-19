@@ -1,7 +1,5 @@
 package Model.DAO;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
@@ -10,7 +8,6 @@ import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
 
 import Model.DTO.MemberDTO;
@@ -19,7 +16,6 @@ public class MemberDAO {
 	// jdbc 템플릿 사용... spring-jdbc.xml에서 dataSource를 갖고오는 거다... 그걸 이용해서 얘를 초기화...
 	private JdbcTemplate jdbcTemplate;
 	final String COLUMNS = "user_id, user_pw, user_name, user_gender, user_email, user_addr, user_ph1, user_ph2, user_birth, user_regist";
-	
 	private RowMapper<MemberDTO> memRowMapper = new RowMapper<MemberDTO>() { 	// RowMapper 생성자를 오버라이딩...
 		public MemberDTO mapRow(ResultSet rs, int rowNum) throws SQLException {		// 얘가 rs.next() 해주는 애나 마찬가지고.. 한줄 한줄..
 			MemberDTO member = new MemberDTO();

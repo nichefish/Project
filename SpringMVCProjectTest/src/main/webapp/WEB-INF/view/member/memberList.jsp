@@ -22,7 +22,11 @@
 		</tr>
 		<c:forEach items="${members}" var="member">
 		<tr align="center" valign="middle">
-			<td align="center"><a href="memberInfo.nhn?id=${member.userId}">${member.userId}</a></td>
+			<td align="center">
+				<a href="<c:url value='/member/memberInfo/${member.userId}' />">${member.userId}</a>
+				<!-- <a href="memberInfo.nhn?id=${member.userId}">${member.userId}</a> 원래는 이렇게 물음표 뒤에 썼었는데.. -->
+				<!-- 원레 쓰던 쿼리스트링 방식 대신 주소처럼.. 써보겠다는 의미.. -->
+			</td>
 			<td align="center">${member.userName}</td>
 			<td align="center">${member.userPh1}</td>
 			<td align="center">${member.userEmail}</td>
@@ -37,25 +41,23 @@
 				[이전]&nbsp;
 				</c:if>
 				<c:if test="${page > 1}">
-				<a href="memberList.nhn?page=${page-1}">[이전]</a>&nbsp;
+				<a href="list?page=${page-1}">[이전]</a>&nbsp;
 				</c:if>
 				<c:forEach begin="${startPage}" end="${endPage}" step="1" var="i" >
-					<a href="memberList.nhn?page=${i}">[${i}]</a>
+					<a href="list?page=${i}">[${i}]</a>
 				</c:forEach>
 					<a href="#"></a>&nbsp;
 				<c:if test="${page == maxPage}">
 				&nbsp;[다음]
 				</c:if>
 				<c:if test="${page < maxPage}">
-				&nbsp;<a href="./memberList.nhn?page=${page+1}">[다음]</a>
+				&nbsp;<a href="list?page=${page+1}">[다음]</a>
 				</c:if>
 			</td>
 		</tr>
 	</table>
-
+	<a href="../register/agree">회원등록</a>
+	<!-- <a href="<c:url value='/register/agree' />	">회원등록</a> -->
 	
-	
-	
-	<a href="memberRegist.nhn">회원등록</a>
 </body>
 </html>

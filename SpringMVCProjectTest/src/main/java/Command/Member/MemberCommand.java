@@ -79,7 +79,4 @@ public class MemberCommand {
 		}
 		return false;
 	}
-	
-	
-	
 }
