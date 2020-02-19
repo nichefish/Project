@@ -68,7 +68,7 @@ public class MemberDAO {
 //		});
 	}
 
-	public MemberDTO selectByUserId(MemberDTO member) {
+	public MemberDTO selectByUserId(MemberDTO member) {			// 회원 한 명 받아오기
 		String sql = "select " + COLUMNS + " from member where user_id=?";
 		List<MemberDTO> results = jdbcTemplate.query(sql, memRowMapper, member.getUserId());
 		// rowMapper(ResultSetExtractor<>...) 한 줄 단위로. 리스트로. 어떤 객체..에 저장해서 뽑아오는 그런 개념인가..
@@ -76,5 +76,16 @@ public class MemberDAO {
 		// 이후에.. ?에 들어갈 것들을 물음표 순서대로 나열주면 된다고..
 		// select로 예전에는 한 행만 받아올 수도 있었는데. 여기(Spring)에서는 resultSet을 무조건 리스트..로 받아온다고... (while문 쓸 필요가 없고...)
 		return results.isEmpty() ? null : results.get(0); // 결과값이 어차피 하나니깐. 없으면 null. 있으면 첫번째꺼 리턴...
+	}
+
+	public List<MemberDTO> selectList() {				// 회원 전체 목록 받아오기
+		String sql = "select " + COLUMNS + " from member";
+		List<MemberDTO> results = jdbcTemplate.query(sql, memRowMapper);
+		return results;
+	}
+	
+	public int count() {
+		String sql = "select count(*) from member";
+		return jdbcTemplate.queryForObject(sql, Integer.class);		// 요런 식으로 바로 리턴하는 게 더 나은 코드라고-
 	}
 }
