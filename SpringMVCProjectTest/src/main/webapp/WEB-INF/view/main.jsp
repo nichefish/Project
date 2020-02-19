@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,7 +9,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form:form action="login" name="frm" id="frm" method="post" commandName="loginCommand">
+<c:if test="${empty authInfo}">
+<form:form action="login" name="frm" id="frm" method="POST" commandName="loginCommand">
 	<table border="1">
 		<tr>
 			<td colspan="3"><form:checkbox path="autoLogin" /></td>
@@ -31,7 +34,9 @@
 		</tr>
 	</table>
 </form:form>
+</c:if>
 
+<c:if test="${!empty authInfo}">
 <!-- 로그인 되었을 때 -->
 <a href="memberDetail">내 정보</a>
 <a href="logout" >로그아웃</a>
@@ -42,5 +47,6 @@
 <a href="commentBoard">댓글 게시판</a>
 <a href="goodsList">상품목록</a>
 <a href="mailForm">메일전송</a>
+</c:if>
 </body>
 </html>

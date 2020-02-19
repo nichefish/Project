@@ -3,17 +3,17 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd" >
     
+    <!-- 클래스를 만들 때마다 거기에 의존객체가 있는지 확인해가면서 만들면 되는.. 그런 느낌적인 느낌... -->
 	<!-- Controller! -->
-	
 	<bean class="Controller.Member.MainController" />
-	<bean class="Controller.Member.LoginController" />
-	<!-- 클래스를 만들 때마다 거기에 의존객체가 있는지 확인해가면서 만들면 되는.. 그런 느낌적인 느낌... -->
 	<bean class="Controller.Member.MemberController" />
-	<!--  Service! -->	<!-- 이 서비스를 위쪽에 컨트롤러가 갖다쓰는 거다... -->
-	<bean id="memberJoinService" class="Service.Member.MemberJoinService" /> <!-- id는 컨트롤러의 멤버필드명(객체이름)과 같게 주는 게 알아보기 쉽다... -->
-	<!-- 얘는 또 DAO를 써야 되니까... DAO도 다시 여기 등록해야 되고... -->
+	<bean class="Controller.Member.LoginController" />
+	<bean class="Controller.Member.LogoutController" />
+	<!--  Service! -->	<!-- 이 서비스를 위쪽에 컨트롤러가 갖다쓰는 거다... --> <!-- id는 컨트롤러의 멤버필드명(객체이름)과 같게 주는 게 알아보기 쉽다... -->
+	<bean id="memberJoinService" class="Service.Member.MemberJoinService" /> 
+	<bean id="authService" class="Service.Member.AuthService" />
+	<!-- 얘는 또 DAO를 의존객체로 써야 되니까... DAO도 다시 여기 등록해야 되고... -->
 	<bean id="memberDAO" class="Model.DAO.MemberDAO" />
 	<!-- 얘의 의존객체는 dataSource인데... 이거는 spring-jdbc.xml에 있으니까 여기서 선언할 필요가 없고... -->
-	<bean id="authService" class="Service.Member.AuthService" />
 	
 </beans>

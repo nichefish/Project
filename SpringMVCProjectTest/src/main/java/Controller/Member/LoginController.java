@@ -20,19 +20,19 @@ public class LoginController {
 	
 //	@RequestMapping(value="/login", method=RequestMethod.GET)
 	@RequestMapping(method=RequestMethod.GET)
-	// GET방식으로 들어온다는 거는 걍 주소쳐서 들어온다는 얘기니까.. 그렇게 들어오면 안 되니까.. 메인으로 리다이렉트시키면 된다..
-	// 근데 메인페이지가 열릴 떄 커맨드객체가 필요하니까- 익셉션이 떠버리니까- 안 뜰라면 커맨드객체를 생성해줘야 된다...
 	public String form() {
+		// GET방식으로 들어온다는 거는 걍 주소쳐서 들어온다는 얘기니까.. 그렇게 들어오면 안 되니까.. 메인으로 리다이렉트시키면 된다..
+		// 근데 메인페이지가 열릴 떄 커맨드객체가 필요하니까- 익셉션이 떠버리니까- 안 뜰라면 커맨드객체를 생성해줘야 된다...
 		return "redirect:/main";	// 요런 식으로 하면  커맨드객체는 리퀘스트에 담겨서 가는 거라. 리다이렉트하면 못 받고...
 //		return "main";	// 요런 식으로 jsp 파일로 명시해주면. 인자로 받은 커맨드객체도 들어간다고.... 요럴때는 context에 컨트롤러만으로도 충분하고...
 	}
-	@RequestMapping(value="/login", method=RequestMethod.POST)	// 
+	@RequestMapping(method=RequestMethod.POST)	// 
 	public String submit(LoginCommand loginCommand, Errors errors, HttpSession session) {
 		new LoginCommandValidator().validate(loginCommand, errors);
+		authService.authenticate(loginCommand, session, errors);
 		if (errors.hasErrors()) {
 			return "main";
 		}
-		authService.authenticate(loginCommand, session, errors);
 		return "main";
 	}
 }
