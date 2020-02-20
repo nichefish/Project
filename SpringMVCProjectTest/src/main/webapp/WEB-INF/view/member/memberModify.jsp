@@ -10,6 +10,9 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript">
 $(function(){
+	$("#modify").click(function(){
+		$("#frm").submit();
+	});
 	$("#memPw").click(function(){
 		location.href="memPw.nhn";
 	})
@@ -32,7 +35,10 @@ $(function(){
 		</tr>
 		<tr>
 			<td>비밀번호</td>
-			<td><form:password path="userPw" id="pw" /><div>${msg}</div></td>
+			<td>
+				<form:password path="userPw" id="pw" />
+				<form:errors path="userPw" />
+			</td>
 		</tr>
 		<tr>
 			<td>기본정보 입력</td><td>&nbsp;</td>
@@ -46,15 +52,24 @@ $(function(){
 		</tr>
 		<tr>
 			<td>사용자 이메일</td>
-			<td><form:input path="userEmail" id="email" /></td>
+			<td>
+				<form:input path="userEmail" id="email" />
+				<form:errors path="userEmail" />
+			</td>
 		</tr>
 		<tr>
 			<td>사용자 주소</td>
-			<td><form:input path="userAddr" id="addr" /></td>
+			<td>
+				<form:input path="userAddr" id="addr" />
+				<form:errors path="userAddr" />
+			</td>
 		</tr>
 		<tr>
 			<td>연락처 1</td>
-			<td><form:input path="userPh1" id="memberPh1" /></td>
+			<td>
+				<form:input path="userPh1" id="memberPh1" />
+				<form:errors path="userPh1" />
+			</td>
 		</tr>
 		<tr>
 			<td>연락처 2</td>

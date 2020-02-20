@@ -9,7 +9,7 @@
 	<bean id="authService" class="Service.Member.AuthService" />
 	<bean id="memberListService" class="Service.Member.MemberListService" />
 	<bean id="memberDetailService" class="Service.Member.MemberDetailService" />
-	
+	<bean id="memberModifyService" class="Service.Member.MemberModifyService" />
 	
 	
 	

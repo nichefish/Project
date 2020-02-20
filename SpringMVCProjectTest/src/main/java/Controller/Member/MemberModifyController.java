@@ -3,12 +3,14 @@ package Controller.Member;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import Command.Member.MemberCommand;
 import Service.Member.MemberDetailService;
 import Service.Member.MemberModifyService;
+import Validator.MemberModifyValidator;
 
 @Controller
 public class MemberModifyController {
@@ -26,17 +28,16 @@ public class MemberModifyController {
 	}
 	
 	@RequestMapping(value="/member/memberModifyPro")
-	public String memberModifyPro(MemberCommand member, Model model) {
-		
-		
-		
-		
-		return null;
-		
+	public String memberModifyPro(MemberCommand member, Model model, Errors errors) {
+//		new MemberModifyValidator().validate(member, errors);
+//		if (errors.hasErrors()) {
+//			return "member/memberModify";			
+//		}
+		Integer result = memberModifyService.memberModify(member, model);
+		if (result == 0) {
+			errors.rejectValue("userPw", "badPw");		// 에러 주입...
+			return "member/memberModify";
+		}
+		return "redirect:/member/memberInfo/" + member.getUserId();
 	}
-	
-	
-	
-	
-	
 }

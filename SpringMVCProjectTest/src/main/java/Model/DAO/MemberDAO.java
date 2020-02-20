@@ -1,5 +1,7 @@
 package Model.DAO;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
@@ -8,6 +10,7 @@ import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
 
 import Model.DTO.MemberDTO;
@@ -83,5 +86,27 @@ public class MemberDAO {
 	public int count() {
 		String sql = "select count(*) from member";
 		return jdbcTemplate.queryForObject(sql, Integer.class);		// 요런 식으로 바로 리턴하는 게 더 나은 코드라고-
+	}
+
+//	public Integer modifyMember(final MemberDTO member) {		// 요 방식도 알고는 있어야 된다고.. 회사가서 어떤 방식일지 모른다고... 회사방식에 맞춰야..
+//		final String sql = "update member set user_email=?, user_addr=?, user_ph1=?, user_ph2=? where user_id=? and user_pw=?";
+//		Integer result = jdbcTemplate.update(new PreparedStatementCreator() {
+//			public PreparedStatement createPreparedStatement(Connection conn) throws SQLException {
+//				PreparedStatement pstmt = conn.prepareStatement(sql);
+//				pstmt.setString(1,  member.getUserEmail());
+//				pstmt.setString(2,  member.getUserAddr());
+//				pstmt.setString(3,  member.getUserPh1());
+//				pstmt.setString(4,  member.getUserPh2());
+//				pstmt.setString(5,  member.getUserId());
+//				pstmt.setString(6,  member.getUserPw());
+//				return pstmt;
+//			}
+//		});
+//		return result;
+//	}
+	public Integer modifyMember(final MemberDTO member) {
+		String sql = "update member set user_email=?, user_addr=?, user_ph1=?, user_ph2=? where user_id=? and user_pw=?";
+		Integer result = jdbcTemplate.update(sql, member.getUserEmail(), member.getUserAddr(), member.getUserPh1(), member.getUserPh2(), member.getUserId(), member.getUserPw());
+		return result;
 	}
 }
