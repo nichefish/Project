@@ -10,6 +10,7 @@
 	<bean class="Controller.Member.LogoutController" />
 	<bean class="Controller.Member.MemberListController" />
 	<bean class="Controller.Member.MemberInfoController" />
+	<bean class="Controller.Member.MemberModifyController" />
 	
 	<bean class="Controller.Board.BoardController" />
 	<bean class="Controller.Board.BoardWriteController" />

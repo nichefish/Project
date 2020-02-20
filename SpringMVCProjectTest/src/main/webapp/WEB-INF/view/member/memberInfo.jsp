@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,10 +10,10 @@
 <script type="text/javascript">
 $(function(){
 	$("#modify").click(function(){
-		location.href="memberModify.nhn"
+		location.href="../memberModify?id=${member.userId}"
 	});
 	$("#memDel").click(function(){
-		location.href="memberDel.nhn"
+		location.href="../memberDel?id=${member.userId}"
 	});
 });
 </script>
