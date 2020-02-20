@@ -13,6 +13,7 @@ import Model.DTO.BoardDTO;
 public class BoardModifyService {
 	@Autowired
 	private BoardDAO boardDAO;
+	
 	public Integer execute(BoardCommand boardCommand, HttpServletRequest request) {
 		Integer result = 0;
 		BoardDTO boardDTO = new BoardDTO();

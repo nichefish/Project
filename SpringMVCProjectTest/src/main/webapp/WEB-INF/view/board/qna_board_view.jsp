@@ -12,11 +12,11 @@
 		<tr align="center" valign="middle"><td colspan="5">MVC 게시판</td></tr>
 		<tr>
 			<td style="font-family:돋음; font-size:12" height="16"><div align="center">글쓴이&nbsp;&nbsp;</div></td>
-			<td style="font-family:돋음; font-size:12">${board.boardName }</td>
+			<td style="font-family:돋음; font-size:12">${boardCommand.boardName }</td>
 		</tr>
 		<tr>
 			<td style="font-family:돋음; font-size:12" height="16"><div align="center">제 목&nbsp;&nbsp;</div></td>
-			<td style="font-family:돋음; font-size:12">${board.boardSubject }</td>
+			<td style="font-family:돋음; font-size:12">${boardCommand.boardSubject }</td>
 		</tr>
 		
 		<tr bgcolor="cccccc">
@@ -28,7 +28,7 @@
 			<td style="font-family:돋음; font-size:12">
 				<table border=0 width=490 height=250 style="table-layout:fixed">
 					<tr>
-						<td valign=top style="font-family:돋음; font-size:12">${board.boardContent }</td>
+						<td valign=top style="font-family:돋음; font-size:12">${boardCommand.boardContent }</td>
 					</tr>
 				</table>
 			</td>
@@ -47,8 +47,8 @@
 			<td colspan="5">
 				<font size=2>
 				<a href="">[답변]</a>&nbsp;&nbsp;
-				<a href="<c:url value='/board/boardModify/${board.boardNum}' />">[수정]</a>&nbsp;&nbsp;
-				<a href="<c:url value='/board/boardDelete/${board.boardNum}' />">[삭제]</a>&nbsp;&nbsp;
+				<a href="<c:url value='/edit/boardModify/${boardCommand.boardNum}' />">[수정]</a>&nbsp;&nbsp;
+				<a href="<c:url value='/edit/boardDelete/${boardCommand.boardNum}' />">[삭제]</a>&nbsp;&nbsp;
 				<a href="board/list">[목록]</a>&nbsp;&nbsp;
 				</font>
 			</td>

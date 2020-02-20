@@ -1,11 +1,18 @@
 package Command.Board;
 
 public class BoardCommand {
+	String boardNum;
 	String boardName;
 	String boardPass;
 	String boardSubject;
 	String boardContent;
 	
+	public String getBoardNum() {
+		return boardNum;
+	}
+	public void setBoardNum(String boardNum) {
+		this.boardNum = boardNum;
+	}
 	public String getBoardName() {
 		return boardName;
 	}

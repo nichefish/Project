@@ -17,7 +17,7 @@ public class BoardDetailService {
 		BoardDTO board = new BoardDTO();
 		board.setBoardNum(Integer.parseInt(boardNum));
 		board = boardDAO.selectByBoardNum(board);
-		model.addAttribute("board", board);
+		model.addAttribute("boardCommand", board);
 		return board;
 	}
 }
