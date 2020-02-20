@@ -12,6 +12,7 @@
 	<bean class="Controller.Member.MemberInfoController" />
 	<bean class="Controller.Member.MemberModifyController" />
 	<bean class="Controller.Member.MemberPasswordController" />
+	<bean class="Controller.Member.PwModifyProController" />
 	
 	<bean class="Controller.Board.BoardController" />
 	<bean class="Controller.Board.BoardWriteController" />

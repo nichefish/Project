@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,14 +29,17 @@ $(function(){
 	});
 });
 </script>
-
 </head>
 <body>
-<form action ="pwModifyPro.nhn" method="post" name="frm" id="frm">
-	현재비밀번호 : <input type="password" name="pw" id="pw" /><br />
-	새 비밀번호 : <input type="password" name="newPw" id="newPw" /><br />
-	새 비밀번호 확인 : <input type="password" name="reNewPw" id="reNewPw" /><br />
+<form:form action ="pwModifyPro" method="post" name="frm" id="frm" commandName="changePwdCommand">
+	<form:hidden path="userId" />
+	현재비밀번호 : <form:password path="pw" id="pw" />
+			   <form:errors path="pw" id="pw" /><br />
+	새 비밀번호 : <form:password path="newPw" id="newPw" />
+			  <form:errors path="newPw" id="newPw" /><br />
+	새 비밀번호 확인 : <form:password path="reNewPw" id="reNewPw" />
+				  <form:errors path="reNewPw" id="reNewPw" /><br />
 	<input type="button" value="비밀번호변경" id="sbm"/>
-</form>	             
+</form:form>	             
 </body>
 </html>

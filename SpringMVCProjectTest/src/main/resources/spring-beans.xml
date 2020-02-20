@@ -11,6 +11,7 @@
 	<bean id="memberDetailService" class="Service.Member.MemberDetailService" />
 	<bean id="memberModifyService" class="Service.Member.MemberModifyService" />
 	<bean id="pwModifyService" class="Service.Member.PwModifyService" />
+	<bean id="passwordModifyService" class="Service.Member.PasswordModifyService" />
 	
 	
 	

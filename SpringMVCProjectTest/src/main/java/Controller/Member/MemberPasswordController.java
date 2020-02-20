@@ -2,12 +2,15 @@ package Controller.Member;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import Command.Member.ChangePwdCommand;
 import Command.Member.MemberCommand;
+import Controller.Encrypt;
 import Model.DTO.MemberDTO;
 import Service.Member.PwModifyService;
 
@@ -27,16 +30,17 @@ public class MemberPasswordController {
 	}
 	
 	@RequestMapping(method=RequestMethod.POST)
-	public String changePw(MemberCommand memberCommand, Errors errors) {
+	public String changePw(MemberCommand memberCommand, Errors errors, Model model) {
 		MemberDTO member = pwModifyService.execute(memberCommand);
 		// id와 일치하는 member객체를 받아온 건데...
-		if (member == null) {		// 비밀번호가 불일치하면. 처음pw입력창으로 돌려보내고...
+		if (!Encrypt.getEncryption(memberCommand.getUserPw()).equals(member.getUserPw())) {
+			// 갖고온 비밀번호와 입력한 비밀번호가 불일치하면. 처음pw입력창으로 돌려보내고...
 			errors.rejectValue("userPw", "badPw");
 			return "member/pwModify";
 		}
+		ChangePwdCommand changePwdCommand = new ChangePwdCommand();
+		changePwdCommand.setUserId(memberCommand.getUserId());
+		model.addAttribute("changePwdCommand", changePwdCommand);
 		return "member/pwModify_1";		// 비밀번호가 일치하면. 두 번째 pw입력창(pw변경창)으로 이동하고...
-		
 	}
-	
-	
 }

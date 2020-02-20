@@ -44,9 +44,8 @@ public class MemberDAO {
 	public Integer insertMember(MemberDTO memberDTO) {	// 익명객체에서 파라미터로 쓸라면 final을 붙여줘야 된다고...
 		Integer i = 0;
 		String sql = "insert into member (" + COLUMNS + ") values(?,?,?,?,?,?,?,?,?,sysdate)";
-		i = jdbcTemplate.update(sql, memberDTO.getUserId(), memberDTO.getUserPw(), memberDTO.getUserName(), memberDTO.getUserGender(), memberDTO.getUserEmail(), memberDTO.getUserAddr(), memberDTO.getUserPh1(), memberDTO.getUserPh2(), memberDTO.getUserBirth());
+		return jdbcTemplate.update(sql, memberDTO.getUserId(), memberDTO.getUserPw(), memberDTO.getUserName(), memberDTO.getUserGender(), memberDTO.getUserEmail(), memberDTO.getUserAddr(), memberDTO.getUserPh1(), memberDTO.getUserPh2(), memberDTO.getUserBirth());
 //		myBatis 들어가면 이거랑 또 다른 방식으로 쓴다고...
-		return i;
 //		<!-- 요거는 다른 방식.. 이것도 한번 봐두기는 하기... -- >
 //		jdbcTemplate.update(new PreparedStatementCreator() {
 //			// PreparedStatementCreator()... 오버라이딩해야 되는 메소드.. 변수없는 익명객체.. 여기서 그냥 작성하면 된다... 얘가 '인터페이스'일 때만 가능하다고...
@@ -106,9 +105,11 @@ public class MemberDAO {
 //	}
 	public Integer modifyMember(MemberDTO member) {
 		String sql = "update member set user_email=?, user_addr=?, user_ph1=?, user_ph2=? where user_id=? and user_pw=?";
-		Integer result = jdbcTemplate.update(sql, member.getUserEmail(), member.getUserAddr(), member.getUserPh1(), member.getUserPh2(), member.getUserId(), member.getUserPw());
-		System.out.println(member.getUserPw());
-		System.out.println(result);
-		return result;
+		return jdbcTemplate.update(sql, member.getUserEmail(), member.getUserAddr(), member.getUserPh1(), member.getUserPh2(), member.getUserId(), member.getUserPw());
+	}
+
+	public Integer pwUpdate(String userId, String pw, String newPw) {
+		String sql = "update member set user_pw=? where user_id=? and user_pw=?";
+		return jdbcTemplate.update(sql, newPw, userId, pw);
 	}
 }

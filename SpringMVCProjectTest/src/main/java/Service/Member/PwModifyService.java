@@ -19,8 +19,8 @@ public class PwModifyService {
 		member.setUserId(memberCommand.getUserId());
 		member.setUserPw(Encrypt.getEncryption(memberCommand.getUserPw()));
 		member = memberDAO.selectByUserId(member);
-		// 여기 서비스에서 에러처리 못함.. 에러처리는 (페이지지에 변경사항을 주는 거니까..) 콘트롤러 가서 해야 된다...
+		// null일 수가 없다.. id는 무조건 날리니까..
+		// 여기 서비스 안에서는 에러처리 못함.. 에러처리는 (페이지지에 변경사항을 주는 거니까..) 콘트롤러 가서 해야 된다...
 		return member;
 	}
-	
 }
