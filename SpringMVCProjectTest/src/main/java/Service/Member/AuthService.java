@@ -39,6 +39,8 @@ public class AuthService {
 			authInfo = new AuthInfo(member.getUserId(), member.getUserEmail(), member.getUserName(), member.getUserPw());
 			// 객체 만들고 setter 네 번 쓰는 대신. 객체 만들 때부터 생성자 이용해서 한 번에 초기화...
 			if (authInfo.getPw().equals(Encrypt.getEncryption(loginCommand.getPw()))) {		// 비밀번호가 맞으면..
+				Cookie autoLoginCookie = new Cookie("AutoLogin", loginCommand.getId1());		// 자동로그인 쿠키...
+				response.addCookie(autoLoginCookie);
 				session.setAttribute("authInfo",  authInfo);
 			} else {
 				System.out.println("비밀번호가 틀립니다.");

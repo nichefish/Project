@@ -13,12 +13,15 @@
 	<bean id="pwModifyService" class="Service.Member.PwModifyService" />
 	<bean id="passwordModifyService" class="Service.Member.PasswordModifyService" />
 	
+	<bean id="mainService" class="Service.Member.MainService" />
 	
 	
 	<bean id="boardListService" class="Service.Board.BoardListService" />
 	<bean id="boardWriteService" class="Service.Board.BoardWriteService" />
 	<bean id="boardDetailService" class="Service.Board.BoardDetailService" />
 	<bean id="boardModifyService" class="Service.Board.BoardModifyService" />
+	
+	
 	
 	<!-- 얘는 또 DAO를 의존객체로 써야 되니까... DAO도 다시 여기 등록해야 되고... -->
 	<bean id="memberDAO" class="Model.DAO.MemberDAO" />
