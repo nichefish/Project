@@ -22,13 +22,14 @@ public class MemberModifyService {
 	public Integer memberModify(MemberCommand memberCommand, Model model) {
 		MemberDTO member = new MemberDTO();		// DTO는 의존객체로 잘 사용 안한다고...
 		member.setUserId(memberCommand.getUserId());
+		System.out.println("userid: " + memberCommand.getUserId());
 		member.setUserPw(Encrypt.getEncryption(memberCommand.getUserPw()));
+		System.out.println(memberCommand.getUserPw());
 		member.setUserEmail(memberCommand.getUserEmail());
 		member.setUserAddr(memberCommand.getUserAddr());
 		member.setUserPh1(memberCommand.getUserPh1());
 		member.setUserPh2(memberCommand.getUserPh2());
 		Integer result = memberDAO.modifyMember(member);
-		System.out.println(result);
 		return result;
 	}
 

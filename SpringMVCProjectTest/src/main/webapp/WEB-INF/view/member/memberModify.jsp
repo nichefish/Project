@@ -20,7 +20,7 @@ $(function(){
 </script>
 </head>
 <body>
-<form:form name="frm" id="frm" method="post" action ="memberModifyPro" commandName="member">
+<form:form name="frm" id="frm" method="post" action ="memberModifyPro" commandName="memberCommand">
 	<!-- 커맨드객체는 memberDetailService의 Model로 "member"라고 날라오는 걸 받기 위해서.. member라고 이름 붙인거임.... -->
 	<table border=1  width=600 align="center" cellpadding=3 >
 		<tr>
@@ -31,7 +31,8 @@ $(function(){
 			<td>&nbsp;</td>
 		</tr>
 		<tr>
-			<td>사용자 ID</td><td>${member.userId }</td>
+			<td>사용자 ID</td><td>${memberCommand.userId }</td>
+				<form:hidden path="userId"/>
 		</tr>
 		<tr>
 			<td>비밀번호</td>
@@ -44,11 +45,11 @@ $(function(){
 			<td>기본정보 입력</td><td>&nbsp;</td>
 		</tr>
 		<tr>
-			<td>사용자 이름</td><td>${member.userName}</td>
+			<td>사용자 이름</td><td>${memberCommand.userName}</td>
 		</tr>
 		<tr>
 			<td>생년월일 및 성별</td>
-			<td>${member.userBirth} ${member.userGender}</td>
+			<td>${member.userBirth} ${memberCommand.userGender}</td>
 		</tr>
 		<tr>
 			<td>사용자 이메일</td>

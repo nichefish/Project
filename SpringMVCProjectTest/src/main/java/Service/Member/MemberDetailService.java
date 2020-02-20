@@ -16,7 +16,7 @@ public class MemberDetailService {
 		MemberDTO member = new MemberDTO();
 		member.setUserId(userId);
 		member = memberDAO.selectByUserId(member);
-		model.addAttribute("member", member);
+		model.addAttribute("memberCommand", member);
 		return member;
 	}
 

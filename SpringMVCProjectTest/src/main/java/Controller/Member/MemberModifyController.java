@@ -23,21 +23,21 @@ public class MemberModifyController {
 	public String memberModify(@RequestParam(value="id") String userId, Model model) {
 		memberDetailService.memberDetail(userId, model);
 //		위에 서비스에서 이미.. MemberDTO를 갖고와서 model.addAttribute("member", member)를 한 상태다...
-//		model.addAttribute("memberCommand", new MemberCommand());
+//		model.addAttribute("member", new MemberCommand());
 		return "member/memberModify";
 	}
 	
 	@RequestMapping(value="/member/memberModifyPro")
-	public String memberModifyPro(MemberCommand member, Model model, Errors errors) {
-//		new MemberModifyValidator().validate(member, errors);
-//		if (errors.hasErrors()) {
-//			return "member/memberModify";			
-//		}
-		Integer result = memberModifyService.memberModify(member, model);
+	public String memberModifyPro(MemberCommand memberCommand, Model model, Errors errors) {
+		new MemberModifyValidator().validate(memberCommand, errors);
+		if (errors.hasErrors()) {
+			return "member/memberModify";			
+		}
+		Integer result = memberModifyService.memberModify(memberCommand, model);
 		if (result == 0) {
 			errors.rejectValue("userPw", "badPw");		// 에러 주입...
 			return "member/memberModify";
 		}
-		return "redirect:/member/memberInfo/" + member.getUserId();
+		return "redirect:/member/memberInfo/" + memberCommand.getUserId();
 	}
 }

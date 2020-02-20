@@ -104,9 +104,11 @@ public class MemberDAO {
 //		});
 //		return result;
 //	}
-	public Integer modifyMember(final MemberDTO member) {
+	public Integer modifyMember(MemberDTO member) {
 		String sql = "update member set user_email=?, user_addr=?, user_ph1=?, user_ph2=? where user_id=? and user_pw=?";
 		Integer result = jdbcTemplate.update(sql, member.getUserEmail(), member.getUserAddr(), member.getUserPh1(), member.getUserPh2(), member.getUserId(), member.getUserPw());
+		System.out.println(member.getUserPw());
+		System.out.println(result);
 		return result;
 	}
 }

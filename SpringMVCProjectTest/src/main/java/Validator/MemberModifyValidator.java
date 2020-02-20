@@ -28,14 +28,7 @@ public class MemberModifyValidator implements Validator {
 				errors.rejectValue("userEmail", "bad.userEmail");
 			}
 		}
-//		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "userName", "required");	// 비었거나 공백문자로 이루어져 있을 때 경고메세지...
 		ValidationUtils.rejectIfEmpty(errors, "userPw", "required");
-//		ValidationUtils.rejectIfEmpty(errors, "userPwCon", "required");
-//		if (!regReq.getUserPw().isEmpty()) {
-//			if (!regReq.isUserPwEqualToUserPwCon()) {
-//				errors.rejectValue("userPwCon", "nomatch");
-//			}
-//		}
 		ValidationUtils.rejectIfEmpty(errors, "userAddr", "required");
 		ValidationUtils.rejectIfEmpty(errors, "userPh1", "required");
 	}

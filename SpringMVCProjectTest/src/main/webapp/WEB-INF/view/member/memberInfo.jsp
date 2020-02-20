@@ -10,10 +10,10 @@
 <script type="text/javascript">
 $(function(){
 	$("#modify").click(function(){
-		location.href="../memberModify?id=${member.userId}"
+		location.href="../memberModify?id=${memberCommand.userId}"
 	});
 	$("#memDel").click(function(){
-		location.href="../memberDel?id=${member.userId}"
+		location.href="../memberDel?id=${memberCommand.userId}"
 	});
 });
 </script>
@@ -22,22 +22,22 @@ $(function(){
 	<c:if test="">
 		<script>location.href="index.nhn";</script>
 	</c:if>
-	이름 : ${member.userName}<br />
-	아이디 : ${member.userId}<br />
-	이메일  : ${member.userName}<br />
-	생년월일  : ${member.userBirth}<br />
+	이름 : ${memberCommand.userName}<br />
+	아이디 : ${memberCommand.userId}<br />
+	이메일  : ${memberCommand.userName}<br />
+	생년월일  : ${memberCommand.userBirth}<br />
 	성별 : <c:choose >
-		  	<c:when test="${member.userGender == 'M'}">
+		  	<c:when test="${memberCommand.userGender == 'M'}">
 		  		남자
 		  	</c:when>
-		  	<c:when test="${member.userGender == 'F'}">
+		  	<c:when test="${memberCommand.userGender == 'F'}">
 		  		여자
 		  	</c:when>
 		  </c:choose> <br />
-	연락처 1 : ${member.userPh1}<br />
-	연락처 2 : ${member.userPh2}<br />
-	등록일 : ${member.userRegist}<br />
-	주소  : ${member.userAddr}<br />
+	연락처 1 : ${memberCommand.userPh1}<br />
+	연락처 2 : ${memberCommand.userPh2}<br />
+	등록일 : ${memberCommand.userRegist}<br />
+	주소  : ${memberCommand.userAddr}<br />
 	<input type="button" name="modify" id="modify" value="수   정" >
 	<input type="button" value="취  소" onclick="javascript:history.back();" />
 	<input type="button" value="탈 퇴" id="memDel"/>
