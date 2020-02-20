@@ -6,7 +6,6 @@ import org.springframework.ui.Model;
 
 import Model.DAO.BoardDAO;
 import Model.DTO.BoardDTO;
-import Model.DTO.MemberDTO;
 
 @Service
 public class BoardDetailService {

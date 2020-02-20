@@ -18,4 +18,5 @@
 	<bean class="Controller.Board.BoardWriteController" />
 	<bean class="Controller.Board.BoardInfoController" />
 	<bean class="Controller.Board.BoardModifyController" />
+	<bean class="Controller.Board.BoardDeleteController" />
 </beans>

@@ -13,7 +13,9 @@
 		<tr align="center" valign="middle"><td colspan="5">MVC 게시판</td></tr>
 		<tr>
 			<td style="font-family:돋음; font-size:12" height="16"><div align="center">글쓴이&nbsp;&nbsp;</div></td>
-			<td style="font-family:돋음; font-size:12">${boardCommand.boardName }</td>
+			<td style="font-family:돋음; font-size:12">
+				<form:hidden path="boardName" />${boardCommand.boardName}
+			</td>
 		</tr>
 		<tr>
 			<td height="16" style="font-family:돋음; font-size:12">
@@ -41,7 +43,10 @@
 		</tr>
 		<tr>
 			<td height="16" style="font-family:돋음; font-size:12"><div align="center">비밀번호</div></td>
-			<td><form:password path="boardPass" /></td>
+			<td>
+				<form:password path="boardPass" />
+				<form:errors path="boardPass" />
+			</td>
 		</tr>
 		
 		<tr bgcolor="cccccc">

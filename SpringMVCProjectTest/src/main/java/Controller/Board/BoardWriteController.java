@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import Command.Board.BoardCommand;
 import Service.Board.BoardWriteService;
 import Validator.BoardCommandValidator;
-import Validator.MemberCommandValidator;
 
 @Controller
 public class BoardWriteController {

@@ -11,7 +11,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
 import Model.DTO.BoardDTO;
-import Model.DTO.MemberDTO;
 
 public class BoardDAO {
 	private JdbcTemplate jdbcTemplate;
@@ -63,8 +62,11 @@ public class BoardDAO {
 
 	public Integer updateBoard(BoardDTO boardDTO) {
 		String sql = "update board set board_subject=?, board_content=? where board_num=? and board_pass=?";
+		return jdbcTemplate.update(sql, boardDTO.getBoardSubject(), boardDTO.getBoardContent(), boardDTO.getBoardNum(), boardDTO.getBoardPass());
+	}
 
+	public void deleteBoard(String boardNum) {
+		// TODO Auto-generated method stub
 		
-		return null;
 	}
 }

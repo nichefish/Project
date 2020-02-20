@@ -21,24 +21,13 @@ public class MainController {
 	@RequestMapping(method=RequestMethod.GET)	// GET 방식일 때만 오는 페이지..
 //	public String form() {
 	public String form(LoginCommand loginCommand, @CookieValue(value="AutoLogin", required=false) Cookie autoLoginCookie, @CookieValue(value="REMEMBER", required=false) Cookie rememberCookie, HttpSession session) {
-		if (autoLoginCookie != null) {
-			mainService.autoLogin(autoLoginCookie.getValue(), session);
-			
-		}
-		
-		
-		
-		
-		
 		if (rememberCookie != null) {
 			loginCommand.setId1(rememberCookie.getValue());
 			loginCommand.setIdStore(true);
 		}
-		
-		
-		
-		
-		
+		if (autoLoginCookie != null) {
+			mainService.autoLogin(autoLoginCookie.getValue(), session);
+		}
 		return "main";
 	}
 }

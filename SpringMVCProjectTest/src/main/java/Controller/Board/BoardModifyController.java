@@ -32,18 +32,16 @@ public class BoardModifyController {
 	@RequestMapping("/edit/boardModifyAction")	// 글쓰기..
 	public String boardModify(BoardCommand boardCommand, Errors errors, HttpServletRequest request) {
 		System.out.println(boardCommand.getBoardNum());
-		
-		
+		// 지금 여기서 막힌 건가...
 		new BoardCommandValidator().validate(boardCommand, errors);	// 에러 검사...
 		if (errors.hasErrors()) {		// 에러가 발생했다면...
 			return "board/qna_board_modify";		// 글쓰기 form으로 돌려보냄...
 		}
-		Integer result = 0;
-		try {
-			result = boardModifyService.execute(boardCommand, request);		// DB에 insert시 row수가 반환되니까.. 그거 확인...
-			return "redirect:/board/list";
-		} catch(Exception e) {
-			return "board/qna_board_modify";
+		Integer result = boardModifyService.execute(boardCommand);
+		if (result == 0) {
+			errors.rejectValue("boardPw", "badPw");		// 에러 주입...
+			return "redirect:/edit/boardModify/" + boardCommand.getBoardNum();
 		}
+		return "redirect:/edit/boardInfo/" + boardCommand.getBoardNum();
 	}
 }
