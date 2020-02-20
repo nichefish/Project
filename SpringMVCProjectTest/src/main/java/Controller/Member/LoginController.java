@@ -1,5 +1,6 @@
 package Controller.Member;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,9 +28,9 @@ public class LoginController {
 //		return "main";	// 요런 식으로 jsp 파일로 명시해주면. 인자로 받은 커맨드객체도 들어간다고.... 요럴때는 context에 컨트롤러만으로도 충분하고...
 	}
 	@RequestMapping(method=RequestMethod.POST)	// 
-	public String submit(LoginCommand loginCommand, Errors errors, HttpSession session) {
+	public String submit(LoginCommand loginCommand, Errors errors, HttpSession session, HttpServletResponse response) {
 		new LoginCommandValidator().validate(loginCommand, errors);
-		authService.authenticate(loginCommand, session, errors);
+		authService.authenticate(loginCommand, session, errors, response);
 		if (errors.hasErrors()) {
 			return "main";
 		}

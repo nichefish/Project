@@ -39,5 +39,8 @@ public class MemberCommandValidator implements Validator {
 		ValidationUtils.rejectIfEmpty(errors, "userAddr", "required");
 		ValidationUtils.rejectIfEmpty(errors, "userPh1", "required");
 		ValidationUtils.rejectIfEmpty(errors, "userBirth", "required");
+		// 날짜형식..도 여기서 해줘야된다. 이것도 정규표현식으로...
+		
+		
 	}
 }

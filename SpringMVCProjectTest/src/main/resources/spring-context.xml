@@ -26,7 +26,12 @@
 		<property name="defaultEncoding" value="UTF-8" />
 	</bean>
 	
-	
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/edit/**" />							<!-- GET방식으로. 이 주소로 들어오면... -->
+			<bean class="Interceptor.AuthCheckInterceptor" />		<!-- 이 객체를 실행시켜라.. 이런 얘기... -->
+		</mvc:interceptor>
+	</mvc:interceptors>
 	
 	
 </beans>
