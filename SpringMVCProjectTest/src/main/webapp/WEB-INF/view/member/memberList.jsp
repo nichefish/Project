@@ -23,7 +23,7 @@
 		<c:forEach items="${members}" var="member">
 		<tr align="center" valign="middle">
 			<td align="center">
-				<a href="<c:url value='/member/memberInfo/${member.userId}' />">${member.userId}</a>
+				<a href="<c:url value='/edit/memberInfo/${member.userId}' />">${member.userId}</a>
 				<!-- <a href="memberInfo.nhn?id=${member.userId}">${member.userId}</a> 원래는 이렇게 물음표 뒤에 썼었는데.. -->
 				<!-- 원레 쓰던 쿼리스트링 방식 대신 주소처럼.. 써보겠다는 의미.. -->
 			</td>

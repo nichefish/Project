@@ -13,13 +13,13 @@ public class MemberInfoController {
 	@Autowired
 	private MemberDetailService memberDetailService;
 	
-	@RequestMapping("/member/memberInfo/{aa}")
+	@RequestMapping("/edit/memberInfo/{aa}")
 	public String memberInfo(@PathVariable("aa") String userId, Model model) {
 //	public String memberInfo(@RequestParam(userId)) {	// ?쿼리스트링으로 날리면 이런 식으로 받으면 되는거고...
 		try {
 			memberDetailService.memberDetail(userId, model);
 		} catch (Exception e) {
-			return "redirect:/member/memberList";
+			return "redirect:/edit/memberList";
 		}
 		return "member/memberInfo";
 	}

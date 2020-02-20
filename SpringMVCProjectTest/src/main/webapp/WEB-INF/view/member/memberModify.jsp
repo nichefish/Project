@@ -14,7 +14,7 @@ $(function(){
 		$("#frm").submit();
 	});
 	$("#memPw").click(function(){
-		location.href="memPw.nhn";
+		location.href="changePassword?userId=${memberCommand.userId}";
 	})
 });
 </script>

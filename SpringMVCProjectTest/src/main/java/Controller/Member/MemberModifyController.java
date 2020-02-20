@@ -19,7 +19,7 @@ public class MemberModifyController {
 	@Autowired
 	private MemberModifyService memberModifyService;
 	
-	@RequestMapping(value="/member/memberModify")
+	@RequestMapping(value="/edit/memberModify")
 	public String memberModify(@RequestParam(value="id") String userId, Model model) {
 		memberDetailService.memberDetail(userId, model);
 //		위에 서비스에서 이미.. MemberDTO를 갖고와서 model.addAttribute("member", member)를 한 상태다...
@@ -27,7 +27,7 @@ public class MemberModifyController {
 		return "member/memberModify";
 	}
 	
-	@RequestMapping(value="/member/memberModifyPro")
+	@RequestMapping(value="/edit/memberModifyPro")
 	public String memberModifyPro(MemberCommand memberCommand, Model model, Errors errors) {
 		new MemberModifyValidator().validate(memberCommand, errors);
 		if (errors.hasErrors()) {
@@ -38,6 +38,7 @@ public class MemberModifyController {
 			errors.rejectValue("userPw", "badPw");		// 에러 주입...
 			return "member/memberModify";
 		}
-		return "redirect:/member/memberInfo/" + memberCommand.getUserId();
+		return "redirect:/edit/memberInfo/" + memberCommand.getUserId();
+		// redirect는 주소.. RequestMapping에 있는 주소입력값... 그냥 return은 view에 있는 실제 jsp 경로...
 	}
 }
