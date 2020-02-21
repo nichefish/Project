@@ -24,7 +24,6 @@ public class LibraryBoardService {
 		libraryDTO.setUserId(authInfo.getId());
 		libraryDTO.setBoardName(libraryBoardCommand.getBoardName());
 		libraryDTO.setBoardPass(Encrypt.getEncryption(libraryBoardCommand.getBoardPass()));
-		System.out.println(libraryDTO.getBoardPass());
 		libraryDTO.setBoardSubject(libraryBoardCommand.getBoardSubject());
 		libraryDTO.setBoardContent(libraryBoardCommand.getBoardContent());
 		libraryDTO.setIpAddr(request.getRemoteAddr());
