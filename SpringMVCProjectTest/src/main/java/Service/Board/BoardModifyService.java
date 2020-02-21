@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import Command.Board.BoardCommand;
+import Controller.Encrypt;
 import Model.DAO.BoardDAO;
 import Model.DTO.BoardDTO;
 
@@ -16,7 +17,7 @@ public class BoardModifyService {
 		BoardDTO boardDTO = new BoardDTO();
 		boardDTO.setBoardNum(Integer.parseInt(boardCommand.getBoardNum()));
 		boardDTO.setBoardName(boardCommand.getBoardName());
-		boardDTO.setBoardPass(boardCommand.getBoardPass());
+		boardDTO.setBoardPass(Encrypt.getEncryption(boardCommand.getBoardPass()));
 		boardDTO.setBoardSubject(boardCommand.getBoardSubject());
 		boardDTO.setBoardContent(boardCommand.getBoardContent());
 		return boardDAO.updateBoard(boardDTO);

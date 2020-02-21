@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import Command.Library.LibraryBoardCommand;
+import Controller.Encrypt;
 import Model.DAO.LibraryBoardDAO;
 import Model.DTO.AuthInfo;
 import Model.DTO.LibraryBoardDTO;
@@ -22,7 +23,8 @@ public class LibraryBoardService {
 		AuthInfo authInfo = (AuthInfo) session.getAttribute("authInfo");
 		libraryDTO.setUserId(authInfo.getId());
 		libraryDTO.setBoardName(libraryBoardCommand.getBoardName());
-		libraryDTO.setBoardPass(libraryBoardCommand.getBoardPass());
+		libraryDTO.setBoardPass(Encrypt.getEncryption(libraryBoardCommand.getBoardPass()));
+		System.out.println(libraryDTO.getBoardPass());
 		libraryDTO.setBoardSubject(libraryBoardCommand.getBoardSubject());
 		libraryDTO.setBoardContent(libraryBoardCommand.getBoardContent());
 		libraryDTO.setIpAddr(request.getRemoteAddr());

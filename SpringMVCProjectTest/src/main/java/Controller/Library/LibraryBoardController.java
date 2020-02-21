@@ -18,6 +18,9 @@ import Validator.BoardCommandValidator;
 public class LibraryBoardController {
 	@Autowired
 	private LibraryBoardService libraryBoardService;
+//	@Autowired
+//	private LibraryListService libraryListService;
+	
 	
 	@RequestMapping("/libraryBoard/library")
 	public String libraryList() {
@@ -35,7 +38,6 @@ public class LibraryBoardController {
 //		if (errors.hasErrors()) {		// 에러가 발생했다면...
 //			return "board/qna_board_write";		// 글쓰기 form으로 돌려보냄...
 //		}
-		System.out.println("!!?!!!EEE");
 		try {
 			libraryBoardService.writePro(libraryBoardCommand, session, request);		// DB에 insert시 row수가 반환되니까.. 그거 확인...
 			return "redirect:/libraryBoard/library";
