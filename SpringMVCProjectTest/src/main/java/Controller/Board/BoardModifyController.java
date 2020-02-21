@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import Command.Board.BoardCommand;
 import Service.Board.BoardDetailService;
@@ -23,8 +24,8 @@ public class BoardModifyController {
 	@Autowired
 	private BoardDetailService boardDetailService;
 	
-	@RequestMapping("/edit/boardModify/{aa}")	// 글쓰기..
-	public String boardForm(@PathVariable("aa") String boardNum, BoardCommand boardCommand, Model model) {
+	@RequestMapping("/edit/boardModify")	// 글쓰기..
+	public String boardForm(@RequestParam(value="boardNum") String boardNum, BoardCommand boardCommand, Model model) {
 		boardDetailService.boardDetail(boardNum, model);
 		return "board/qna_board_modify";
 	}
@@ -39,9 +40,10 @@ public class BoardModifyController {
 		}
 		Integer result = boardModifyService.execute(boardCommand);
 		if (result == 0) {
-			errors.rejectValue("boardPw", "badPw");		// 에러 주입...
-			return "redirect:/edit/boardModify/" + boardCommand.getBoardNum();
+			errors.rejectValue("boardPass", "badPw");		// 에러 주입...
+			System.out.println("에러인데...");
+			return "redirect:/edit/boardModify?boardNum=" + boardCommand.getBoardNum();
 		}
-		return "redirect:/edit/boardInfo/" + boardCommand.getBoardNum();
+		return "redirect:/board/boardInfo/" + boardCommand.getBoardNum();
 	}
 }

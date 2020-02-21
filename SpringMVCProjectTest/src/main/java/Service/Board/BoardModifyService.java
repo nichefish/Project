@@ -14,6 +14,7 @@ public class BoardModifyService {
 	
 	public Integer execute(BoardCommand boardCommand) {
 		BoardDTO boardDTO = new BoardDTO();
+		boardDTO.setBoardNum(Integer.parseInt(boardCommand.getBoardNum()));
 		boardDTO.setBoardName(boardCommand.getBoardName());
 		boardDTO.setBoardPass(boardCommand.getBoardPass());
 		boardDTO.setBoardSubject(boardCommand.getBoardSubject());

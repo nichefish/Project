@@ -55,7 +55,6 @@ public class BoardDAO {
 
 	public BoardDTO selectByBoardNum(BoardDTO board) {
 		String sql = "select " + COLUMNS + " from board where board_num=?";
-		System.out.println(sql);
 		List<BoardDTO> results = jdbcTemplate.query(sql, boardRowMapper, board.getBoardNum());
 		return results.isEmpty() ? null : results.get(0);
 	}
@@ -65,8 +64,8 @@ public class BoardDAO {
 		return jdbcTemplate.update(sql, boardDTO.getBoardSubject(), boardDTO.getBoardContent(), boardDTO.getBoardNum(), boardDTO.getBoardPass());
 	}
 
-	public void deleteBoard(String boardNum) {
-		// TODO Auto-generated method stub
-		
+	public Integer deleteBoard(BoardDTO boardDTO) {
+		String sql = "delete from board where board_num=?";
+		return jdbcTemplate.update(sql, boardDTO.getBoardNum());		// 삽입/수정/삭제는 .update..
 	}
 }

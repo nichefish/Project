@@ -47,8 +47,8 @@
 			<td colspan="5">
 				<font size=2>
 				<a href="">[답변]</a>&nbsp;&nbsp;
-				<a href="<c:url value='/edit/boardModify/${boardCommand.boardNum}' />">[수정]</a>&nbsp;&nbsp;
-				<a href="<c:url value='/edit/boardDelete/${boardCommand.boardNum}' />">[삭제]</a>&nbsp;&nbsp;
+				<a href="<c:url value='/edit/boardModify?boardNum=${boardCommand.boardNum}' />">[수정]</a>&nbsp;&nbsp;
+				<a href="<c:url value='/edit/boardDelete?boardNum=${boardCommand.boardNum}' />">[삭제]</a>&nbsp;&nbsp;
 				<a href="board/list">[목록]</a>&nbsp;&nbsp;
 				</font>
 			</td>

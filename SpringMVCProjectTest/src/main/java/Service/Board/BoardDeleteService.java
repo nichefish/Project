@@ -5,13 +5,16 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import Model.DAO.BoardDAO;
+import Model.DTO.BoardDTO;
 
 @Service
 public class BoardDeleteService {
 	@Autowired
 	private BoardDAO boardDAO;
 	
-	public void execute(String boardNum) {
-		boardDAO.deleteBoard(boardNum);
+	public Integer execute(String boardNum) {
+		BoardDTO boardDTO = new BoardDTO();
+		boardDTO.setBoardNum(Integer.parseInt(boardNum));
+		return boardDAO.deleteBoard(boardDTO);
 	}
 }

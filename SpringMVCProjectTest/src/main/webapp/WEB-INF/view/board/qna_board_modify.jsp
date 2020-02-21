@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form:form action="BoardModifyAction" method="post" name="modifyform" commandName="boardCommand">
+<form:form action="boardModifyAction" method="post" name="modifyform" commandName="boardCommand">
 	<form:hidden path="boardNum" />
 	<table cellpadding="0" cellspacing="0">
 		<tr align="center" valign="middle"><td colspan="5">MVC 게시판</td></tr>
@@ -23,6 +23,7 @@
 			</td>
 			<td>
 				<form:input path="boardSubject" size="50" maxlength="100" />
+				<form:errors path="boardSubject" size="50" maxlength="100" />
 			</td>
 		</tr>
 		<tr>
@@ -31,6 +32,7 @@
 			</td>
 			<td>
 				<form:textarea path="boardContent" cols="67" rows="15" />
+				<form:errors path="boardContent" cols="67" rows="15" />
 			</td>
 		</tr>
 		<tr>
@@ -44,7 +46,7 @@
 		<tr>
 			<td height="16" style="font-family:돋음; font-size:12"><div align="center">비밀번호</div></td>
 			<td>
-				<form:password path="boardPass" />
+				<form:password path="boardPass" />&nbsp;
 				<form:errors path="boardPass" />
 			</td>
 		</tr>
