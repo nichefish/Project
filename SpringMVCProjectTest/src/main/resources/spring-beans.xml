@@ -15,11 +15,17 @@
 	<bean id="pwModifyService" class="Service.Member.PwModifyService" />
 	<bean id="passwordModifyService" class="Service.Member.PasswordModifyService" />
 	
+	<!-- 공지사항 게시판.. -->
 	<bean id="boardListService" class="Service.Board.BoardListService" />
 	<bean id="boardWriteService" class="Service.Board.BoardWriteService" />
 	<bean id="boardDetailService" class="Service.Board.BoardDetailService" />
 	<bean id="boardModifyService" class="Service.Board.BoardModifyService" />
 	<bean id="boardDeleteService" class="Service.Board.BoardDeleteService" />
+	
+	<!-- 자료실.. -->
+	<bean id="libraryBoardService" class="Service.Library.LibraryBoardService" />
+		
+	
 	
 	<!-- 얘는 또 DAO를 의존객체로 써야 되니까... DAO도 다시 여기 등록해야 되고... -->
 	<bean id="memberDAO" class="Model.DAO.MemberDAO" />

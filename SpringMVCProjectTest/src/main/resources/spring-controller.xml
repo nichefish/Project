@@ -3,7 +3,7 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd" >
 
-	<!-- Controller! -->
+	<!-- 로그인 및 Member... Controller! -->
 	<bean class="Controller.Member.MainController" />
 	<bean class="Controller.Member.MemberController" />
 	<bean class="Controller.Member.LoginController" />
@@ -14,9 +14,12 @@
 	<bean class="Controller.Member.MemberPasswordController" />
 	<bean class="Controller.Member.PwModifyProController" />
 	
+	<!-- Board.. 일반게시판.. -->
 	<bean class="Controller.Board.BoardController" />
 	<bean class="Controller.Board.BoardWriteController" />
 	<bean class="Controller.Board.BoardInfoController" />
 	<bean class="Controller.Board.BoardModifyController" />
 	<bean class="Controller.Board.BoardDeleteController" />
+	
+
 </beans>
