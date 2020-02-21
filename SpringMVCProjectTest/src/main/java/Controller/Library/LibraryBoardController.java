@@ -9,9 +9,8 @@ import Service.Library.LibraryBoardService;
 
 @Controller
 public class LibraryBoardController {
-	@Autowired
-	private LibraryBoardService libraryBoardService;
-	
+//	@Autowired
+//	private LibraryBoardService libraryBoardService;
 	
 	@RequestMapping("/libraryBoard/library")
 	public String libraryList() {
@@ -25,7 +24,7 @@ public class LibraryBoardController {
 	
 	@RequestMapping("/libraryBoard/boardWritePro")
 	public String libraryWritePro(LibraryBoardCommand libraryBoardCommand) {
-		libraryBoardService.writePro(libraryBoardCommand);
+//		libraryBoardService.writePro(libraryBoardCommand);
 		return "redirect:/libraryBoard/library";
 	}
 	

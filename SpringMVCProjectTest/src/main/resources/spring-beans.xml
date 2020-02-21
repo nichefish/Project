@@ -23,7 +23,7 @@
 	<bean id="boardDeleteService" class="Service.Board.BoardDeleteService" />
 	
 	<!-- 자료실.. -->
-	<bean id="libraryBoardService" class="Service.Library.LibraryBoardService" />
+<!-- 	<bean id="libraryBoardService" class="Service.Library.LibraryBoardService" /> -->
 		
 	
 	
