@@ -73,7 +73,7 @@
 	
 		<tr align="right">
 			<td colspan="5">
-		   		<a href="./boardWrite.lb">[글쓰기]</a>
+		   		<a href="../edit/boardWrite">[글쓰기]</a>
 			</td>
 		</tr>
 	</table>

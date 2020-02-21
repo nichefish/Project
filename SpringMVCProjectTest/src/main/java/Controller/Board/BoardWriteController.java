@@ -28,12 +28,10 @@ public class BoardWriteController {
 		if (errors.hasErrors()) {		// 에러가 발생했다면...
 			return "board/qna_board_write";		// 글쓰기 form으로 돌려보냄...
 		}
-		Integer i = 0;
-		try {
-			i = boardWriteService.execute(boardCommand, session, request);		// DB에 insert시 row수가 반환되니까.. 그거 확인...
-			return "redirect:/board/list";
-		} catch(Exception e) {
+		Integer result = boardWriteService.execute(boardCommand, session, request);		// DB에 insert시 row수가 반환되니까.. 그거 확인...
+		if (result == 0) {
 			return "board/qna_board_write";
 		}
+		return "redirect:/board/list";
 	}
 }

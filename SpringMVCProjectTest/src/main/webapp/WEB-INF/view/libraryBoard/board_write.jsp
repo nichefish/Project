@@ -13,7 +13,7 @@
 </head>
 <body>
 <!-- 	<form action="boardWritePro.lb" method="post" enctype="multipart/form-data" name="boardform"> -->
-<form:form path="boardform" action="boardWritePro" method="post">
+<form:form action="boardWritePro" method="post" commandName="libraryBoardCommand" name="boardform">
 <table cellpadding="0" cellspacing="0">
 	<tr align="center" valign="middle">
 		<td colspan="5">MVC 게시판</td>
@@ -23,7 +23,7 @@
 			<div align="center">글쓴이</div>
 		</td>
 		<td>
-			<form:input path="boardName" type="text" size="10" maxlength="10" />
+			<form:input path="boardName" size="10" maxlength="10" />
 			<form:errors path="boardName" />
 		</td>
 	</tr>
