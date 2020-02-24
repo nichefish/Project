@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri = "http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -53,11 +53,22 @@
 		</c:forEach>
 		<tr align=center height=20>
 			<td colspan=7 style=font-family:Tahoma;font-size:10pt;>
+				<c:if test="${page <= 1}">
 				[이전]&nbsp;
-				<a href="">[이전]</a>&nbsp;
-					[1][2][3][4][5][6][7][8][9][10]
-				<a href="#"></a>&nbsp;[다음]
-				<a href="./boardList?page=">[다음]</a>
+				</c:if>
+				<c:if test="${page > 1}">
+				<a href="library?page=${page-1}">[이전]</a>&nbsp;
+				</c:if>
+				<c:forEach begin="${startPage}" end="${endPage}" step="1" var="i" >
+					<a href="library?page=${i}">[${i}]</a>
+				</c:forEach>
+					<a href="#"></a>&nbsp;
+				<c:if test="${page == maxPage}">
+				&nbsp;[다음]
+				</c:if>
+				<c:if test="${page < maxPage}">
+				&nbsp;<a href="library?page=${page+1}">[다음]</a>
+				</c:if>
 			</td>
 		</tr>
 		</c:if>
