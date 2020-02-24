@@ -60,6 +60,7 @@
 			</td>
 			<td>
 				<input type="file" name="report" multiple="multiple" />
+				<div>${fileError}</div>
 			</td>
 		</tr>
 	<tr bgcolor="cccccc">
