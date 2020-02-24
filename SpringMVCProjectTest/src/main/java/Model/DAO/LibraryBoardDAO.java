@@ -58,8 +58,8 @@ public class LibraryBoardDAO {
 		return jdbcTemplate.queryForObject(sql, Integer.class);		// 요런 식으로 바로 리턴하는 게 더 나은 코드라고-
 	}
 
-	public LibraryBoardDTO selectByBoardNum(LibraryBoardDTO board) {
-		String sql = "select " + COLUMNS + " from libraryboard where board_num=?";
+	public LibraryBoardDTO selectByBoardNum(LibraryBoardDTO board, String tableName) {
+		String sql = "select " + COLUMNS + " from " + tableName + " where board_num=?";
 		List<LibraryBoardDTO> results = jdbcTemplate.query(sql, boardRowMapper, board.getBoardNum());
 		return results.isEmpty() ? null : results.get(0);
 	}

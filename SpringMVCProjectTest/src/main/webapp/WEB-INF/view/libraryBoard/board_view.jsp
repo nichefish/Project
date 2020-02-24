@@ -48,9 +48,9 @@
 		<tr align="center" valign="middle">
 			<td colspan="5">
 				<font size=2>
-				<a href="./libraryBoardModify.lb?num=${board.boardNum}">[수정]</a>&nbsp;&nbsp;
-				<a href="./libraryBoardDelete.lb?num=${board.boardNum}">[삭제]</a>&nbsp;&nbsp;
-				<a href="./library.lb">[목록]</a>&nbsp;&nbsp;
+				<a href="./boardModify?num=${board.boardNum}">[수정]</a>&nbsp;&nbsp;
+				<a href="./boardDelete?num=${board.boardNum}">[삭제]</a>&nbsp;&nbsp;
+				<a href="./library">[목록]</a>&nbsp;&nbsp;
 				</font>
 			</td>
 		</tr>

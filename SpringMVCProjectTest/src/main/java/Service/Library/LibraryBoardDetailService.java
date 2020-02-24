@@ -12,11 +12,11 @@ public class LibraryBoardDetailService {
 	@Autowired
 	private LibraryBoardDAO libraryBoardDAO;
 	
-	public void boardView(Integer boardNum, Model model) {
+	public void boardView(Integer boardNum, Model model, String tableName) {
 		libraryBoardDAO.boardReadCountUpdate(boardNum);
 		LibraryBoardDTO board = new LibraryBoardDTO();
 		board.setBoardNum(boardNum);
-		board = libraryBoardDAO.selectByBoardNum(board);
+		board = libraryBoardDAO.selectByBoardNum(board, tableName);
 		board.setBoardContent(board.getBoardContent().replace("\n", "<br />"));
 		model.addAttribute("board", board);
 	}
