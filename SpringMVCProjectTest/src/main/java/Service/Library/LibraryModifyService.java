@@ -23,10 +23,10 @@ public class LibraryModifyService {
 		dto.setBoardPass(Encrypt.getEncryption(libraryBoardCommand.getBoardPass()));
 		Integer result = libraryBoardDAO.updateBoard(dto);
 		String path = null;
-		if (result != 0) {
-			path = "redirect:/libraryBoard/boardModify?num=" + dto.getBoardNum();
-		} else {
+		if (result == 0) {
 			errors.rejectValue("boardPass", "badPw");
+			path = "libraryBoard/board_modify";
+		} else {
 			path = "redirect:/libraryBoard/boardDetail?num=" + dto.getBoardNum();
 		}
 		return path;

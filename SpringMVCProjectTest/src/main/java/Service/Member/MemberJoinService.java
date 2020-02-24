@@ -25,15 +25,10 @@ public class MemberJoinService {
 		memberDTO.setUserId(memberCommand.getUserId());
 		memberDTO.setUserPw(Encrypt.getEncryption(memberCommand.getUserPw()));
 		memberDTO.setUserName(memberCommand.getUserName());
-		Date date = null;
-		try {
-			SimpleDateFormat dt = new SimpleDateFormat("yyyy-MM-dd");
-			date = dt.parse(memberCommand.getUserBirth());
-			Timestamp userBirth = new Timestamp(date.getTime());
-			memberDTO.setUserBirth(userBirth);
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
+		// memberCommand에서 userBirth 데이터타입을 Date로 바꿔서...
+		Timestamp userBirth = new Timestamp(memberCommand.getUserBirth().getTime());
+		memberDTO.setUserBirth(userBirth);
+		// 요렇게 하면 되나.. 테스트해보기...
 		memberDTO.setUserGender(memberCommand.getUserGender());
 		memberDTO.setUserEmail(memberCommand.getUserEmail());
 		memberDTO.setUserAddr(memberCommand.getUserAddr());

@@ -21,9 +21,8 @@ public class LibraryBoardModifyProController {
 			System.out.println("!@#!@#FW");
 			return "libraryBoard/board_modify";
 		}
-		System.out.println(".....!@#!@#!#");
-		
 		String path = libradyModifyService.modifyPro(libraryBoardCommand, errors);
+		System.out.println("path: " + path);
 		return path;
 	}
 }
