@@ -14,7 +14,7 @@ import Model.DTO.LibraryBoardDTO;
 
 public class LibraryBoardDAO {
 	private JdbcTemplate jdbcTemplate;
-	final String COLUMNS = "board_num, user_id, board_name, board_pass, board_subject, board_content, ip_addr, board_date, read_count";
+	final String COLUMNS = "board_num, user_id, board_name, board_pass, board_subject, board_content, ip_addr, read_count, board_date, original_file_name, store_file_name, file_size";
 	private RowMapper<LibraryBoardDTO> boardRowMapper = new RowMapper<LibraryBoardDTO>() { 	// RowMapper 생성자를 오버라이딩...
 		public LibraryBoardDTO mapRow(ResultSet rs, int rowNum) throws SQLException {		// 얘가 rs.next() 해주는 애나 마찬가지고.. 한줄 한줄..
 			LibraryBoardDTO board = new LibraryBoardDTO();
@@ -24,9 +24,12 @@ public class LibraryBoardDAO {
 			board.setBoardPass(rs.getString("board_pass"));
 			board.setBoardSubject(rs.getString("board_subject"));
 			board.setBoardContent(rs.getString("board_content"));
-			board.setBoardDate(rs.getTimestamp("board_date"));
-			board.setReadCount(rs.getInt("read_count"));
 			board.setIpAddr(rs.getString("ip_addr"));
+			board.setReadCount(rs.getInt("read_count"));
+			board.setBoardDate(rs.getTimestamp("board_date"));
+			board.setOriginalFileName(rs.getString("original_file_name"));
+			board.setStoreFileName(rs.getString("store_file_name"));
+			board.setFileSize(rs.getLong("file_size"));
 			return board;
 		}
 	};
@@ -37,14 +40,16 @@ public class LibraryBoardDAO {
 	
 	public Integer insertBoard(LibraryBoardDTO board) {
 		Integer i = 0;
-		String sql = "insert into libraryboard (" + COLUMNS + ") values(num_seq.nextval,?,?,?,?,?,?,sysdate,0)";
+		String sql = "insert into libraryboard (" + COLUMNS + ") values(num_seq.nextval,?,?,?,?,?,?,0,sysdate,0,0,0)";
 		i = jdbcTemplate.update(sql, board.getUserId(), board.getBoardName(), board.getBoardPass(), board.getBoardSubject(), board.getBoardContent(), board.getIpAddr());
 		return i;
 	}
 
-	public List<LibraryBoardDTO> selectList() {
-		String sql = "select " + COLUMNS + " from libraryboard";
-		List<LibraryBoardDTO> results = jdbcTemplate.query(sql, boardRowMapper);
+	public List<LibraryBoardDTO> selectList(int nowPage, int limit) {
+		int startRow = (nowPage - 1) * limit + 1;
+		int endRow = startRow + limit - 1;
+		String sql = "select * from (select rownum rn, " + COLUMNS + " from (select " + COLUMNS + " from libraryboard order by board_num desc)) where rn between ? and ?";
+		List<LibraryBoardDTO> results = jdbcTemplate.query(sql, boardRowMapper, startRow, endRow);
 		return results;
 	}
 	

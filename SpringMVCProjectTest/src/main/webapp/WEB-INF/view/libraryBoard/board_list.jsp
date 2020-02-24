@@ -9,7 +9,7 @@
 </head>
 <body>
 	<table width=50% border="0" cellpadding="0" cellspacing="0">
-		<c:if test="${!empty boardList}">
+		<c:if test="${!empty boards}">
 		<tr align="center" valign="middle">
 			<td colspan="4">MVC 게시판</td>
 			<td align=right>
@@ -34,7 +34,7 @@
 				<div align="center">조회수</div>
 			</td>
 		</tr>
-		<c:forEach items="${boardList}" var="board" varStatus="status"> 
+		<c:forEach items="${boards}" var="board" varStatus="status"> 
 		<tr align="center" valign="middle" bordercolor="#333333" onmouseover="this.style.backgroundColor='F8F8F8'" onmouseout="this.style.backgroundColor=''">
 			<td height="23" style="font-family:Tahoma;font-size:10pt;">${status.count}</td>
 			<td style="font-family:Tahoma;font-size:10pt;">
@@ -57,7 +57,7 @@
 				<a href="">[이전]</a>&nbsp;
 					[1][2][3][4][5][6][7][8][9][10]
 				<a href="#"></a>&nbsp;[다음]
-				<a href="./boardList.lb?page=">[다음]</a>
+				<a href="./boardList?page=">[다음]</a>
 			</td>
 		</tr>
 		</c:if>

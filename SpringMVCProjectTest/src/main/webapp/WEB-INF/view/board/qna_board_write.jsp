@@ -44,7 +44,7 @@
 				<div align="center">내 용</div>
 			</td>
 			<td>
-				<form:textarea path="boardContent" cols="67" rows="15"></form:textarea>
+				<form:textarea path="boardContent" cols="67" rows="15" />
 				<form:errors path="boardContent" />
 			</td>
 		</tr>

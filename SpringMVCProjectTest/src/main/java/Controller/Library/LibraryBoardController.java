@@ -5,12 +5,15 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import Command.Board.BoardCommand;
 import Command.Library.LibraryBoardCommand;
 import Service.Board.BoardListService;
+import Service.Library.LibraryBoardListService;
 import Service.Library.LibraryBoardService;
 import Validator.BoardCommandValidator;
 
@@ -18,12 +21,12 @@ import Validator.BoardCommandValidator;
 public class LibraryBoardController {
 	@Autowired
 	private LibraryBoardService libraryBoardService;
-//	@Autowired
-//	private LibraryListService libraryListService;
-	
+	@Autowired
+	private LibraryBoardListService libraryBoardListService;
 	
 	@RequestMapping("/libraryBoard/library")
-	public String libraryList() {
+	public String libraryList(Model model, @RequestParam(value="page", required=false) Integer page) {
+		libraryBoardListService.boardList(model, page);
 		return "libraryBoard/board_list";
 	}
 	
