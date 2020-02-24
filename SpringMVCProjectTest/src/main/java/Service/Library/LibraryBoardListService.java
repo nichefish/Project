@@ -25,7 +25,8 @@ public class LibraryBoardListService {
 		model.addAttribute("boards", boards);
 		int count = libraryBoardDAO.count();
 		int maxPage = (int)((double)count/limit + 0.95);	// 총 페이지.. ex.88.. 최소한 1부터 시작해야 되는 그런..
-		int startPage = (int)(((double)nowPage/limitPage + 0.9)-1);		// 밑에 열개 중에 첫번째꺼... 1, 11, 21.. 요런거...		
+		int startPage = (int)(((double)nowPage/limitPage + 0.9)-1)*limitPage + 1;		// 밑에 열개 중에 첫번째꺼... 1, 11, 21.. 요런거...
+		System.out.println(startPage);
 		int endPage = startPage + limitPage - 1;		// 밑에 열개 중에 마지막꺼.. 10, 20, 30... 요런거...
 		if (endPage > maxPage) {			// 총 페이지만큼만 표시하겠다.. 뭐 이런 얘기..
 			endPage = maxPage;
