@@ -6,7 +6,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="boardDeletePro" name="deleteForm" method="post">
+<form action="boardDelete" name="deleteForm" method="post">
 	<input type="hidden" name="boardNum" value="${num}"/>
 	<table border=1>
 	<tr>

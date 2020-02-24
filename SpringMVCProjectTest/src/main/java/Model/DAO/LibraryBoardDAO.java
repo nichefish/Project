@@ -70,8 +70,8 @@ public class LibraryBoardDAO {
 	}
 
 	public Integer deleteBoard(LibraryBoardDTO board) {
-		String sql = "delete from libraryboard where board_num=?";
-		return jdbcTemplate.update(sql, board.getBoardNum());		// 삽입/수정/삭제는 .update..
+		String sql = "delete from libraryboard where board_num=? and board_pass=?";
+		return jdbcTemplate.update(sql, board.getBoardNum(), board.getBoardPass());		// 삽입/수정/삭제는 .update..
 	}
 
 	public void boardReadCountUpdate(Integer boardNum) {

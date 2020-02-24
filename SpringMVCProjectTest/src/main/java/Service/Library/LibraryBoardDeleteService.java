@@ -16,6 +16,7 @@ public class LibraryBoardDeleteService {
 		LibraryBoardDTO dto = new LibraryBoardDTO();
 		dto.setBoardNum(Integer.parseInt(boardNum));
 		dto.setBoardPass(Encrypt.getEncryption(boardPass));
+		System.out.println(dto.getBoardPass());
 		return libraryDAO.deleteBoard(dto);
 	}
 }
