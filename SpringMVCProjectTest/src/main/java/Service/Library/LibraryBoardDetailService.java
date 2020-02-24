@@ -17,6 +17,7 @@ public class LibraryBoardDetailService {
 		LibraryBoardDTO board = new LibraryBoardDTO();
 		board.setBoardNum(boardNum);
 		board = libraryBoardDAO.selectByBoardNum(board);
+		board.setBoardContent(board.getBoardContent().replace("\n", "<br />"));
 		model.addAttribute("board", board);
 	}
 

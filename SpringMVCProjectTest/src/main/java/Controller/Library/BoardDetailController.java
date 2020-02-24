@@ -13,15 +13,9 @@ public class BoardDetailController {
 	@Autowired
 	private LibraryBoardDetailService libraryBoardDetailService;
 	
-	@RequestMapping("/edit/boardWritePro")
+	@RequestMapping("/libraryBoard/boardDetail")
 	public String boardView(@RequestParam(value="num") Integer boardNum, Model model) {
 		libraryBoardDetailService.boardView(boardNum, model);
-		
-		
-		
-		
-		
-		
-		return "board/board_view";
+		return "libraryBoard/board_view";
 	}
 }
