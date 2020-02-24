@@ -6,17 +6,25 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import Command.Library.LibraryBoardCommand;
 import Service.Library.LibraryBoardDetailService;
 
 @Controller
-public class LibraryModifyController {
+public class LibraryBoardDetailController {
 	@Autowired
 	private LibraryBoardDetailService libraryBoardDetailService;
 	
-	@RequestMapping("/libraryBoard/boardModify")
-	public String boardModify(@RequestParam(value="num") Integer boardNum, @RequestParam(value="option") String option, Model model) {
+	@RequestMapping("/libraryBoard/boardDetail")
+	public String boardView(@RequestParam(value="num") Integer boardNum, Model model) {
 		String tableName="libraryboard";
-		libraryBoardDetailService.boardView(boardNum, model, tableName);
+		libraryBoardDetailService.boardView(boardNum, model, tableName, 0);
+		return "libraryBoard/board_view";
+	}
+	
+	@RequestMapping("/libraryBoard/boardModify")
+	public String boardModify(@RequestParam(value="num") Integer boardNum, Model model) {
+		String tableName="libraryboard";
+		libraryBoardDetailService.boardView(boardNum, model, tableName, 1);
 		return "libraryBoard/board_modify";
 	}
 }

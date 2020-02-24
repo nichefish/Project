@@ -8,6 +8,7 @@
 	<bean id="libraryBoardListService" class="Service.Library.LibraryBoardListService" />
 	<bean id="libraryBoardDetailService" class="Service.Library.LibraryBoardDetailService" />
 	
+	
 	<!-- DAO... -->
 	<bean id="libraryBoardDAO" class="Model.DAO.LibraryBoardDAO" />
 	

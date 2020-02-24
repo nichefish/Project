@@ -12,12 +12,14 @@ public class LibraryBoardDetailService {
 	@Autowired
 	private LibraryBoardDAO libraryBoardDAO;
 	
-	public void boardView(Integer boardNum, Model model, String tableName) {
+	public void boardView(Integer boardNum, Model model, String tableName, Integer num) {
 		libraryBoardDAO.boardReadCountUpdate(boardNum);
 		LibraryBoardDTO board = new LibraryBoardDTO();
 		board.setBoardNum(boardNum);
 		board = libraryBoardDAO.selectByBoardNum(board, tableName);
-		board.setBoardContent(board.getBoardContent().replace("\n", "<br />"));
+		if (num != 1) {
+			board.setBoardContent(board.getBoardContent().replace("\n", "<br />"));		// textarea에서 줄바꿈...
+		}
 		model.addAttribute("board", board);
 	}
 
