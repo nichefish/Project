@@ -73,4 +73,9 @@ public class LibraryBoardDAO {
 		String sql = "delete from libraryboard where board_num=?";
 		return jdbcTemplate.update(sql, board.getBoardNum());		// 삽입/수정/삭제는 .update..
 	}
+
+	public void boardReadCountUpdate(Integer boardNum) {
+		String sql = "update libraryboard set read_count=read_count+1 where board_num=?";
+		jdbcTemplate.update(sql, boardNum);		// 삽입/수정/삭제는 .update..
+	}
 }

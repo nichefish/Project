@@ -38,7 +38,7 @@
 		<tr align="center" valign="middle" bordercolor="#333333" onmouseover="this.style.backgroundColor='F8F8F8'" onmouseout="this.style.backgroundColor=''">
 			<td height="23" style="font-family:Tahoma;font-size:10pt;">${status.count}</td>
 			<td style="font-family:Tahoma;font-size:10pt;">
-				<div align="left">▶&nbsp;<a href="./boardDetailAction.lb?num=${board.boardNum}">${board.boardSubject}</a></div>
+				<div align="left">▶&nbsp;<a href="./boardDetailAction?num=${board.boardNum}">${board.boardSubject}</a></div>
 			</td>
 			<td style="font-family:Tahoma;font-size:10pt;">
 				<div align="center">${board.boardName}</div>

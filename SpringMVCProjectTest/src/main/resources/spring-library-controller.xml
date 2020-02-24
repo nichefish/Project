@@ -5,5 +5,6 @@
        
 	<!-- LibraryBoard.. 자료실.. -->
 	<bean class="Controller.Library.LibraryBoardController" />
+	<bean class="Controller.Library.BoardDetailController" />
 	
 </beans>
