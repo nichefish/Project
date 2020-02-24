@@ -18,8 +18,11 @@ public class LibraryBoardModifyProController {
 	public String boardModifyPro(LibraryBoardCommand libraryBoardCommand, Errors errors, Model model) {
 		new LibraryBoardModifyValidator().validate(libraryBoardCommand, errors);	// 에러 검사...
 		if (errors.hasErrors()) {
+			System.out.println("!@#!@#FW");
 			return "libraryBoard/board_modify";
 		}
+		System.out.println(".....!@#!@#!#");
+		
 		String path = libradyModifyService.modifyPro(libraryBoardCommand, errors);
 		return path;
 	}
