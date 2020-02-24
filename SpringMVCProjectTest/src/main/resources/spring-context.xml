@@ -33,6 +33,11 @@
 		</mvc:interceptor>
 	</mvc:interceptors>
 	
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- 이렇게 선언함으로써. multipartResolver.#!@#@# 요런 식으로 메소드를 쓰는 거라고... -->
+		<property name="maxUploadSize" value="100000000" />
+		<property name="maxInMemorySize" value="100000000" />
+	</bean>
 	
 </beans>
 	

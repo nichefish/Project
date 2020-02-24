@@ -13,7 +13,7 @@
 </head>
 <body>
 <!-- 	<form action="boardWritePro.lb" method="post" enctype="multipart/form-data" name="boardform"> -->
-<form:form action="boardWritePro" method="post" commandName="libraryBoardCommand" name="boardform">
+<form:form action="boardWritePro" method="post" commandName="libraryBoardCommand" name="boardform" enctype="multipart/form-data">
 <table cellpadding="0" cellspacing="0">
 	<tr align="center" valign="middle">
 		<td colspan="5">MVC 게시판</td>
@@ -54,14 +54,14 @@
 			<form:errors path="boardContent" />
 		</td>
 	</tr>
-<!-- 		<tr> -->
-<!-- 			<td style="font-family:돋음; font-size:12"> -->
-<!-- 				<div align="center">파일 첨부</div> -->
-<!-- 			</td> -->
-<!-- 			<td> -->
-<!-- 				<input name="BOARD_FILE" type="file"/> -->
-<!-- 			</td> -->
-<!-- 		</tr> -->
+		<tr>
+			<td style="font-family:돋음; font-size:12">
+				<div align="center">파일 첨부</div>
+			</td>
+			<td>
+				<input type="file" name="report" multiple="multiple" />
+			</td>
+		</tr>
 	<tr bgcolor="cccccc">
 		<td colspan="2" style="height:1px;"></td>
 	</tr>

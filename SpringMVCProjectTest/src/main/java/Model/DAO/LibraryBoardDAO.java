@@ -29,7 +29,7 @@ public class LibraryBoardDAO {
 			board.setBoardDate(rs.getTimestamp("board_date"));
 			board.setOriginalFileName(rs.getString("original_file_name"));
 			board.setStoreFileName(rs.getString("store_file_name"));
-			board.setFileSize(rs.getLong("file_size"));
+			board.setFileSize(rs.getString("file_size"));
 			return board;
 		}
 	};
@@ -40,8 +40,8 @@ public class LibraryBoardDAO {
 	
 	public Integer insertBoard(LibraryBoardDTO board) {
 		Integer i = 0;
-		String sql = "insert into libraryboard (" + COLUMNS + ") values(num_seq.nextval,?,?,?,?,?,?,0,sysdate,0,0,0)";
-		i = jdbcTemplate.update(sql, board.getUserId(), board.getBoardName(), board.getBoardPass(), board.getBoardSubject(), board.getBoardContent(), board.getIpAddr());
+		String sql = "insert into libraryboard (" + COLUMNS + ") values(num_seq.nextval,?,?,?,?,?,?,0,sysdate,?,?,?)";
+		i = jdbcTemplate.update(sql, board.getUserId(), board.getBoardName(), board.getBoardPass(), board.getBoardSubject(), board.getBoardContent(), board.getIpAddr(), board.getOriginalFileName(), board.getStoreFileName(), board.getFileSize());
 		return i;
 	}
 
