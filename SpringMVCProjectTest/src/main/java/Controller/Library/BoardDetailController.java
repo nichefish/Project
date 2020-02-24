@@ -15,7 +15,8 @@ public class BoardDetailController {
 	
 	@RequestMapping("/libraryBoard/boardDetail")
 	public String boardView(@RequestParam(value="num") Integer boardNum, Model model) {
-		libraryBoardDetailService.boardView(boardNum, model);
+		String tableName="libraryboard";
+		libraryBoardDetailService.boardView(boardNum, model, tableName);
 		return "libraryBoard/board_view";
 	}
 }
