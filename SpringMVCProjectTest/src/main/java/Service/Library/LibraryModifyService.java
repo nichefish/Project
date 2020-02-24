@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.validation.Errors;
 
 import Command.Library.LibraryBoardCommand;
+import Controller.Encrypt;
 import Model.DAO.LibraryBoardDAO;
 import Model.DTO.LibraryBoardDTO;
 
@@ -19,7 +20,7 @@ public class LibraryModifyService {
 		dto.setBoardNum(libraryBoardCommand.getBoardNum());
 		dto.setBoardSubject(libraryBoardCommand.getBoardSubject());
 		dto.setBoardContent(libraryBoardCommand.getBoardContent());
-		dto.setBoardPass(libraryBoardCommand.getBoardPass());
+		dto.setBoardPass(Encrypt.getEncryption(libraryBoardCommand.getBoardPass()));
 		Integer result = libraryBoardDAO.updateBoard(dto);
 		String path = null;
 		if (result != 0) {
