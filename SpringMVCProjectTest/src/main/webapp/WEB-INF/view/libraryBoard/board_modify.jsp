@@ -6,14 +6,14 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-	<script type="text/javascript">
-	function modifyboard(){
-		modifyform.submit();
-	}
-	</script>
+<script type="text/javascript">
+function modifyboard(){
+	modifyform.submit();
+}
+</script>
 </head>
 <body>
-<form:form action="boardModifyPro" method="post" name="modifyform" commandName="board">
+<form:form action="boardModifyPro" method="post" name="modifyform" commandName="libraryBoardCommand">
 	<form:hidden path="boardNum" />
 	<table cellpadding="0" cellspacing="0">
 		<tr align="center" valign="middle">
@@ -38,12 +38,12 @@
 			</td>
 		</tr>
 		<tr>
-			<td style="font-family:돋음; font-size:12">
-				<div align="center">파일 첨부</div>
-			</td>
-			<td>
-				&nbsp;&nbsp;${board.originalFileName}</a> / ${board.fileSize}byte
-			</td>
+<!-- 			<td style="font-family:돋음; font-size:12"> -->
+<!-- 				<div align="center">파일 첨부</div> -->
+<!-- 			</td> -->
+<!-- 			<td> -->
+<%-- 				&nbsp;&nbsp;${libraryBoardCommand.originalFileName}</a> / ${libraryBoardCommand.fileSize}byte --%>
+<!-- 			</td> -->
 		</tr>
 		<tr>
 			<td height="16" style="font-family:돋음; font-size:12">

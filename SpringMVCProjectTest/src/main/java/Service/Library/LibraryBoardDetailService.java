@@ -14,13 +14,13 @@ public class LibraryBoardDetailService {
 	
 	public void boardView(Integer boardNum, Model model, String tableName, Integer num) {
 		libraryBoardDAO.boardReadCountUpdate(boardNum);
-		LibraryBoardDTO board = new LibraryBoardDTO();
-		board.setBoardNum(boardNum);
-		board = libraryBoardDAO.selectByBoardNum(board, tableName);
+		LibraryBoardDTO dto = new LibraryBoardDTO();
+		dto.setBoardNum(boardNum);
+		dto = libraryBoardDAO.selectByBoardNum(dto, tableName);
 		if (num != 1) {
-			board.setBoardContent(board.getBoardContent().replace("\n", "<br />"));		// textarea에서 줄바꿈...
+			dto.setBoardContent(dto.getBoardContent().replace("\n", "<br />"));		// textarea에서 줄바꿈...
 		}
-		model.addAttribute("board", board);
+		model.addAttribute("libraryBoardCommand", dto);		// dto를 저장해서 커맨드객체로 쓰는 거임... 저장되는 값이 이름이 같으니까... 이런 식으로...
 	}
 
 }

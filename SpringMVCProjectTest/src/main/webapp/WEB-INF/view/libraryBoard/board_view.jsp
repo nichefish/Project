@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,11 +12,11 @@
 		</tr>
 		<tr>
 			<td style="font-family:돋음; font-size:12" height="16"><div align="center">글쓴이&nbsp;&nbsp;</div></td>
-			<td style="font-family:돋음; font-size:12">${board.boardName}&nbsp;&nbsp;${board.ipAddr}</td>
+			<td style="font-family:돋음; font-size:12">${libraryBoardCommand.boardName}&nbsp;&nbsp;${libraryBoardCommand.ipAddr}</td>
 		</tr>
 		<tr>
 			<td style="font-family:돋음; font-size:12" height="16"><div align="center">제 목&nbsp;&nbsp;</div></td>
-			<td style="font-family:돋음; font-size:12">${board.boardSubject}</td>
+			<td style="font-family:돋음; font-size:12">${libraryBoardCommand.boardSubject}</td>
 		</tr>
 		<tr bgcolor="cccccc">
 			<td colspan="2" style="height:1px;"></td>
@@ -26,7 +26,7 @@
 			<td style="font-family:돋음; font-size:12">
 				<table border=0 width=490 height=250 style="table-layout:fixed">
 					<tr>
-						<td valign=top style="font-family:돋음; font-size:12">${board.boardContent}</td>
+						<td valign=top style="font-family:돋음; font-size:12">${libraryBoardCommand.boardContent}</td>
 					</tr>
 				</table>
 			</td>
@@ -36,7 +36,7 @@
 				<div align="center">첨부파일</div>
 			</td>
 			<td style="font-family:돋음; font-size:12">
-				<a href="LibraryBoard/update/${board.storeFileName}">${board.originalFileName}</a> / ${board.fileSize}byte
+				<a href="LibraryBoard/update/${libraryBoardCommand.storeFileName}">${libraryBoardCommand.originalFileName}</a> / ${libraryBoardCommand.fileSize}byte
 			</td>
 		</tr>
 		<tr bgcolor="cccccc">
@@ -48,8 +48,8 @@
 		<tr align="center" valign="middle">
 			<td colspan="5">
 				<font size=2>
-				<a href="./boardModify?num=${board.boardNum}">[수정]</a>&nbsp;&nbsp;
-				<a href="./boardDelete?num=${board.boardNum}">[삭제]</a>&nbsp;&nbsp;
+				<a href="./boardModify?num=${libraryBoardCommand.boardNum}">[수정]</a>&nbsp;&nbsp;
+				<a href="./boardDelete?num=${libraryBoardCommand.boardNum}">[삭제]</a>&nbsp;&nbsp;
 				<a href="./library">[목록]</a>&nbsp;&nbsp;
 				</font>
 			</td>
