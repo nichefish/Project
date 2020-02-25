@@ -41,7 +41,7 @@
 <!-- 					split 안하고 쓰는 방식.. but 변수 하나일떄 아니면 뭔가 복잡쓰... 이중반복문이 되어버림.. -->
 <!-- 				</c:forTokens> -->
 				<c:forEach items="${storeFileName}" var="strFile" varStatus="status" >	
-					<a href="update/${strFile}">${originalFileName[status.index]}</a> / ${fileSize[status.index]} / ${status.index }<br />
+					<a href="../libraryBoard/update/${strFile}">${originalFileName[status.index]}</a> / ${fileSize[status.index]} / ${status.index }<br />
 					<!-- 배열이니까 인덱스만 알면 요런 식으로 쓸수 있다는.. 요런 식...  -->
 				</c:forEach>
 			</td>
