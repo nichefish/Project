@@ -1,5 +1,7 @@
 package Controller.Library;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,18 +24,9 @@ public class LibraryBoardDeleteController {
 	}
 	
 	@RequestMapping(method=RequestMethod.POST)
-	public String deleteLibraryPro(@RequestParam("boardNum") String boardNum, @RequestParam("boardPass") String boardPass, Model model) {
+	public String deleteLibraryPro(@RequestParam("boardNum") String boardNum, @RequestParam("boardPass") String boardPass, HttpServletRequest request) {
 		System.out.println("boardNum: " + boardNum);
 		System.out.println("boardPass: " + boardPass);
-		Integer result = libraryBoardDeleteService.deleteBoard(boardNum, boardPass);
-		String path = null;
-		if (result == 0) {
-			model.addAttribute("passError", "비밀번호가 틀렸습니다.");
-			model.addAttribute("num", boardNum);
-			path = "redirect:/libraryBoard/boardDelete";
-		} else {
-			path = "redirect:/libraryBoard/library";
-		}
-		return path;
+		return libraryBoardDeleteService.deleteBoard(boardNum, boardPass, request);
 	}
 }

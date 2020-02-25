@@ -14,7 +14,7 @@ public class AnswerBoardDTO {
 	Integer readCount;
 	String originalFileName;
 	String storeFileName;
-	Long fileSize;
+	String fileSize;
 	Integer boardReRef;
 	Integer boardReLev;
 	Integer boardReSeq;
@@ -49,11 +49,11 @@ public class AnswerBoardDTO {
 	public void setStoreFileName(String storeFileName) {
 		this.storeFileName = storeFileName;
 	}
-	public Long getFileSize() {
+	public String getFileSize() {
 		return fileSize;
 	}
-	public void setFileSize(Long fileSize) {
-		this.fileSize = fileSize;
+	public void setFileSize(String fileSizeTotal) {
+		this.fileSize = fileSizeTotal;
 	}
 	public Integer getBoardNum() {
 		return boardNum;

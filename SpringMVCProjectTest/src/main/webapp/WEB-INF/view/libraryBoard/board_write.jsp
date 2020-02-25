@@ -13,7 +13,7 @@
 </head>
 <body>
 <!-- 	<form action="boardWritePro.lb" method="post" enctype="multipart/form-data" name="boardform"> -->
-<form:form action="boardWritePro" method="post" commandName="libraryBoardCommand" name="boardform" enctype="multipart/form-data">
+<form:form action="boardWritePro" method="post" name="boardform" enctype="multipart/form-data" commandName="libraryBoardCommand">
 <table cellpadding="0" cellspacing="0">
 	<tr align="center" valign="middle">
 		<td colspan="5">MVC 게시판</td>
