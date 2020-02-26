@@ -12,11 +12,25 @@ public class AnswerBoardDetailService {
 	@Autowired
 	private AnswerBoardDAO answerBoardDAO;
 	
-	public String detailView(Integer boardNum, Model model) {
+	public String detailView(Integer boardNum, Model model, int num) {
 		AnswerBoardDTO dto = new AnswerBoardDTO();
 		dto.setBoardNum(boardNum);
 		dto = answerBoardDAO.selectByBoardNum(dto);
-		model.addAttribute("board", dto);
+		if (num != 1) {
+			dto.setBoardContent(dto.getBoardContent().replace("\n", "<br />"));		// textarea에서 줄바꿈...
+		}
+		String [] oriFile = dto.getOriginalFileName().split("-");
+		String [] strFile = dto.getStoreFileName().split("-");
+		String [] fileSize = dto.getFileSize().split("-");
+		model.addAttribute("answerCommand", dto);		// dto를 저장해서 커맨드객체로 쓰는 거임... 저장되는 값이 이름이 같으니까... 이런 식으로...
+		model.addAttribute("originalFileName", oriFile);
+		model.addAttribute("storeFileName", strFile);
+		model.addAttribute("fileSize", fileSize);
 		return "answerBoard/ans_board_view";
 	}
+	
+	
+	
+	
+	
 }

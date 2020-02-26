@@ -15,7 +15,7 @@ public class AnswerBoardDetailController {
 	
 	@RequestMapping(value="/answer/boardDetail/${id}")
 	public String detail(@PathVariable(value="id") Integer boardNum, Model model) {
-		answerBoardDetailService.detailView(boardNum, model);
-		return answerBoardDetailService.detailView(boardNum, model);
+//		answerBoardDetailService.detailView(boardNum, model, boardNum);
+		return answerBoardDetailService.detailView(boardNum, model, 0);
 	}
 }
