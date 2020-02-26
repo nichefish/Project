@@ -5,6 +5,7 @@
 
 	<bean id="answerWriteService" class="Service.Answer.AnswerWriteService" />
 	<bean id="answerBoardListService" class="Service.Answer.AnswerBoardListService" />
+	<bean id="answerBoardDetailService" class="Service.Answer.AnswerBoardDetailService" />
 	
 	<bean id="answerBoardDAO" class="Model.DAO.AnswerBoardDAO" />
 </beans>

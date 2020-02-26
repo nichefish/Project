@@ -27,7 +27,7 @@
 			<td style="font-family:Tahoma;font-size:10pt;">
 				<div align="left">
 					<c:forEach begin="1" end="${board.boardReLev}" step="1">▶</c:forEach>
-					<a href="./boardDetailAction?num=${board.boardNum}">${board.boardSubject}</a>
+					<a href="./boardDetail/${board.boardNum}">${board.boardSubject}</a>
 				</div>
 			</td>
 			<td style="font-family:Tahoma;font-size:10pt;">
