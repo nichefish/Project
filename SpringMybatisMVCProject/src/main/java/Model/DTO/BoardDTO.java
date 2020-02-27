@@ -3,7 +3,7 @@ package Model.DTO;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
-@SupressWarning("serial")
+@SuppressWarnings("serial")
 public class BoardDTO implements Serializable {		// DTO에는 이걸 다 쓴다고 보면 된다고-
 	Integer boardNum;
 	String userId;
