@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       					   http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+       					   http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd" >
+
+	<context:annotation-config />
+	<mvc:annotation-driven />
+	<mvc:default-servlet-handler/>
+	<mvc:view-resolvers>
+		<mvc:jsp prefix="/WEB-INF/view/"/>
+<!--   	<mvc:jsp suffix=".jsp"/> -->
+	</mvc:view-resolvers>
+
+ 	<mvc:resources location="/WEB-INF/view/" mapping="/**" cache-period="14400" />	<!-- 경로에서 생략했던 부분을. 파일 찾아갈 때는 다시 필요하니까.. 다시 추가.. 요 시간동안만.. -->
+ 	<mvc:view-controller path="/main" view-name="main"/> <!-- 이게 메인 컨트롤러... main이란 path에 main.jsp를 연결하는 느낌... -->
+ 	
+	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">	<!--  에러메세지 쓰는거... -->
+		<property name="basenames">
+			<list>
+				<value>message.label</value>
+				<value>message.error</value>
+			</list>
+		</property>
+		<property name="defaultEncoding" value="UTF-8" />
+	</bean>
+	
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/edit/**" />							<!-- GET방식으로. 이 주소로 들어오면... -->
+			<bean class="Interceptor.AuthCheckInterceptor" />		<!-- 이 객체를 실행시켜라.. 이런 얘기... -->
+		</mvc:interceptor>
+	</mvc:interceptors>
+	
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- 이렇게 선언함으로써. multipartResolver.#!@#@# 요런 식으로 메소드를 쓰는 거라고... -->
+		<property name="maxUploadSize" value="100000000" />
+		<property name="maxInMemorySize" value="100000000" />
+	</bean>
+	
+	
+	
+</beans>
