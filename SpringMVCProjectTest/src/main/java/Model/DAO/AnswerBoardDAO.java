@@ -15,6 +15,7 @@ import Model.DTO.AnswerBoardDTO;
 public class AnswerBoardDAO {
 	private JdbcTemplate jdbcTemplate;
 	final String COLUMNS = "board_num, user_id, board_name, board_pass, board_subject, board_content, ip_addr, read_count, board_date, original_file_name, store_file_name, file_size, board_re_ref, board_re_lev, board_re_seq";
+//	final String subquery = "select nvl(max(board_num),0) + 1 from answerboard";	// 요거는.. 시퀀스 대신 쓰는거고...
 	private RowMapper<AnswerBoardDTO> boardRowMapper = new RowMapper<AnswerBoardDTO>() { 	// RowMapper 생성자를 오버라이딩...
 		public AnswerBoardDTO mapRow(ResultSet rs, int rowNum) throws SQLException {		// 얘가 rs.next() 해주는 애나 마찬가지고.. 한줄 한줄..
 			AnswerBoardDTO board = new AnswerBoardDTO();
@@ -30,9 +31,9 @@ public class AnswerBoardDAO {
 			board.setOriginalFileName(rs.getString("original_file_name"));
 			board.setStoreFileName(rs.getString("store_file_name"));
 			board.setFileSize(rs.getString("file_size"));
-			//
-			//
-			//			
+			board.setBoardReRef(rs.getInt("board_re_ref"));
+			board.setBoardReLev(rs.getInt("board_re_lev"));
+			board.setBoardReSeq(rs.getInt("board_re_seq"));		
 			return board;
 		}
 	};
@@ -42,10 +43,8 @@ public class AnswerBoardDAO {
 	}
 	
 	public Integer insertBoard(AnswerBoardDTO board) {
-		Integer i = 0;
 		String sql = "insert into answerboard (" + COLUMNS + ") values(num_seq.nextval,?,?,?,?,?,?,0,sysdate,?,?,?,num_seq.currval,0,0)";
-		i = jdbcTemplate.update(sql, board.getUserId(), board.getBoardName(), board.getBoardPass(), board.getBoardSubject(), board.getBoardContent(), board.getIpAddr(), board.getOriginalFileName(), board.getStoreFileName(), board.getFileSize());
-		return i;
+		return jdbcTemplate.update(sql, board.getUserId(), board.getBoardName(), board.getBoardPass(), board.getBoardSubject(), board.getBoardContent(), board.getIpAddr(), board.getOriginalFileName(), board.getStoreFileName(), board.getFileSize());
 	}
 
 	public List<AnswerBoardDTO> selectList(int nowPage, int limit) {
@@ -63,6 +62,7 @@ public class AnswerBoardDAO {
 
 	public AnswerBoardDTO selectByBoardNum(AnswerBoardDTO board) {
 		String sql = "select " + COLUMNS + " from answerboard where board_num=?";
+		// 여기다가 막 if문 넣고 더하고 해서.. 함수 하나로 다 처리하는 식으로 해볼수도 있다...
 		List<AnswerBoardDTO> results = jdbcTemplate.query(sql, boardRowMapper, board.getBoardNum());
 		return results.isEmpty() ? null : results.get(0);
 	}
@@ -80,5 +80,14 @@ public class AnswerBoardDAO {
 	public void boardReadCountUpdate(Integer boardNum) {
 		String sql = "update answerboard set read_count=read_count+1 where board_num=?";
 		jdbcTemplate.update(sql, boardNum);		// 삽입/수정/삭제는 .update..
+	}
+
+	public Integer insertReply(AnswerBoardDTO board) {
+		String sql = "update answerboard set board_re_seq = board_re_seq + 1 where board_re_ref=? and board_re_seq>?";
+		jdbcTemplate.update(sql, board.getBoardReRef(), board.getBoardReSeq());
+		int lev = board.getBoardReLev() + 1;
+		int seq = board.getBoardReSeq() + 1;
+		sql = "insert into answerboard (" + COLUMNS + ") values(num_seq.nextval,?,?,?,?,?,?,0,sysdate,null,null,null,?,?,?)";
+		return jdbcTemplate.update(sql, board.getUserId(), board.getBoardName(), board.getBoardPass(), board.getBoardSubject(), board.getBoardContent(), board.getIpAddr(), board.getBoardReRef(), lev, seq);
 	}
 }

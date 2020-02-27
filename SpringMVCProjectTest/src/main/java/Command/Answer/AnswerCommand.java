@@ -11,6 +11,10 @@ public class AnswerCommand {
 //	private MultipartFile report;	//	하나만 저장될 수도 있고. jsp에서 multiple="multiple" 줬으면. 배열이 된다...
 	private MultipartFile[] boardFile;
 	
+	private Integer boardReRef;
+	private Integer boardReLev;
+	private Integer boardReSeq;
+	
 	public Integer getBoardNum() {
 		return boardNum;
 	}
@@ -46,5 +50,23 @@ public class AnswerCommand {
 	}
 	public void setBoardFile(MultipartFile[] boardFile) {
 		this.boardFile = boardFile;
+	}
+	public Integer getBoardReRef() {
+		return boardReRef;
+	}
+	public void setBoardReRef(Integer boardReRef) {
+		this.boardReRef = boardReRef;
+	}
+	public Integer getBoardReLev() {
+		return boardReLev;
+	}
+	public void setBoardReLev(Integer boardReLev) {
+		this.boardReLev = boardReLev;
+	}
+	public Integer getBoardReSeq() {
+		return boardReSeq;
+	}
+	public void setBoardReSeq(Integer boardReSeq) {
+		this.boardReSeq = boardReSeq;
 	}
 }
