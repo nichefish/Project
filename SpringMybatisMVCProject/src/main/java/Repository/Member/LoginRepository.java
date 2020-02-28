@@ -1,7 +1,5 @@
 package Repository.Member;
 
-import java.beans.Statement;
-
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
@@ -15,6 +13,8 @@ public class LoginRepository extends AbstractRepository {
 	
 	public MemberDTO selectByUserId(MemberDTO member) {
 		String statement = namespace + ".selectUser";
-		return sqlSession.selectOne(statement, member);
+		MemberDTO dto = sqlSession.selectOne(statement, member);
+		dto.getUserId();
+		return dto;
 	}
 }

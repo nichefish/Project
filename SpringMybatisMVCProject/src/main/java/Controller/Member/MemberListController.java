@@ -13,10 +13,10 @@ public class MemberListController {
 	@Autowired
 	private MemberListService memberListService;
 	
-	@RequestMapping("/member/list")
+	@RequestMapping(value="/member/list")
+//	public String memberlist() {
 	public String memberlist(@RequestParam(value="page", defaultValue="1") Integer page, Model model) {
 		memberListService.memberList(model, page);
 		return "member/memberList";
-		
 	}
 }

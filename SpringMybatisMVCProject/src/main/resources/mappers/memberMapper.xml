@@ -9,13 +9,15 @@
 	<insert id="memberInsert" parameterType="memdto">
 		insert into member (<include refid="basecolumn" />) values (#{userId}, #{userPw}, #{userName}, #{userGender}, #{userEmail}, #{userAddr}, #{userPh1}, #{userPh2}, #{userBirth}, sysdate)
 	</insert>
-	<select id="memberList" parameterType="startEnd">
+	<select id="memberList" parameterType="startEnd" resultMap="baseMemberMap">
 		select * from ( select rownum rn, <include refid="basecolumn" /> from ( select <include refid="basecolumn" /> from member order by user_regist desc ) ) where rn &gt;= #{startPage} and rn &lt;= #{endPage}
 	</select>
 	<select id="memberCount" resultType="int">
 		select count(*) from member
 	</select>
-	
+	<select id="selectUser" parameterType="memdto" resultMap="baseMemberMap">
+		select <include refid="basecolumn" /> from member where user_id = #{userId}
+	</select>
 	<resultMap type="memdto" id="baseMemberMap">
 		<id column="user_id" jdbcType="VARCHAR" property="userId" />	<!-- 프라이머리 키.. -->
 		<result column="user_pw" jdbcType="VARCHAR" property="userPw" />	<!-- 일반속성... -->

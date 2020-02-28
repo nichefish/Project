@@ -39,4 +39,12 @@ public class MemberRepository extends AbstractRepository {
 		String statement = namespace + ".memberCount";
 		return sqlSession.selectOne(statement);
 	}
+	
+	public MemberDTO selectByUserId(MemberDTO member) {
+		String statement = namespace + ".selectUser";
+		System.out.println(member.getUserId());
+		MemberDTO dto = sqlSession.selectOne(statement, member);
+		System.out.println(dto.getUserId());
+		return dto;
+	}
 }

@@ -20,7 +20,7 @@
 			<td align="center">이메일</td>
 			<td align="center">등록일</td>
 		</tr>
-		<c:forEach items="${members}" var="member">
+		<c:forEach items="${lists}" var="member">
 		<tr align="center" valign="middle">
 			<td align="center">
 				<a href="<c:url value='/edit/memberInfo/${member.userId}' />">${member.userId}</a>

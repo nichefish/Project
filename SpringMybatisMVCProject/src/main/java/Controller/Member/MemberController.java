@@ -28,7 +28,6 @@ public class MemberController {
 			return "member/agree";
 		}
 		return "member/memberForm";
-		
 	}
 	
 	@RequestMapping(value="/register/memberJoinAction", method=RequestMethod.POST)	// 회원가입 :: submit
