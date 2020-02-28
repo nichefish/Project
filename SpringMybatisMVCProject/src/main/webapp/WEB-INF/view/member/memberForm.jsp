@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="http://code/jquery.com/jquery-latest.js"></script>
 </head>
 <body>
 <!-- <form action="memberJoinAction" name="frm" id="frm" method="post"> -->
@@ -92,5 +93,11 @@
 	</table>
 </form:form>
 <!-- </form> -->
+
+<script>
+if("${err}" == "1") {
+	alert("입력이 되지 않았습니다.");
+}
+</script>
 </body>
 </html>
