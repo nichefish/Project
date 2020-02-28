@@ -3,8 +3,8 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd" >
        
-	<bean id="memberJoinService" class="Controller.Member.MemberJoinService" />
+	<bean id="memberJoinService" class="Service.Member.MemberJoinService" />
 	
-	<bean id="memberRepository" class="Controller.Member.MemberRepository" />
+	<bean id="memberRepository" class="Repository.Member.MemberRepository" />
 
 </beans>

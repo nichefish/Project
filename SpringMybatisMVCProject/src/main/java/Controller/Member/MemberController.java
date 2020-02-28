@@ -40,14 +40,12 @@ public class MemberController {
 		if (errors.hasErrors()) {		// 에러가 발생했다면...
 			return "member/memberForm";		// 가입신청 form으로 돌려보냄...
 		}
-		Integer i = 0;
+		String i = null;
 		try {
-			i = memberJoinService.execute(memberCommand);		// DB에 insert시 row수가 반환되니까.. 그거 확인...
-			System.out.println(i);
-			return "member/memberWelcome";		// 커맨드객체는 이 페이지로 고스란히 전달이 된다...${} 식으로 받아올 수 있다...
+			i = memberJoinService.execute(memberCommand, errors);		// DB에 insert시 row수가 반환되니까.. 그거 확인...
 		} catch(Exception e) {
 			errors.rejectValue("userId", "duplicate");		// DB에 등록 안할 때 
-			return "member/memberForm";
 		}
+		return i;
 	}
 }

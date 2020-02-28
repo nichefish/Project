@@ -14,7 +14,7 @@ import Service.Member.AbstractRepository;
 
 @Repository
 public class MemberRepository extends AbstractRepository {
-	private final String namespace = "memberMapper";
+	private final String namespace = "Mappers.memberMapper";
 	SqlSession sqlSession = getSqlSessionFactory().openSession();
 
 	public Integer insertMember(MemberDTO dto) {

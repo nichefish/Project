@@ -5,6 +5,7 @@ import java.sql.Timestamp;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.Errors;
 
 import Command.Member.MemberCommand;
 import Controller.Encrypt;
@@ -16,8 +17,7 @@ public class MemberJoinService {
 	@Autowired
 	private MemberRepository memberRepository;
 
-	public Integer execute(MemberCommand memberCommand) {
-		Integer result = 0;
+	public String execute(MemberCommand memberCommand, Errors errors) {
 		MemberDTO dto = new MemberDTO();
 		dto.setUserId(memberCommand.getUserId());
 		dto.setUserPw(Encrypt.getEncryption(memberCommand.getUserPw()));
@@ -31,7 +31,12 @@ public class MemberJoinService {
 		dto.setUserAddr(memberCommand.getUserAddr());
 		dto.setUserPh1(memberCommand.getUserPh1());
 		dto.setUserPh2(memberCommand.getUserPh2());
-		return memberRepository.insertMember(dto);
+		Integer result = memberRepository.insertMember(dto);
+		if (result == null) {	// 중복아이디..
+			errors.rejectValue("userId", "duplicate");
+			return "member/memberForm";
+		}
+		return "member/memberWelcome";
 	}
 	
 	

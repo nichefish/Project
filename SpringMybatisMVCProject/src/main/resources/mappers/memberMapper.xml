@@ -1,1 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="memberMapper">
+	<cache />
+	<sql id="basecolumn">
+		user_id, user_pw, user_name, user_gender, user_email, user_addr, user_ph1, user_ph2, user_birth, user_regist
+	</sql>
+	<insert id="boardInsert" parameterType="bdto">
+		insert into member (<include refid="basecolumn" />) values (#{userId}, #{userPw}, #{userName}, #{userGender}, #{userEmail}, #{userAddr}, #{userPh1}, #{userPh2}, #{userBirth}, sysdate)
+	</insert>
+	
+	<resultMap type="bdto" id="baseBoardMap">
+		<id column="user_id" jdbcType="VARCHAR" property="userId" />	<!-- 프라이머리 키.. -->
+		<result column="user_pw" jdbcType="VARCHAR" property="userPw" />	<!-- 일반속성... -->
+		<result column="user_name" jdbcType="VARCHAR" property="userName" />
+		<result column="user_gender" jdbcType="VARCHAR" property="userGender" />
+		<result column="user_email" jdbcType="VARCHAR" property="userEmail" />
+		<result column="user_addr" jdbcType="VARCHAR" property="userAddr" />
+		<result column="user_ph1" jdbcType="VARCHAR" property="userPh1" />
+		<result column="user_ph2" jdbcType="VARCHAR" property="userPh2" />
+		<result column="user_birth" jdbcType="TIMESTAMP" property="userBirth" />
+		<result column="user_regist" jdbcType="TIMESTAMP" property="userRegist" />
+	</resultMap>
+	
+	
+<!-- 	<select id="boardSelect" parameterType="Integer" resultMap="baseBoardMap">	DAO에서 어떤걸로 갖고오느냐에 따라...	받아온 resultset값을 저장하는 맵.. -->
+<!-- 		select <include refid="basecolumn" /> from board  -->
+			
+<!-- 		<where> -->
+<!-- 			<if test="value != null"> -->
+<!-- 				board_num = #{boardNum} -->
+			
+<!-- 			</if> -->
+<!-- 		</where>  -->
+<!-- 	</select> -->
+	
+	
+	
+	
+	
+</mapper>
