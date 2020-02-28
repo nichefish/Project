@@ -17,7 +17,6 @@ public class BoardWriteRepository {
 		Integer result = sqlSession.insert(statement, dto);
 //		BoardDTO d = sqlSession.selectOne(statement, boardNum)
 //		List<BoardDTO> list = sqlSession.selectList(statement, null);
-		
 		return result;
 	}
 
