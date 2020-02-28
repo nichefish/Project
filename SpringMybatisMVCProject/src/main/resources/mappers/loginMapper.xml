@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="loginMapper">	<!-- 여기꺼...랑 repository꺼 이름이랑 같아야 된다... -->
+	<cache />
+	<sql id="basecolumn">
+		user_id, user_pw, user_name, user_gender, user_email, user_addr, user_ph1, user_ph2, user_birth, user_regist
+	</sql>
+	<select id="selectUser" parameterType="memdto" resultMap="baseMember">
+		select <include refid="basecolumn" /> from member
+			<!-- "where user_pw = userPw and user_id = userId" -->
+			<trim prefix="where" prefixOverrides="AND | OR">
+			<!-- trim 태그의 내용.. 앞에 where를 붙이고.. 그 where는 trim 태그 안 내용에서 맨 앞에 and나 or가 올 때 덮어쓴다... -->
+			<!-- 이거 잘 기억하기- trim 태그 안 내용 맽끝자락은 suffix... -->
+				<if test="userPw != null">user_pw = #{userPw}</if>
+				<if test="userId != null">user_id = #{userId}</if>
+			</trim>
+	</select>
+	
+	<resultMap type="memdto" id="baseMember">
+	  <constructor>
+		<idArg column="user_id" javaType="string" />
+		<arg column="user_pw" javaType="string" />
+		<arg column="user_name" javaType="string" />
+		<arg column="user_gender" javaType="string" />
+		<arg column="user_email" javaType="string" />
+		<arg column="user_addr" javaType="string" />
+		<arg column="user_ph1" javaType="string" />
+		<arg column="user_ph2" javaType="string" />
+		<arg column="user_birth" javaType="java.sql.Timestamp" />
+		<arg column="user_regist" javaType="java.sql.Timestamp" />
+	  </constructor>
+		<!-- id하고 result는 setter 쓰는거임.. setter/getter 없을떄 그거 쓰면 에러생김... -->
+<!--	<id column="user_id" jdbcType="VARCHAR" property="userId" />	프라이머리 키.. -->
+<!-- 	<result column="user_pw" jdbcType="VARCHAR" property="userPw" />	일반속성... -->
+<!--	<result column="user_name" jdbcType="VARCHAR" property="userName" /> -->
+<!--	<result column="user_gender" jdbcType="VARCHAR" property="userGender" /> -->
+<!--	<result column="user_email" jdbcType="VARCHAR" property="userEmail" /> -->
+<!--	<result column="user_addr" jdbcType="VARCHAR" property="userAddr" /> -->
+<!--	<result column="user_ph1" jdbcType="VARCHAR" property="userPh1" /> -->
+<!--	<result column="user_ph2" jdbcType="VARCHAR" property="userPh2" /> -->
+<!--	<result column="user_birth" jdbcType="TIMESTAMP" property="userBirth" /> -->
+<!--	<result column="user_regist" jdbcType="TIMESTAMP" property="userRegist" /> -->
+	</resultMap>
+
+</mapper>

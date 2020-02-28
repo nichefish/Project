@@ -1,11 +1,46 @@
 package Model.DTO;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class MemberDTO {
+@SuppressWarnings("serial")
+public class MemberDTO implements Serializable {
+	String userId;
+	String userPw;
+	String userName;
+	Timestamp userBirth;
+	String userGender;
+	String userEmail;
+	String userAddr;
+	String userPh1;
+	String userPh2;
+	Timestamp userRegist;
+	
+	// 생성자... 기초생성자도 꼭 만들어줘야 됨...
+	public MemberDTO() {
+		super();
+	}
+
+	// 생성자...
+	public MemberDTO(String userId, String userPw, String userName, Timestamp userBirth, String userGender,
+			String userEmail, String userAddr, String userPh1, String userPh2, Timestamp userRegist) {
+		super();
+		this.userId = userId;
+		this.userPw = userPw;
+		this.userName = userName;
+		this.userBirth = userBirth;
+		this.userGender = userGender;
+		this.userEmail = userEmail;
+		this.userAddr = userAddr;
+		this.userPh1 = userPh1;
+		this.userPh2 = userPh2;
+		this.userRegist = userRegist;
+	}
+	
 	public String getUserId() {
 		return userId;
 	}
+
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
@@ -64,14 +99,5 @@ public class MemberDTO {
 		this.userRegist = userRegist;
 	}
 
-	String userId;
-	String userPw;
-	String userName;
-	Timestamp userBirth;
-	String userGender;
-	String userEmail;
-	String userAddr;
-	String userPh1;
-	String userPh2;
-	Timestamp userRegist;
+
 }
