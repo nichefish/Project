@@ -1,15 +1,12 @@
 package Repository.Member;
 
-import java.io.IOException;
-import java.io.InputStream;
+import java.util.List;
 
-import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.springframework.stereotype.Repository;
 
 import Model.DTO.MemberDTO;
+import Model.DTO.StartEndPageDTO;
 import Service.Member.AbstractRepository;
 
 @Repository
@@ -28,5 +25,18 @@ public class MemberRepository extends AbstractRepository {
 			sqlSession.rollback();
 		}
 		return result;
+	}
+
+	public List<MemberDTO> getMemberList(int page, int limit) {
+		int startRow = (page - 1) * limit + 1;
+		int endRow = startRow + limit - 1;
+		String statememt = namespace + ".memberList";
+		List<MemberDTO> lists = sqlSession.selectList(statememt, new StartEndPageDTO(startRow, endRow));
+		return lists;
+	}
+	
+	public Integer getListCount() {
+		String statement = namespace + ".memberCount";
+		return sqlSession.selectOne(statement);
 	}
 }

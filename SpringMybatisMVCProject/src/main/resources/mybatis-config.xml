@@ -6,6 +6,6 @@
 	<typeAliases>
 		<typeAlias type="Model.DTO.BoardDTO" alias="bdto"/>
 		<typeAlias type="Model.DTO.MemberDTO" alias="memdto"/>
-	
+		<typeAlias type="Model.DTO.StartEndPageDTO" alias="startEnd"/>
 	</typeAliases>
 </configuration>

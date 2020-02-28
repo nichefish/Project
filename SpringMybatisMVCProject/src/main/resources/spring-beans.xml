@@ -5,6 +5,8 @@
        
 	<bean id="memberJoinService" class="Service.Member.MemberJoinService" />
 	<bean id="authService;" class="Service.Member.AuthService" />
+	<bean id="memberListService;" class="Service.Member.MemberListService" />
+	
 	
 	<bean id="memberRepository" class="Repository.Member.MemberRepository" />
 	<bean id="loginRepository" class="Repository.Member.LoginRepository" />

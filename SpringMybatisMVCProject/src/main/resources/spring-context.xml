@@ -41,6 +41,9 @@
 		<property name="maxInMemorySize" value="100000000" />
 	</bean>
 	
-	
+	<bean id="bcryptPasswordEncoder "
+       class = "org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
+       <constructor-arg value="10" />	<!-- 임의로 10까지 쓴 거임... -->
+    </bean>
 	
 </beans>

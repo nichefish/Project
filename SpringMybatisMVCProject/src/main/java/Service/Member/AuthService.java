@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.Errors;
 
@@ -18,11 +19,16 @@ import Repository.Member.LoginRepository;
 public class AuthService {
 	@Autowired
 	private LoginRepository loginRepository;
+	@Autowired
+	BCryptPasswordEncoder bcryptPasswordEncoder;
 	
 	public void authenticate(LoginCommand loginCommand, HttpSession session, Errors errors, HttpServletResponse response) {
 		MemberDTO member = new MemberDTO();
 		member.setUserId(loginCommand.getId1());
-		member.setUserPw(Encrypt.getEncryption(loginCommand.getPw()));
+//		member.setUserPw(Encrypt.getEncryption(loginCommand.getPw()));	// 같은 111이면 같은 암호화..
+		
+		member.setUserPw(bcryptPasswordEncoder.encode(loginCommand.getPw()));	// 같은 111이라도 다른 암호로 바꿈...
+//		bcryptPasswordEncoder.matches(loginCommand.getPw() , member.getUserPw());
 		Cookie rememberCookie = new Cookie("REMEMBER", loginCommand.getId1());
 		// Cookie rememberCookie = new Cookie("id_" + loginCommand.getId1() + "_" + i, loginCommand.getId1()); 요런식으로도...
 		// 상품코드 이름으로 쿠키를 할당할라면.. 이런 식으로 이름에 변수이름을 넣으면 되는 거고... 쿠키 이름 안겹치게 짓는게 중요하다...

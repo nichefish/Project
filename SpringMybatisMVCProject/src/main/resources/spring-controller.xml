@@ -4,6 +4,8 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd" >
        
 	<bean class="Controller.Member.MemberController" />
+	<bean class="Controller.Member.MemberListController" />
 	<bean class="Controller.Member.LoginController" />
+	<bean class="Controller.Member.LogoutController" />
 
 </beans>

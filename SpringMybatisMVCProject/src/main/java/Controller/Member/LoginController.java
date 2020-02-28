@@ -31,6 +31,7 @@ public class LoginController {
 			return "main";
 		}
 		authService.authenticate(loginCommand, session, errors, response);
+		System.out.println("로그인!!!");
 		return "redirect:/main";
 	}
 }
