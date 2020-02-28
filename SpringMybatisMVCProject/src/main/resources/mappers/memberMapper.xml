@@ -6,11 +6,11 @@
 	<sql id="basecolumn">
 		user_id, user_pw, user_name, user_gender, user_email, user_addr, user_ph1, user_ph2, user_birth, user_regist
 	</sql>
-	<insert id="boardInsert" parameterType="bdto">
+	<insert id="memberInsert" parameterType="memdto">
 		insert into member (<include refid="basecolumn" />) values (#{userId}, #{userPw}, #{userName}, #{userGender}, #{userEmail}, #{userAddr}, #{userPh1}, #{userPh2}, #{userBirth}, sysdate)
 	</insert>
 	
-	<resultMap type="bdto" id="baseBoardMap">
+	<resultMap type="memdto" id="baseMemberMap">
 		<id column="user_id" jdbcType="VARCHAR" property="userId" />	<!-- 프라이머리 키.. -->
 		<result column="user_pw" jdbcType="VARCHAR" property="userPw" />	<!-- 일반속성... -->
 		<result column="user_name" jdbcType="VARCHAR" property="userName" />

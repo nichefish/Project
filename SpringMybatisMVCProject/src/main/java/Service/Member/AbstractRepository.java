@@ -11,6 +11,9 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class AbstractRepository {
 	private static SqlSessionFactory sqlSessionFactory;
+	static {
+		setSqlSessionFactory();
+	}
 	public static void setSqlSessionFactory() {	// setter... 초기화 방법...
 		String resource = "mybatis-config1.xml";
 		InputStream inputStream = null;
