@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="memberDMLMapper">
+	<cache />
+	<update id="memberUpdate" parameterType="memdto">
+		update member
+		<trim prefix="set" suffixOverrides=",">
+			<!-- <if> 태그는 다른 태그 안에만 쓸 수 있다고.. 그냥 쓰면 에러라고...? 하는 거 같음.. -->
+			<!-- 이것저것 update 구문들을  하나로 관리하는 수단이라고.. 하나로 관리하고 경우의수 조건절만 적절하게 넣어두면 update문 하나로 다 처리가능하다는 얘기..-->
+			user_ph2 = #{userPh2},	<!-- null이든 아니든 바뀌는거... -->
+			<if test="userId != null">
+				user_id = #{userId},
+			</if>
+			<if test="userPw != null">
+				user_pw = #{userPw},
+			</if>
+			<if test="userName != null">
+				user_name = #{userName},
+			</if>
+			<if test="userGender != null">
+				user_gender = #{userGender},
+			</if>
+			<if test="userBirth != null">
+				user_birth = #{userBirth},
+			</if>
+			<if test="userEmail != null">
+				user_email = #{userEmail},
+			</if>
+			<if test="userEmail != null">
+				user_addr = #{userAddr},
+			</if>
+			<if test="userPh1 != null">
+				user_ph1 = #{userPh1},
+			</if>
+		</trim>
+		<where>
+			<if test="userId != null">	<!-- user_id가 null이 아닐 때... 요 where user_id = !#!@# 항목을 넣는다는.. -->
+				user_id = #{userId}
+			</if>
+		</where>
+	</update>
+	
+	<delete id="memberDelete" parameterType="memdto">
+		<!-- 속성 중에 parameterMap은 장바구니.. 할때 할 거라고... delete 여러개 돌리는 대신 한 방에 처리하는 그런 방식... -->
+		delete from member
+		<where>
+			user_id=#{userId} and user_pw=#{userPw}
+		</where>
+	</delete>
+</mapper>

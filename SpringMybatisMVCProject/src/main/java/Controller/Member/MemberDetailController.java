@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import Service.Member.MemberDetailService;
 
@@ -24,4 +25,12 @@ public class MemberDetailController {
 		}
 		return "member/memberInfo";
 	}
+	
+	@RequestMapping(value="/edit/memberModify")
+	public String memberModify(@RequestParam(value="id") String userId, Model model) {
+		memberDetailService.memberDetail(userId, model);
+		return "member/memberModify";
+	}
+	
+	
 }

@@ -25,8 +25,8 @@ public class AuthService {
 	public void authenticate(LoginCommand loginCommand, HttpSession session, Errors errors, HttpServletResponse response) {
 		MemberDTO member = new MemberDTO();
 		member.setUserId(loginCommand.getId1());
+		System.out.println("로그인 아이디: " + member.getUserId());
 //		member.setUserPw(Encrypt.getEncryption(loginCommand.getPw()));	// 같은 111이면 같은 암호화..
-		
 		member.setUserPw(bcryptPasswordEncoder.encode(loginCommand.getPw()));	// 같은 111이라도 다른 암호로 바꿈...
 //		bcryptPasswordEncoder.matches(loginCommand.getPw() , member.getUserPw());
 		Cookie rememberCookie = new Cookie("REMEMBER", loginCommand.getId1());

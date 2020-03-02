@@ -8,13 +8,13 @@
 	</sql>
 	<select id="selectUser" parameterType="memdto" resultMap="baseMember">
 		select <include refid="basecolumn" /> from member
-			<!-- "where user_pw = userPw and user_id = userId" -->
-			<trim prefix="where" prefixOverrides="AND | OR">
-			<!-- trim 태그의 내용.. 앞에 where를 붙이고.. 그 where는 trim 태그 안 내용에서 맨 앞에 and나 or가 올 때 덮어쓴다... -->
-			<!-- 이거 잘 기억하기- trim 태그 안 내용 맽끝자락은 suffix... -->
-				<if test="userId != null">user_id = #{userId}</if>
-				<if test="userPw != null">and user_pw = #{userPw}</if>
-			</trim>
+		<!-- "where user_pw = userPw and user_id = userId" -->
+		<trim prefix="where" prefixOverrides="AND | OR">
+		<!-- trim 태그의 내용.. 앞에 where를 붙이고.. 그 where는 trim 태그 안 내용에서 맨 앞에 and나 or가 올 때 덮어쓴다... -->
+		<!-- 이거 잘 기억하기- trim 태그 안 내용 맽끝자락은 suffix... -->
+			<if test="userId != null">user_id = #{userId}</if>
+			<if test="userPw != null">and user_pw = #{userPw}</if>
+		</trim>
 	</select>
 	<resultMap type="memdto" id="baseMember">
 	  <constructor>

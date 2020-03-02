@@ -1,0 +1,29 @@
+package Repository.Member;
+
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import Model.DTO.MemberDTO;
+import Service.Member.AbstractRepository;
+
+public class MemberDMLRepository extends AbstractRepository {
+	@Autowired
+	//	SqlSession sqlSession;	// 요게 스프링 스타일이고...
+	// 마이바티스에 DB 설정해놓은 경우에는. 직접 SqlSession을 만들어써야 된다고.. getSqlSessionFactory()... 그게 AbstractRepository 부분...
+	SqlSession sqlSession = getSqlSessionFactory().openSession();
+	private final String namespace = "memberDMLMapper";
+	
+	public Integer memberUpdate(MemberDTO dto) {
+		String statement = namespace + ".memberUpdate";
+		Integer result = sqlSession.update(statement, dto);
+		try {
+			sqlSession.commit();
+			sqlSession.close();
+			return result;
+		} catch (Exception e) {
+			sqlSession.rollback();
+			sqlSession.close();
+			return 0;
+		}
+	}
+}

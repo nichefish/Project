@@ -23,6 +23,7 @@
 	<mappers>
 		<mapper resource="mappers/memberMapper.xml" />		<!-- 매퍼 만들 때마다 이런 식으로 죄다 추가해줘야 된다... -->
 		<mapper resource="mappers/loginMapper.xml" />
+		<mapper resource="mappers/memberDMLMapper.xml" />
 	</mappers>
 </configuration>
 

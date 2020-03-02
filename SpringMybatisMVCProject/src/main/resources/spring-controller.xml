@@ -8,5 +8,6 @@
 	<bean class="Controller.Member.LoginController" />
 	<bean class="Controller.Member.LogoutController" />
 	<bean class="Controller.Member.MemberDetailController" />
+	<bean class="Controller.Member.MemberModifyController" />
 
 </beans>

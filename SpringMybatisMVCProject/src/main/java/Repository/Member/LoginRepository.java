@@ -14,7 +14,7 @@ public class LoginRepository extends AbstractRepository {
 	public MemberDTO selectByUserId(MemberDTO member) {
 		String statement = namespace + ".selectUser";
 		MemberDTO dto = sqlSession.selectOne(statement, member);
-		dto.getUserId();
+		System.out.println(선택 아이디..LoginRepository.dto.getUserId());
 		return dto;
 	}
 }
