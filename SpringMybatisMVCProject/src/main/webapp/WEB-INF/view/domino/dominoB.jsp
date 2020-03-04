@@ -6,7 +6,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-latest.js"></script>
-<script type="text/javascript" src="js/jquery.form/js"></script>
 <script type="text/javascript">
 $(function() {
 	$("#bsel").change(function() {
@@ -15,8 +14,8 @@ $(function() {
 			url : "cDomino",
 			data : "a1=" + $("#asel").val() + "&b1=" + $("#bsel").val(),
 			datatype : "html",
-			success : function(data) {
-				$("#cDTO").html(data);
+			success : function(data1) {
+				$("#cDTO").html(data1);
 			}
 		})
 	});
@@ -30,6 +29,5 @@ $(function() {
 		<option value="${bdto.b1}"> ${bdto.b2} </option>
 	</c:forEach>
 </select>
-
 </body>
 </html>

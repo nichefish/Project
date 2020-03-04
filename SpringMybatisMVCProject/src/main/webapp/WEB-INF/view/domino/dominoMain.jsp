@@ -17,7 +17,7 @@ $(function() {
 			datatype : "html",
 			success : function(data) {
 				$("#bDTO").html(data);
-				$("#cDTO").html("<h2>세번째 도미노</h2><select id='csel' name='cNum'><option value=''>------선택하세요------</option></select><div id='cDTO'></div>");
+				$("#cDTO").html("<select id='csel' name='cNum'><option value=''>------선택하세요------</option></select><div id='cDTO'></div>");
 			}
 		})
 // 		location.href = "bDomino?num=" + $("#asel").val();
@@ -38,8 +38,10 @@ $(function() {
 <select id="bsel" name="bNum">
 	<option value="">------선택하세요------</option>
 </select></div>
-<h2>세번째 도미노</h2>
+
+
 <div id="cDTO">
+
 <select id="csel" name="cNum">
 	<option value="">------선택하세요------</option>
 </select></div>
