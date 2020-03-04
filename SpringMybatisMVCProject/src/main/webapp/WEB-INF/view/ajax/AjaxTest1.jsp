@@ -6,32 +6,38 @@
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript" src="js/jquery.form/js"></script>
-<script type="text/jacascript">
+<script type="text/javascript">
 $(function() {
 	$("#btn1").click(function() {
 		$.ajax({
 		});
 	});
 });
-function testDiv(n) {
+function testDiv(n) {		// AjaxTest?n=2 식으로...
 	$.ajax({
 		type : "post",
 		url : "AjaxTest2",
 		dataType : "html",
 		data : "n=" + n,
-		beforeSubmit : function (result) {
+		beforeSubmit : function (result) { },
+		success : function () {
 			$("#notice_content").html(result);
 		},
-		success : function () {
+		error : function () {
 			alert('에러가 나왔다 홀홀홀...');
 			return;
 		}
 	});
 }
-AjaxTest?n=2
 </script>
 </head>
 <body>
-
+<div id="notice_content">
+	<form id="frm" action="AjaxTest2">
+		<input type="text" id="n" value="1" name="n" />
+		<input type="submit" value="전송" />
+	</form>
+	<button id="btn2" onclick="javascript:testDiv(1)" >버튼</button>
+</div>
 </body>
 </html>

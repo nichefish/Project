@@ -47,6 +47,7 @@
 <a href="goodsList">상품목록</a>
 <a href="mailForm">메일전송</a>
 <a href="ajaxTest">ajaxTest</a>
+<a href="AjaxTest1">ajaxTest1</a>
 </c:if>
 </body>
 </html>
