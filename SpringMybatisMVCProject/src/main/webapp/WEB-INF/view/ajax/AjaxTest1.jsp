@@ -12,6 +12,21 @@ $(function() {
 		$.ajax({
 		});
 	});
+	$("#btn3").click(function() {
+		$("frm").$.ajaxSubmit({
+			type : "post",
+			url : "AjaxTest2",
+			dataType : "html",
+// 			beforeSubmit : function (result) { },
+			success : function () {
+				$("#notice_content").html(result);
+			},
+			error : function () {
+				alert('에러가 나왔다 홀홀홀...');
+				return;
+			}
+		});
+	});
 });
 function testDiv(n) {		// AjaxTest?n=2 식으로...
 	$.ajax({
@@ -19,7 +34,7 @@ function testDiv(n) {		// AjaxTest?n=2 식으로...
 		url : "AjaxTest2",
 		dataType : "html",
 		data : "n=" + n,
-		beforeSubmit : function (result) { },
+// 		beforeSubmit : function (result) { },
 		success : function () {
 			$("#notice_content").html(result);
 		},
@@ -37,7 +52,8 @@ function testDiv(n) {		// AjaxTest?n=2 식으로...
 		<input type="text" id="n" value="1" name="n" />
 		<input type="submit" value="전송" />
 	</form>
-	<button id="btn2" onclick="javascript:testDiv(1)" >버튼</button>
+	<button id="btn2" onclick="javascript:testDiv(1)" >버튼1</button>
+	<button id="btn3" onclick="javascript:testDiv(1)" >버튼2</button>
 </div>
 </body>
 </html>

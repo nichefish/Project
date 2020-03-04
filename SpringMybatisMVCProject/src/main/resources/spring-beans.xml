@@ -12,10 +12,11 @@
 	<bean id="pwModifyService" class="Service.Member.PwModifyService" />
 	<bean id="pwModifyProService" class="Service.Member.PwModifyProService" />
 	
-	
-	
 	<bean id="memberRepository" class="Repository.Member.MemberRepository" />
 	<bean id="loginRepository" class="Repository.Member.LoginRepository" />
 	<bean id="memberDMLRepository" class="Repository.Member.MemberDMLRepository" />
+	
+	<bean id="dominoService" class="Service.Domino.DominoService" />
+	<bean id="dominoRepository" class="Repository.Domino.DominoRepository" />
 	
 </beans>
