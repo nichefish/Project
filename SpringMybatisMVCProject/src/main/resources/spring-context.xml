@@ -8,6 +8,7 @@
        					   http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd" >
 
 	<context:annotation-config />
+	
 	<mvc:annotation-driven />
 	<mvc:default-servlet-handler/>
 	<mvc:view-resolvers>
@@ -16,8 +17,9 @@
 	</mvc:view-resolvers>
 
  	<mvc:resources location="/WEB-INF/view/" mapping="/**" cache-period="14400" />	<!-- 경로에서 생략했던 부분을. 파일 찾아갈 때는 다시 필요하니까.. 다시 추가.. 요 시간동안만.. -->
- 	<mvc:view-controller path="/main" view-name="main"/> <!-- 이게 메인 컨트롤러... main이란 path에 main.jsp를 연결하는 느낌... -->
- 	
+ 	<mvc:view-controller path="/main" view-name="main" /> <!-- 이게 메인 컨트롤러... main이란 path에 main.jsp를 연결하는 느낌... -->
+ 	<mvc:view-controller path="/comment/commentBoard" view-name="comment/commentForm" />
+ 
 	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">	<!--  에러메세지 쓰는거... -->
 		<property name="basenames">
 			<list>

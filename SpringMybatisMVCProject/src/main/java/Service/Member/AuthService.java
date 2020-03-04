@@ -22,13 +22,12 @@ public class AuthService {
 	@Autowired
 	BCryptPasswordEncoder bcryptPasswordEncoder;
 	
+	
 	public void authenticate(LoginCommand loginCommand, HttpSession session, Errors errors, HttpServletResponse response) {
 		MemberDTO member = new MemberDTO();
 		member.setUserId(loginCommand.getId1());
-		System.out.println("로그인 아이디: " + member.getUserId());
 //		member.setUserPw(Encrypt.getEncryption(loginCommand.getPw()));	// 같은 111이면 같은 암호화..
-		member.setUserPw(bcryptPasswordEncoder.encode(loginCommand.getPw()));	// 같은 111이라도 다른 암호로 바꿈...
-//		bcryptPasswordEncoder.matches(loginCommand.getPw() , member.getUserPw());
+//		member.setUserPw(bcryptPasswordEncoder.encode(loginCommand.getPw()));	// 같은 111이라도 다른 암호로 바꿈...
 		Cookie rememberCookie = new Cookie("REMEMBER", loginCommand.getId1());
 		// Cookie rememberCookie = new Cookie("id_" + loginCommand.getId1() + "_" + i, loginCommand.getId1()); 요런식으로도...
 		// 상품코드 이름으로 쿠키를 할당할라면.. 이런 식으로 이름에 변수이름을 넣으면 되는 거고... 쿠키 이름 안겹치게 짓는게 중요하다...
@@ -38,27 +37,20 @@ public class AuthService {
 			rememberCookie.setMaxAge(0);		// 수명을 0으로 주니까 바로 삭제된다...
 		}
 		response.addCookie(rememberCookie);		// 쿠키 퍼알 생성; 껐다켜도 파일로 남아있으니까 적용된다...
-		
-		member = loginRepository.selectByUserId(member);
-		try {	// member가 null일 때.. 즉 id가 존재하지 않을 때... exception 뜨고...
-			AuthInfo authInfo = new AuthInfo(member.getUserId(), member.getUserEmail(), member.getUserName(), member.getUserPw());
-			// 객체 만들고 setter 네 번 쓰는 대신. 객체 만들 때부터 생성자 이용해서 한 번에 초기화...
-			if (authInfo.getPw().equals(Encrypt.getEncryption(loginCommand.getPw()))) {		// 비밀번호가 맞으면..
+		System.out.println("!@#!@# 이 로그인리포지토리가 문제구만...");
+		member=loginRepository.selectByUserId(member);
+		if (member == null) {
+			errors.rejectValue("id1","notId");	
+		} else {
+			if (bcryptPasswordEncoder.matches(loginCommand.getPw() , member.getUserPw())) {
+				AuthInfo authInfo = new AuthInfo(member.getUserId(), member.getUserEmail(), member.getUserName(), member.getUserPw());
 				Cookie autoLoginCookie = new Cookie("AutoLogin", loginCommand.getId1());		// 자동로그인 쿠키...
 				response.addCookie(autoLoginCookie);
-				session.setAttribute("authInfo",  authInfo);
+				session.setAttribute("authInfo",authInfo);
 			} else {
-				System.out.println("비밀번호가 틀립니다.");
-				errors.rejectValue("pw", "wrong");
+				errors.rejectValue("pw","wrong");
 			}
-		} catch (NullPointerException e) {
-			System.out.println("아이디가 없습니다.");
-			errors.rejectValue("id1", "notId");
 		}
-		
-			
-		
-		
 	}
 	public void detailInfo(LoginCommand loginCommand) {
 		

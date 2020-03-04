@@ -7,5 +7,10 @@
 		<typeAlias type="Model.DTO.BoardDTO" alias="bdto"/>
 		<typeAlias type="Model.DTO.MemberDTO" alias="memdto"/>
 		<typeAlias type="Model.DTO.StartEndPageDTO" alias="startEnd"/>
+		<typeAlias type="Model.DTO.UserPwChangeDTO" alias="renewPw"/>
+		<typeAlias type="Model.DTO.CommentDTO" alias="comment"/>
+		<typeAlias type="Model.DTO.ReplyDTO" alias="reply"/>
+		<typeAlias type="Model.DTO.ReplyUserDTO" alias="replyUser"/>
+		<typeAlias type="Model.DTO.CommentRepliesDTO" alias="commentReplies"/>
 	</typeAliases>
 </configuration>

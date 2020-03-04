@@ -15,16 +15,23 @@ public class MemberDTO implements Serializable {
 	String userPh1;
 	String userPh2;
 	Timestamp userRegist;
+	CommentDTO commentDTO;
 	
-	// 생성자... 기초생성자도 꼭 만들어줘야 됨...
-	public MemberDTO() {
-		super();
+	
+	public CommentDTO getCommentDTO() {
+		return commentDTO;
 	}
+
+	public void setCommentDTO(CommentDTO commentDTO) {
+		this.commentDTO = commentDTO;
+	}
+
+	// 생성자... 기초생성자도 꼭 만들어줘야 됨...
+	public MemberDTO() {}
 
 	// 생성자...
 	public MemberDTO(String userId, String userPw, String userName, Timestamp userBirth, String userGender,
 			String userEmail, String userAddr, String userPh1, String userPh2, Timestamp userRegist) {
-		super();
 		this.userId = userId;
 		this.userPw = userPw;
 		this.userName = userName;

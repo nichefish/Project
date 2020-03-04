@@ -1,46 +1,40 @@
 package Model.DTO;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class ReplyDTO {
-	Integer boardNum;
-	Integer replyNum;
-	String userId;
-	String replyName;
-	String replyContent;
-	String replyPass;
-	Timestamp replydDate;
-	String ipAddr;
+@SuppressWarnings("serial")
+public class ReplyDTO implements Serializable {
+	private Long commentNo;
+	private Long replyNo;
+	private String rUserId;
+	private String cUserId;
+	private String replyContent;
+	private Timestamp regDate;
 	
-	public Integer getBoardNum() {
-		return boardNum;
+	public Long getCommentNo() {
+		return commentNo;
 	}
-	public void setBoardNum(Integer boardNum) {
-		this.boardNum = boardNum;
+	public void setCommentNo(Long commentNo) {
+		this.commentNo = commentNo;
 	}
-	public Integer getReplyNum() {
-		return replyNum;
+	public Long getReplyNo() {
+		return replyNo;
 	}
-	public void setReplyNum(Integer replyNum) {
-		this.replyNum = replyNum;
+	public void setReplyNo(Long replyNo) {
+		this.replyNo = replyNo;
 	}
-	public String getUserId() {
-		return userId;
+	public String getrUserId() {
+		return rUserId;
 	}
-	public void setUserId(String userId) {
-		this.userId = userId;
+	public void setrUserId(String rUserId) {
+		this.rUserId = rUserId;
 	}
-	public String getReplyName() {
-		return replyName;
+	public String getcUserId() {
+		return cUserId;
 	}
-	public void setReplyName(String replyName) {
-		this.replyName = replyName;
-	}
-	public String getReplyPass() {
-		return replyPass;
-	}
-	public void setReplyPass(String replyPass) {
-		this.replyPass = replyPass;
+	public void setcUserId(String cUserId) {
+		this.cUserId = cUserId;
 	}
 	public String getReplyContent() {
 		return replyContent;
@@ -48,23 +42,10 @@ public class ReplyDTO {
 	public void setReplyContent(String replyContent) {
 		this.replyContent = replyContent;
 	}
-	public Timestamp getReplydDate() {
-		return replydDate;
+	public Timestamp getRegDate() {
+		return regDate;
 	}
-	public void setReplydDate(Timestamp replydDate) {
-		this.replydDate = replydDate;
+	public void setRegDate(Timestamp regDate) {
+		this.regDate = regDate;
 	}
-	public String getIpAddr() {
-		return ipAddr;
-	}
-	public void setIpAddr(String ipAddr) {
-		this.ipAddr = ipAddr;
-	}
-	public Integer getReadCount() {
-		return readCount;
-	}
-	public void setReadCount(Integer readCount) {
-		this.readCount = readCount;
-	}
-	Integer readCount;
 }

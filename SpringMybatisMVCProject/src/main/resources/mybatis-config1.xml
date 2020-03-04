@@ -8,6 +8,7 @@
 		<typeAlias type="Model.DTO.BoardDTO" alias="bdto"/>
 		<typeAlias type="Model.DTO.MemberDTO" alias="memdto"/>
 		<typeAlias type="Model.DTO.StartEndPageDTO" alias="startEnd"/>
+		<typeAlias type="Model.DTO.UserPwChangeDTO" alias="renewPw"/>
 	</typeAliases>
 	<environments default="development">
 		<environment id="development">

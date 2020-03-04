@@ -19,6 +19,8 @@
   			classpath:spring-board-service.xml
   			classpath:spring-controller.xml
   			classpath:spring-beans.xml
+  			classpath:spring-comment-controller.xml
+  			classpath:spring-comment-beans.xml
   		</param-value>
   	</init-param>
   	<load-on-startup>1</load-on-startup>

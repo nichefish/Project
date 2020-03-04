@@ -22,7 +22,6 @@ $(function(){
 <body>
 <form:form name="frm" id="frm" method="post" action ="memberModifyPro" commandName="memberCommand">
 	<!-- 커맨드객체는 memberDetailService의 Model로 "member"라고 날라오는 걸 받기 위해서.. member라고 이름 붙인거임.... -->
-	<form:hidden path="userId" />
 	<input type="hidden" name="userBirth" value="<fmt:formatDate value='${memberCommand.userBirth}' type='date' pattern='yyyy-MM-dd' />" />
 	<table border=1  width=600 align="center" cellpadding=3 >
 		<tr>

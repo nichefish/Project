@@ -1,6 +1,9 @@
 package Model.DTO;
 
-public class StartEndPageDTO {
+import java.io.Serializable;
+
+@SuppressWarnings("serial")
+public class StartEndPageDTO implements Serializable {
 	Integer startPage;
 	Integer endPage;
 	

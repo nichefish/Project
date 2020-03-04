@@ -8,6 +8,11 @@
 	<bean id="memberListService" class="Service.Member.MemberListService" />
 	<bean id="memberDetailService" class="Service.Member.MemberDetailService" />
 	<bean id="memberModifyService" class="Service.Member.MemberModifyService" />
+	<bean id="memberDeleteService" class="Service.Member.MemberDeleteService" />
+	<bean id="pwModifyService" class="Service.Member.PwModifyService" />
+	<bean id="pwModifyProService" class="Service.Member.PwModifyProService" />
+	
+	
 	
 	<bean id="memberRepository" class="Repository.Member.MemberRepository" />
 	<bean id="loginRepository" class="Repository.Member.LoginRepository" />

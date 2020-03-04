@@ -12,9 +12,9 @@
 			<if test="userId != null">
 				user_id = #{userId},
 			</if>
-			<if test="userPw != null">
-				user_pw = #{userPw},
-			</if>
+<!-- 			<if test="userPw != null"> -->
+<!-- 				user_pw = #{userPw}, -->
+<!-- 			</if> -->
 			<if test="userName != null">
 				user_name = #{userName},
 			</if>
@@ -41,11 +41,18 @@
 		</where>
 	</update>
 	
+	<update id="userPwChange" parameterType="renewPw">
+		update member set user_pw = #{newPw} where user_id = #{userId} and user_pw = #{pw}
+	</update>
+	
 	<delete id="memberDelete" parameterType="memdto">
 		<!-- 속성 중에 parameterMap은 장바구니.. 할때 할 거라고... delete 여러개 돌리는 대신 한 방에 처리하는 그런 방식... -->
 		delete from member
 		<where>
-			user_id=#{userId} and user_pw=#{userPw}
+			user_id=#{userId}
+			<if test="userPw != null">
+				and user_pw = #{userPw}
+			</if>
 		</where>
 	</delete>
 </mapper>

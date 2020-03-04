@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="commentDynamicMapper">
+	<cache />
+	<sql id="baseCommentColumn">
+		comment_no, cuser_id, comment_subject, comment_content, reg_date
+	</sql>
+	<sql id="baseMemberColumn">
+		user_id, user_pw, user_name, user_gender, user_email, user_addr, user_ph1, user_ph2, user_birth, user_regist
+	</sql>
+	<!-- 겹치는 게 있으면 user_id aa 식으로 alias를 줘야 된다. 이름을 바꿔줘야 된다... -->
+	
+	<select id="commentAssociation" resultMap="associationResultMap" parameterType="Long">	<!-- association이 1대1을 의미한다고... -->
+		select <include refid="baseCommentColumn" />, <include refid="baseMemberColumn" /> from member m, comment1 c
+		<where>
+			c.cuser_id = m.user_id 
+			<if test="value != null">
+				and c.comment_no = #{commentNo}
+			</if>
+		</where>
+	</select>
+	
+	<resultMap type="memdto" id="associationResultMap">		<!-- 요런 식으로.. 다대다 관계 DTO 했을 때 이런 식으로 한다는 얘기인 듯... -->
+		<id column="user_id" jdbcType="VARCHAR" property="userId" />	<!-- 프라이머리 키.. -->
+	 	<result column="user_pw" jdbcType="VARCHAR" property="userPw" />	<!--일반속성... -->
+		<result column="user_name" jdbcType="VARCHAR" property="userName" />
+		<result column="user_gender" jdbcType="VARCHAR" property="userGender" />
+		<result column="user_email" jdbcType="VARCHAR" property="userEmail" />
+		<result column="user_addr" jdbcType="VARCHAR" property="userAddr" />
+		<result column="user_ph1" jdbcType="VARCHAR" property="userPh1" />
+		<result column="user_ph2" jdbcType="VARCHAR" property="userPh2" />
+		<result column="user_birth" jdbcType="TIMESTAMP" property="userBirth" />
+		<result column="user_regist" jdbcType="TIMESTAMP" property="userRegist" />
+		
+<!-- 	<result column="user_regist" jdbcType="TIMESTAMP" property="commentDTO.commenoNo" /> -->
+		<association property="commentDTO" javaType="Model.DTO.CommentDTO" column="cuser_id">		<!-- CommentDTO에서.. -->
+			<id column="comment_no" jdbcType="BIGINT" property="commentNo" />
+			<id column="cuser_id" jdbcType="VARCHAR" property="cUserId" />
+			<result column="comment_subject" jdbcType="VARCHAR" property="commentSubject" />
+			<result column="comment_content" jdbcType="VARCHAR" property="commentContent" />
+			<result column="reg_date" jdbcType="TIMESTAMP" property="regDate" />
+		</association>
+	</resultMap>
+	
+	<resultMap type="replyUser" id="replyUserDTO">
+		<association property="ReplyDTO" column="ruser_id">		<!-- 조인 조건... -->
+			<id column="reply_no" jdbcType="BIGINT" property="replyNo" />
+			<id column="comment_no" jdbcType="BIGINT" property="commentNo" />
+			<id column="cuser_id" jdbcType="VARCHAR" property="cUserId" />
+			<id column="ruser_id" jdbcType="VARCHAR" property="rUserId" />
+			<result column="reply_content" jdbcType="VARCHAR" property="replyContent" />
+			<result column="reg_date" jdbcType="TIMESTAMP" property="regDate" />
+		</association>
+		<association property="" column="user_id" javaType="Model.DTO.MemberDTO" resultMap="baseMember" />
+		<!-- 요 resultMap을 써주고 밑에 따로 빼는게 깔끔하다는 듯.. 두 가지 방법 둘다... -->
+	</resultMap>
+	
+	<resultMap type="memdto" id="baseMember">
+		<id column="user_id" jdbcType="VARCHAR" property="userId" />	<!-- 프라이머리 키.. -->
+	 	<result column="user_pw" jdbcType="VARCHAR" property="userPw" />	<!--일반속성... -->
+		<result column="user_name" jdbcType="VARCHAR" property="userName" />
+		<result column="user_gender" jdbcType="VARCHAR" property="userGender" />
+		<result column="user_email" jdbcType="VARCHAR" property="userEmail" />
+		<result column="user_addr" jdbcType="VARCHAR" property="userAddr" />
+		<result column="user_ph1" jdbcType="VARCHAR" property="userPh1" />
+		<result column="user_ph2" jdbcType="VARCHAR" property="userPh2" />
+		<result column="user_birth" jdbcType="TIMESTAMP" property="userBirth" />
+		<result column="user_regist" jdbcType="TIMESTAMP" property="userRegist" />
+	</resultMap>
+	
+	<resultMap type="comment" id="commentMap">
+		<id column="comment_no" jdbcType="BIGINT" property="commentNo" />
+		<id column="cuser_id" jdbcType="VARCHAR" property="cUserId" />
+		<result column="comment_subject" jdbcType="VARCHAR" property="commentSubject" />
+		<result column="comment_content" jdbcType="VARCHAR" property="commentContent" />
+		<result column="reg_date" jdbcType="TIMESTAMP" property="regDate" />
+	</resultMap>
+	
+	<select id="commentList" resultMap="commentMap">
+		select <include refid="baseCommentColumn" /> from comment1
+	</select>
+	
+	<select id="commentRepliesCollection" resultMap="collectionResultMap" parameterType="Long">
+		select c.comment_no, c.cuser_id, comment_subject, comment_content, c.reg_date creg_date,
+			reply_no, ruser_id, reply_content, r.reg_date rreg_date
+				from comment1 c, reply r
+		<where>
+			c.comment_no = r.comment_no
+			<if test="value != null">
+				and c.comment_no = #{commentNo}
+			</if>
+		</where>
+	</select>
+	
+	<resultMap type="commentReplies" id="collectionResultMap">		<!-- 어소시에이션은 일, 콜렉션은 다.. -->
+		<association property="commentDTO" javaType="comment" resultMap="commentMap"></association>
+		<collection property="replies" ofType="reply">
+			<id column="reply_no" jdbcType="BIGINT" property="replyNo" />
+			<id column="comment_no" jdbcType="BIGINT" property="commentNo" />
+			<id column="cuser_id" jdbcType="VARCHAR" property="cUserId" />
+			<id column="ruser_id" jdbcType="VARCHAR" property="rUserId" />
+			<result column="reply_content" jdbcType="VARCHAR" property="replyContent" />
+			<result column="reg_date" jdbcType="TIMESTAMP" property="regDate" />
+		</collection>
+	</resultMap>
+</mapper>
