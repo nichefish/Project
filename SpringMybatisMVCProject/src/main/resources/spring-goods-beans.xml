@@ -3,9 +3,10 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd" >
 
-       
 	<bean id="goodsWriterService" class="Service.Goods.GoodsWriterService" />
 	<bean id="goodsListService" class="Service.Goods.GoodsListService" />
+	<bean id="goodsDetailService" class="Service.Goods.GoodsDetailService" />
+	<bean id="goodsWishService" class="Service.Goods.GoodsWishService" />
 	
 	<bean id="goodsRepository" class="Repository.Goods.GoodsRepository" />
 </beans>

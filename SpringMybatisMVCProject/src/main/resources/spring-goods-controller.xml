@@ -6,5 +6,6 @@
 	<bean class="Controller.Goods.GoodsController" />
 	<bean class="Controller.Goods.GoodsWriterController" />
 	<bean class="Controller.Goods.GoodsDetailController" />
+	<bean class="Controller.Goods.GoodsWishController" />
 	
 </beans>

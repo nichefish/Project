@@ -5,21 +5,21 @@ import java.sql.Timestamp;
 
 @SuppressWarnings("serial")
 public class GoodsDTO implements Serializable {
-	Integer goodsSeq;
+	Long goodsSeq;
 	String GoodsNum;
 	String UserId;
 	String GoodsName;
-	Integer GoodsPrice;
-	Integer GoodsQty;
+	Long GoodsPrice;
+	Long GoodsQty;
 	String GoodsContent;
 	String GoodsImage;
 	Timestamp GoodsRegister;
-	Integer goodsVisit;
+	Long goodsVisit;
 	
 	public GoodsDTO() {
 	}
-	public GoodsDTO(Integer goodsSeq, String goodsNum, String userId, String goodsName, Integer goodsPrice,
-			Integer goodsQty, String goodsContent, String goodsImage, Integer goodsVisit) {
+	public GoodsDTO(Long goodsSeq, String goodsNum, String userId, String goodsName, Long goodsPrice,
+			Long goodsQty, String goodsContent, String goodsImage, Long goodsVisit) {
 		this.goodsSeq = goodsSeq;
 		this.GoodsNum = goodsNum;
 		this.UserId = userId;
@@ -31,10 +31,10 @@ public class GoodsDTO implements Serializable {
 		this.goodsVisit = goodsVisit;
 	}
 	
-	public Integer getGoodsSeq() {
+	public Long getGoodsSeq() {
 		return goodsSeq;
 	}
-	public void setGoodsSeq(Integer goodsSeq) {
+	public void setGoodsSeq(Long goodsSeq) {
 		this.goodsSeq = goodsSeq;
 	}
 	public String getGoodsNum() {
@@ -55,16 +55,16 @@ public class GoodsDTO implements Serializable {
 	public void setGoodsName(String goodsName) {
 		GoodsName = goodsName;
 	}
-	public Integer getGoodsPrice() {
+	public Long getGoodsPrice() {
 		return GoodsPrice;
 	}
-	public void setGoodsPrice(Integer goodsPrice) {
+	public void setGoodsPrice(Long goodsPrice) {
 		GoodsPrice = goodsPrice;
 	}
-	public Integer getGoodsQty() {
+	public Long getGoodsQty() {
 		return GoodsQty;
 	}
-	public void setGoodsQty(Integer goodsQty) {
+	public void setGoodsQty(Long goodsQty) {
 		GoodsQty = goodsQty;
 	}
 	public String getGoodsContent() {
@@ -85,12 +85,10 @@ public class GoodsDTO implements Serializable {
 	public void setGoodsRegister(Timestamp goodsRegister) {
 		GoodsRegister = goodsRegister;
 	}
-	public Integer getGoodsVisit() {
+	public Long getGoodsVisit() {
 		return goodsVisit;
 	}
-	public void setGoodsVisit(Integer goodsVisit) {
+	public void setGoodsVisit(Long goodsVisit) {
 		this.goodsVisit = goodsVisit;
 	}
-	
-	
 }

@@ -21,9 +21,9 @@
 			<td width=10%>${status.count}</td>
 		    <td width=40%>
 		    	<c:forTokens items="${goods.goodsImage}" delims="-" var="goodsImage" varStatus="status">
-<!-- 		    		<c:if test="${status.count == 1}"> -->
-						<img src="../GoodsView/update/${goodsImage}" />
-<!-- 					</c:if> -->
+<!-- 		    	<c:if test="${status.count == 1}"> -->
+					<img src="../GoodsView/update/${goodsImage}" />
+<!-- 				</c:if> -->
 				</c:forTokens>
 		    </td>
 		    <td width=20%><a href="goodsDetail?seq=${goods.goodsSeq}">${goods.goodsName}</a></td>

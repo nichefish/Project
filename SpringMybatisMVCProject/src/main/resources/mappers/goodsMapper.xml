@@ -10,11 +10,16 @@
 		insert into goods (<include refid="baseGoodsColumn" />)
 			values (num_seq.nextval, #{goodsNum}, #{userId}, #{goodsName}, #{goodsPrice}, #{goodsQty}, #{goodsContent}, #{goodsImage}, sysdate, 0)
 	</insert>
-	
+
 	<select id="goodsList" parameterType="Model.DTO.GoodsDTO" resultMap="goods">
-		select <include refid="baseGoodsColumn" /> from goods	
+		select <include refid="baseGoodsColumn" /> from goods
+		<where>
+			<if test="value != null">
+				goods_seq = #{goodsSeq}
+			</if>
+		</where>
 	</select>
-	
+
 	<resultMap type="Model.DTO.GoodsDTO" id="goods">
 		<id column="goods_seq" jdbcType="VARCHAR" property="goodsSeq" />	<!-- 프라이머리 키.. -->
 	 	<result column="goods_num" jdbcType="VARCHAR" property="goodsNum" />	<!--일반속성... -->
@@ -27,4 +32,20 @@
 		<result column="goods_register" jdbcType="TIMESTAMP" property="goodsRegister" />
 		<result column="goods_visit" jdbcType="BIGINT" property="goodsVisit" />
 	</resultMap>
+	
+	<insert id="goodsWish" parameterType="Model.DTO.GoodsDTO">
+		MERGE INTO wish w1 USING goods w2
+			ON (w1.goods_seq = w2.goods_seq and w1.goods_seq = #{goodsSeq})
+				WHEN MATCHED THEN
+					update set w1.goods_seq = w2.goods_seq
+					delete where w1.goods_seq = #{goodsSeq}
+				WHEN NOT MATCHED THEN
+					insert (w1.goods_seq, w1.goods_num, w1.user_id, w1.goods_name, w1.goods_price, w1.goods_image)
+						values(#{goodsSeq}, #{goodsNum}, #{userId}, #{goodsName}, #{goodsPrice}, #{goodsImage})
+	</insert>
+	
+	<select id="goodsWishCount" parameterType="long" resultType="long">
+		select count(*) from where goods_seq = #{goodsSeq}
+	</select>
+	
 </mapper>
