@@ -44,7 +44,7 @@
 <a href="libraryBoard/library">일반지료실</a>
 <a href="answer/answerBoard">답변형 게시판</a>
 <a href="comment/comment_list">댓글 게시판</a>
-<a href="goodsList">상품목록</a>
+<a href="goods/goodsList">상품목록</a>
 <a href="mailForm">메일전송</a>
 <a href="ajaxTest">ajaxTest</a>
 <a href="AjaxTest1">ajaxTest1</a>

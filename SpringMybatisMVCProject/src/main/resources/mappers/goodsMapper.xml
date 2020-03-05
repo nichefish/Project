@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="goodsMapper">	<!-- 여기꺼...랑 repository꺼 이름이랑 같아야 된다... -->
+<cache />
+	<sql id="baseGoodsColumn">
+		goods_seq, goods_num, user_id, goods_name, goods_price, goods_qty, goods_content, goods_image, goods_register, goods_visit
+	</sql>
+	<insert id="goodsInsert" parameterType="Model.DTO.GoodsDTO">
+		insert into goods (<include refid="baseGoodsColumn" />)
+			values (num_seq.nextval, #{goodsNum}, #{userId}, #{goodsName}, #{goodsPrice}, #{goodsQty}, #{goodsContent}, #{goodsImage}, sysdate, 0)
+	</insert>
+	
+	<select id="goodsList" parameterType="Model.DTO.GoodsDTO" resultMap="goods">
+		select <include refid="baseGoodsColumn" /> from goods	
+	</select>
+	
+	<resultMap type="Model.DTO.GoodsDTO" id="goods">
+		<id column="goods_seq" jdbcType="VARCHAR" property="goodsSeq" />	<!-- 프라이머리 키.. -->
+	 	<result column="goods_num" jdbcType="VARCHAR" property="goodsNum" />	<!--일반속성... -->
+		<result column="user_id" jdbcType="VARCHAR" property="userId" />
+		<result column="goods_name" jdbcType="VARCHAR" property="goodsName" />
+		<result column="goods_price" jdbcType="BIGINT" property="goodsPrice" />
+		<result column="goods_qty" jdbcType="BIGINT" property="goodsQty" />
+		<result column="goods_content" jdbcType="VARCHAR" property="goodsContent" />
+		<result column="goods_image" jdbcType="VARCHAR" property="goodsImage" />
+		<result column="goods_register" jdbcType="TIMESTAMP" property="goodsRegister" />
+		<result column="goods_visit" jdbcType="BIGINT" property="goodsVisit" />
+	</resultMap>
+</mapper>
