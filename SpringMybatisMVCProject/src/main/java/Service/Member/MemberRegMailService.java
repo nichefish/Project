@@ -21,7 +21,7 @@ public class MemberRegMailService {
 		SimpleDateFormat dateForm = new SimpleDateFormat("yyyyMMddHHmmss");
 		String num = dateForm.format(new Date());
 		String content = "<html><body>안녕하세요. '" + userId + "'님 가입을 환영합니다.<br />아래 링크를 눌러야 가입이 완료됩니다.<br />"
-				+ "<a href='http://192.168.4.113:8080/SpringMybatisMVCProject/memberMail?num= " + num + "&receiver=" + receiver + "&userId=" + userId + "'>"
+				+ "<a href='http://192.168.4.113:8080/SpringMybatisMVCProject/memberMail?num=" + num + "&receiver=" + receiver + "&userId=" + userId + "'>"
 				+ "<strong><b>가입을 완료하시려면 여기를 눌러주세요.</b></strong></body></html>";
 		String subject = "가입환영인사";
 		try {

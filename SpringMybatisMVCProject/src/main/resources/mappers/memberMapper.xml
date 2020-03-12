@@ -31,4 +31,10 @@
 		<result column="user_regist" jdbcType="TIMESTAMP" property="userRegist" />
 	</resultMap>
 	
+	<update id="joinOkUpdate" parameterType="memdto">	
+		update member set join_ok = #{joinOk} where user_id = #{userId} and user_email = #{userEmail} and join_ok is null
+	</update>
+	
+	
+	
 </mapper>

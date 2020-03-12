@@ -45,4 +45,12 @@ public class MemberRepository extends AbstractRepository {
 		MemberDTO dto = sqlSession.selectOne(statement, member);
 		return dto;
 	}
+	
+	public Integer joinOkUpdate(MemberDTO memberDTO) {
+		String statement = namespace + ".joinOkUpdate";
+		return sqlSession.update(statement, memberDTO);
+	}
+	
+	
+	
 }

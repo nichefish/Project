@@ -49,4 +49,14 @@ public class MemberController {
 		}
 		return i;
 	}
+	
+	@RequestMapping("/memberMail")
+	public String memberMail(@RequestParam(value="num") String num, @RequestParam(value="receiver") String receiver, @RequestParam(value="userId") String userId) {
+		Integer result = memberJoinService.numUpdate(num, receiver, userId);
+		if (result > 0) {
+			return "member/success";
+		} else {
+			return "member/fail";
+		}
+	}
 }
