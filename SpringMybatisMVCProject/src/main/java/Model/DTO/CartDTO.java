@@ -1,19 +1,28 @@
 package Model.DTO;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class CartDTO {
-	Integer goodsSeq;
+@SuppressWarnings("serial")
+public class CartDTO implements Serializable {
+	Long cartNum;
+	Long goodsSeq;
 	String UserId;
 	String GoodsName;
-	Integer GoodsPrice;
-	Integer GoodsQty;
+	Long GoodsPrice;
+	Long GoodsQty;
 	String GoodsImage;
 	
-	public Integer getGoodsSeq() {
+	public Long getCartNum() {
+		return cartNum;
+	}
+	public void setCartNum(Long cartNum) {
+		this.cartNum = cartNum;
+	}
+	public Long getGoodsSeq() {
 		return goodsSeq;
 	}
-	public void setGoodsSeq(Integer goodsSeq) {
+	public void setGoodsSeq(Long goodsSeq) {
 		this.goodsSeq = goodsSeq;
 	}
 	public String getUserId() {
@@ -28,16 +37,16 @@ public class CartDTO {
 	public void setGoodsName(String goodsName) {
 		GoodsName = goodsName;
 	}
-	public Integer getGoodsPrice() {
+	public Long getGoodsPrice() {
 		return GoodsPrice;
 	}
-	public void setGoodsPrice(Integer goodsPrice) {
+	public void setGoodsPrice(Long goodsPrice) {
 		GoodsPrice = goodsPrice;
 	}
-	public Integer getGoodsQty() {
+	public Long getGoodsQty() {
 		return GoodsQty;
 	}
-	public void setGoodsQty(Integer goodsQty) {
+	public void setGoodsQty(Long goodsQty) {
 		GoodsQty = goodsQty;
 	}
 	public String getGoodsImage() {

@@ -6,5 +6,7 @@
 	<bean class="Controller.Main.MainController" />
 	<bean class="Controller.Ajax.AjaxController" />
 	<bean class="Controller.Domino.DominoController" />
+	
+	<bean class="Controller.Survey.SurveyController" />
 
 </beans>

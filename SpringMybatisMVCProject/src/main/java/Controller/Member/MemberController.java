@@ -9,12 +9,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import Command.Member.MemberCommand;
 import Service.Member.MemberJoinService;
+import Service.Member.MemberRegMailService;
 import Validator.MemberCommandValidator;
 
 @Controller
 public class MemberController {
 	@Autowired
 	private MemberJoinService memberJoinService;
+
 	// 자바에서는 setter나 생성자가 필요했었는데. 웹에서는 @Controller가 있을 경우에는 setter나 생성자가 필요없다... 암시적으로 만들어진다고...
 
 	@RequestMapping("/register/agree")

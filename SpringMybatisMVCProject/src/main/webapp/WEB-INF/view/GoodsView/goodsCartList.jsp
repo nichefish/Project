@@ -8,7 +8,7 @@
 <script type="text/javascript">
 function checkQty (seq, qty) {
 	if (qty > 1) {
-		location.href = "goodsCartQtyDown.gd?goodsSeq="+seq;
+		location.href = "goodsCartQtyDown?seq="+seq;
 	} else {
 		return false;
 	}
@@ -16,7 +16,7 @@ function checkQty (seq, qty) {
 </script>
 </head>
 <body>
-	<form action="goodsCartRemove.gd" method="post" name="frm">
+	<form action="goodsCartRemove" method="post" name="frm">
 		<table align="center" width="600" border="1">
 			<tr align="center" bgcolor="orange">
 				<td>번호	</td>
@@ -29,11 +29,13 @@ function checkQty (seq, qty) {
 			<c:forEach var="cart" items="${cartList}" step="1" >
 			<tr align="center" bgcolor="orange">
 				<td>${cart.goodsSeq}	</td>
-				<td><img src="GoodsView/update/${cart.goodsImage}" width="30"/></td>
+				<td>
+					<img src="GoodsView/update/${cart.goodsImage}" width="30"/>
+				</td>
 				<td>${cart.goodsName}</td>
 				<td>${cart.goodsPrice}</td>
-				<td><a href="goodsCartQtyUp.gd?goodsSeq=${cart.goodsSeq}"> + </a> ${cart.goodsQty} <a href="javascript:checkQty('${cart.goodsSeq}',${cart.goodsQty})"> - </a></td>
-				<td align="center"><input type="checkbox" name="delete" value="${cart.goodsSeq}" /></td>
+				<td><a href="goodsCartQtyUp?seq=${cart.goodsSeq}"> + </a> ${cart.goodsQty} <a href="javascript:checkQty('${cart.goodsSeq}',${cart.goodsQty})"> - </a></td>
+				<td align="center"><input type="checkbox" name="delete" value="${cart.cartNum}" /></td>
 			</tr>	
 			</c:forEach>
 		</table>

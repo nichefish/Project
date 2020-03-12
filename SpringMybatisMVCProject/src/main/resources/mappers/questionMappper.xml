@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="questionMapper">
+	<cache />
+	<select id="surveySelectAll" resultMap="surveyMap">
+		SELECT QUESTION_TITLE, OPTIONS_NAME FROM QUESTION Q, OPTIONS O WHERE Q.QUESTION_NUM = O.QUESTION_NUM(+)
+	</select>
+	<resultMap type="questions" id="surveyMap">
+		<id column="question_title" jdbcType="VARCHAR" property="question" />	<!-- 프라이머리 키.. -->
+		<result column="options_name" jdbcType="VARCHAR" property="options" />	<!-- 일반속성... -->
+	</resultMap>
+	
+</mapper>

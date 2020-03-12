@@ -9,6 +9,7 @@
 </head>
 <body>
 <c:if test="${empty authInfo}">
+ID: <c:out value="${authInfo.id}" /><br />
 <form:form action="login" name="frm" id="frm" method="POST" commandName="loginCommand">
 	<table border="1">
 		<tr>
@@ -36,7 +37,7 @@
 </c:if>
 
 <c:if test="${!empty authInfo}">
-<!-- 로그인 되었을 때 --><c:out value="${authInfo.id}" />
+<!-- 로그인 되었을 때 -->ID: <c:out value="${authInfo.id}" /><br />
 <a href="memberDetail">내 정보</a>
 <a href="logout" >로그아웃</a>
 <a href="member/list">회원리스트</a>
@@ -49,6 +50,7 @@
 <a href="ajaxTest">ajaxTest</a>
 <a href="AjaxTest1">ajaxTest1</a>
 <a href="domino">domino</a>
+<a href="survey">설문지</a>
 </c:if>
 </body>
 </html>

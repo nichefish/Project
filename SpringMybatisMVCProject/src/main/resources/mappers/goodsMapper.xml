@@ -11,7 +11,8 @@
 			values (num_seq.nextval, #{goodsNum}, #{userId}, #{goodsName}, #{goodsPrice}, #{goodsQty}, #{goodsContent}, #{goodsImage}, sysdate, 0)
 	</insert>
 
-	<select id="goodsList" parameterType="Model.DTO.GoodsDTO" resultMap="goods">
+<!-- 	<select id="goodsList" parameterType="Model.DTO.GoodsDTO" resultMap="goods"> -->
+	<select id="goodsList" parameterType="Long" resultMap="goods">
 		select <include refid="baseGoodsColumn" /> from goods
 		<where>
 			<if test="value != null">
@@ -33,19 +34,75 @@
 		<result column="goods_visit" jdbcType="BIGINT" property="goodsVisit" />
 	</resultMap>
 	
-	<insert id="goodsWish" parameterType="Model.DTO.GoodsDTO">
-		MERGE INTO wish w1 USING goods w2
-			ON (w1.goods_seq = w2.goods_seq and w1.goods_seq = #{goodsSeq})
-				WHEN MATCHED THEN
-					update set w1.goods_seq = w2.goods_seq
-					delete where w1.goods_seq = #{goodsSeq}
-				WHEN NOT MATCHED THEN
-					insert (w1.goods_seq, w1.goods_num, w1.user_id, w1.goods_name, w1.goods_price, w1.goods_image)
-						values(#{goodsSeq}, #{goodsNum}, #{userId}, #{goodsName}, #{goodsPrice}, #{goodsImage})
+	<select id="goodsWishCount" parameterType="wish" resultType="int">
+		select count(*) from wish where goods_seq = #{goodsSeq} and user_id = #{userId}
+	</select>
+	
+	<insert id="wishInsert" parameterType="wish">
+		insert into wish (goods_seq, user_id) values (#{goodsSeq}, #{userId})
 	</insert>
 	
-	<select id="goodsWishCount" parameterType="long" resultType="long">
-		select count(*) from where goods_seq = #{goodsSeq}
+	<delete id="wishDelete" parameterType="wish">
+		delete from wish where goods_seq = #{goodsSeq} and user_id = #{userId}
+	</delete>
+	
+	<select id="goodsWishList" parameterType="wish" resultMap="goods">
+		select <include refid="baseGoodsColumn" /> from goods where goods_seq in (select goods_seq from wish where user_id = #{userId} )
 	</select>
+	
+	<insert id="goodsCartAdd" parameterType="cart">	<!-- 요 select 요 부분이 중요... -->
+		merge into cart c1 using (select goods_seq from goods where goods_seq = #{goodsSeq}) g1
+			on (c1.goods_seq = g1.goods_seq)
+			when matched then
+				update set c1.goods_qty = c1.goods_qty + 1
+			when not matched then
+				insert (c1.cart_num, c1.goods_seq, c1.user_id, c1.goods_name, c1.goods_price, c1.goods_image, c1.goods_qty) values (num_seq.nextval, #{goodsSeq}, #{userId}, #{goodsName}, #{goodsPrice}, #{goodsImage}, #{goodsQty})
+	</insert>
+	
+	<select id="goodsCartList" parameterType="string" resultMap="cartListMap">
+		select cart_num, goods_seq, user_id, goods_name, goods_price, goods_image, goods_qty from cart where user_id = #{userId}
+	</select>
+	
+	<resultMap type="cart" id="cartListMap">
+		<id column="cart_num" jdbcType="BIGINT" property="cartNum" />	<!-- 프라이머리 키.. -->
+		<result column="goods_seq" jdbcType="VARCHAR" property="goodsSeq" />	<!-- 프라이머리 키.. -->
+	 	<result column="user_id" jdbcType="VARCHAR" property="userId" />	<!--일반속성... -->
+		<result column="goods_name" jdbcType="VARCHAR" property="goodsName" />
+		<result column="goods_price" jdbcType="BIGINT" property="goodsPrice" />
+		<result column="goods_qty" jdbcType="BIGINT" property="goodsQty" />
+		<result column="goods_image" jdbcType="VARCHAR" property="goodsImage" />
+	</resultMap>
+	
+	<update id="goodsCartDown" parameterType="cart">
+		update cart set goods_qty = goods_qty - 1 where goods_seq = #{goodsSeq} and user_id = #{userId}
+	</update>
+	
+	<delete id="goodsCartRemove" parameterType="hashmap">	<!-- parameterMap..이랑 같은 의미라고.... --> <!-- 여러개 값 갖고와서 in..쓰는 거임... -->
+		delete from cart
+		<where>
+			<if test="seqs != null">	<!-- 보통 condition.get("") 요거.. 라고... 두개가 같은 얘기.. -->
+				cart_num IN
+				<foreach collection="seqs" item="goodsSeq" index="index" open="(" close=")" separator=",">
+					#{goodsSeq}
+				</foreach>
+			</if>
+		</where>
+	</delete>
+	
+	
+	
+<!-- 	<insert id="goodsWish" parameterType="Model.DTO.GoodsDTO"> -->	<!-- 여기서는 merge 쓰지 말자고... -->
+<!-- 		MERGE INTO wish w1 USING goods w2 -->
+<!-- 			ON (w1.goods_seq = w2.goods_seq and w1.goods_seq = #{goodsSeq} and w1.user_id = #{userId} ) -->
+<!-- 				WHEN MATCHED THEN -->
+<!-- 					update set w1.goods_name = w2.goods_name where w1.goods_seq = #{goodsSeq} -->
+<!-- 					delete where w1.goods_seq = #{goodsSeq} -->
+<!-- 				WHEN NOT MATCHED THEN -->
+<!-- 					insert (w1.goods_seq, w1.goods_num, w1.user_id, w1.goods_name, w1.goods_price, w1.goods_image) -->
+<!-- 						values(#{goodsSeq}, #{goodsNum}, #{userId}, #{goodsName}, #{goodsPrice}, #{goodsImage}) -->
+<!-- 	</insert> -->
+<!-- 	<select id="goodsWishCount" parameterType="long" resultType="long"> -->
+<!-- 		select count(*) from where goods_seq = #{goodsSeq} -->
+<!-- 	</select> -->
 	
 </mapper>

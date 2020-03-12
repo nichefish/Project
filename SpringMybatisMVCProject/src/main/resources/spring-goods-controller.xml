@@ -7,5 +7,6 @@
 	<bean class="Controller.Goods.GoodsWriterController" />
 	<bean class="Controller.Goods.GoodsDetailController" />
 	<bean class="Controller.Goods.GoodsWishController" />
+	<bean class="Controller.Goods.GoodsCartController" />
 	
 </beans>

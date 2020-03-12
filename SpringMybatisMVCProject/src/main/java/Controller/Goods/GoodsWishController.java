@@ -17,7 +17,13 @@ public class GoodsWishController {
 	
 	@RequestMapping("/goods/goodsWishAdd")
 	public String goodsWishAdd(@RequestParam(value="seq") Long goodsSeq, Model model, HttpSession session) {
-		goodsWishService.goodsWishAdd(goodsSeq, model, session);
-		return "GoodsView/success";
+		Integer i = goodsWishService.goodsWishAdd(goodsSeq, model, session);
+		return "redirect:/goods/goodsDetail?seq=" + goodsSeq;
+	}
+	
+	@RequestMapping("/goods/goodsWishList")
+	public String goodsWishList(Model model, HttpSession session) {
+		goodsWishService.goodsWishList(model, session);
+		return "GoodsView/goodsWishList";
 	}
 }

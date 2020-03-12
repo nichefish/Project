@@ -12,5 +12,8 @@
 		<typeAlias type="Model.DTO.ReplyDTO" alias="reply"/>
 		<typeAlias type="Model.DTO.ReplyUserDTO" alias="replyUser"/>
 		<typeAlias type="Model.DTO.CommentRepliesDTO" alias="commentReplies"/>
+		<typeAlias type="Model.DTO.WishDTO" alias="wish"/>
+		<typeAlias type="Model.DTO.CartDTO" alias="cart"/>
+		<typeAlias type="Model.DTO.QuestionOptionDTO" alias="questions"/>
 	</typeAliases>
 </configuration>

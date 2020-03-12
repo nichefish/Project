@@ -1,0 +1,22 @@
+package Model.DTO;
+
+import java.io.Serializable;
+
+@SuppressWarnings("serial")
+public class WishDTO implements Serializable {
+	private Long goodsSeq;
+	private String userId;
+	
+	public Long getGoodsSeq() {
+		return goodsSeq;
+	}
+	public void setGoodsSeq(Long goodsSeq) {
+		this.goodsSeq = goodsSeq;
+	}
+	public String getUserId() {
+		return userId;
+	}
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+}

@@ -5,8 +5,8 @@ import org.springframework.web.multipart.MultipartFile;
 public class GoodsCommand {
 	private String goodsNum;
 	private String goodsName;
-	private Integer goodsPrice;
-	private Integer goodsQty;
+	private Long goodsPrice;
+	private Long goodsQty;
 	private String goodsContent;
 	private MultipartFile [] goodsImage;
 	
@@ -22,16 +22,16 @@ public class GoodsCommand {
 	public void setGoodsName(String goodsName) {
 		this.goodsName = goodsName;
 	}
-	public Integer getGoodsPrice() {
+	public Long getGoodsPrice() {
 		return goodsPrice;
 	}
-	public void setGoodsPrice(Integer goodsPrice) {
+	public void setGoodsPrice(Long goodsPrice) {
 		this.goodsPrice = goodsPrice;
 	}
-	public Integer getGoodsQty() {
+	public Long getGoodsQty() {
 		return goodsQty;
 	}
-	public void setGoodsQty(Integer goodsQty) {
+	public void setGoodsQty(Long goodsQty) {
 		this.goodsQty = goodsQty;
 	}
 	public String getGoodsContent() {

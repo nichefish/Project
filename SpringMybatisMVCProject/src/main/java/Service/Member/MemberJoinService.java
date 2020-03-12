@@ -19,6 +19,8 @@ public class MemberJoinService {
 	private MemberRepository memberRepository;
 	@Autowired
 	BCryptPasswordEncoder bcryptPasswordEncoder;
+	@Autowired
+	private MemberRegMailService memberRegMailService;
 
 	public String execute(MemberCommand memberCommand, Errors errors) {
 		MemberDTO dto = new MemberDTO();
@@ -40,9 +42,7 @@ public class MemberJoinService {
 			errors.rejectValue("userId", "duplicate");
 			return "member/memberForm";
 		}
+		memberRegMailService.sendMail(dto.getUserEmail(), dto.getUserId());
 		return "member/memberWelcome";
 	}
-	
-	
-
 }

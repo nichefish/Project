@@ -1,5 +1,7 @@
 package Service.Goods;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,11 +16,18 @@ import Repository.Goods.GoodsRepository;
 public class GoodsWishService {
 	@Autowired
 	private GoodsRepository goodsRepository;
+	private String userId;
 	
-	public void goodsWishAdd(Long goodsSeq, Model model, HttpSession session) {
-		System.out.println("1@#!@!##");
+	public Integer goodsWishAdd(Long goodsSeq, Model model, HttpSession session) {
 		String userId = ((AuthInfo) session.getAttribute("authInfo")).getId();
 		Integer result = goodsRepository.goodsWishAdd(goodsSeq, userId);
-		model.addAttribute("seq", result);
+		model.addAttribute("num", result);
+		return result;
+	}
+
+	public void goodsWishList(Model model, HttpSession session) {
+		String userId = ((AuthInfo) session.getAttribute("authInfo")).getId();
+		List<GoodsDTO> list = goodsRepository.goodsWishList(userId);
+		model.addAttribute("wishList", list);
 	}
 }

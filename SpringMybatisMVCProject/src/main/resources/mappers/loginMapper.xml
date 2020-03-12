@@ -30,15 +30,15 @@
 <!-- 		<arg column="user_regist" javaType="java.sql.Timestamp" /> -->
 <!-- 	  </constructor> -->
 		<!-- id하고 result는 setter 쓰는거임.. setter/getter 없을떄 그거 쓰면 에러생김... -->
-	<id column="user_id" jdbcType="VARCHAR" property="userId" />	<!-- 프라이머리 키.. -->
- 	<result column="user_pw" jdbcType="VARCHAR" property="userPw" />	<!--일반속성... -->
-	<result column="user_name" jdbcType="VARCHAR" property="userName" />
-	<result column="user_gender" jdbcType="VARCHAR" property="userGender" />
-	<result column="user_email" jdbcType="VARCHAR" property="userEmail" />
-	<result column="user_addr" jdbcType="VARCHAR" property="userAddr" />
-	<result column="user_ph1" jdbcType="VARCHAR" property="userPh1" />
-	<result column="user_ph2" jdbcType="VARCHAR" property="userPh2" />
-	<result column="user_birth" jdbcType="TIMESTAMP" property="userBirth" />
-	<result column="user_regist" jdbcType="TIMESTAMP" property="userRegist" />
+		<id column="user_id" jdbcType="VARCHAR" property="userId" />	<!-- 프라이머리 키.. -->
+	 	<result column="user_pw" jdbcType="VARCHAR" property="userPw" />	<!--일반속성... -->
+		<result column="user_name" jdbcType="VARCHAR" property="userName" />
+		<result column="user_gender" jdbcType="VARCHAR" property="userGender" />
+		<result column="user_email" jdbcType="VARCHAR" property="userEmail" />
+		<result column="user_addr" jdbcType="VARCHAR" property="userAddr" />
+		<result column="user_ph1" jdbcType="VARCHAR" property="userPh1" />
+		<result column="user_ph2" jdbcType="VARCHAR" property="userPh2" />
+		<result column="user_birth" jdbcType="TIMESTAMP" property="userBirth" />
+		<result column="user_regist" jdbcType="TIMESTAMP" property="userRegist" />
 	</resultMap>
 </mapper>
